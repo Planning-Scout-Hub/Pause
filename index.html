@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pause — a daily diary for your mind</title>
+  <meta name="description" content="One diary page a day: food for thought, a joke, a fact worth sharing and a journal prompt that helps you reconnect with your thoughts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Kalam:wght@400;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="demoBanner" class="banner" hidden>Preview mode: entries are kept in this browser only. Connect Supabase (see README) to turn on real accounts.</div>
+
+  <header class="topbar">
+    <div class="brand"><span id="appName">Pause</span><small>a daily diary for your mind</small></div>
+    <nav class="tabs">
+      <button id="journalBtn" class="tab">My journal</button>
+      <button id="authBtn" class="tab">Log in</button>
+    </nav>
+  </header>
+
+  <main class="book">
+    <!-- LEFT PAGE: today's page -->
+    <section class="page left" aria-label="Today's page">
+      <h1 class="title" id="title"></h1>
+      <p class="theme"><span class="tape">Today's theme: <strong id="theme"></strong></span></p>
+
+      <details class="sec">
+        <summary>
+          <h2 class="hand">Food for Thought:</h2>
+          <p class="lead" id="thoughtText"></p>
+          <span class="more-link">keep reading</span>
+        </summary>
+        <div class="more">
+          <p id="thoughtMore"></p>
+          <p class="ask">Something to sit with: <em id="thoughtAsk"></em></p>
+        </div>
+      </details>
+
+      <details class="sec">
+        <summary>
+          <h2 class="hand">Joke of the Day:</h2>
+          <p class="lead" id="jokeSetup"></p>
+          <span class="more-link">reveal the punchline</span>
+        </summary>
+        <div class="more">
+          <p class="punch" id="jokePunch"></p>
+          <p class="bonus">One more: <span id="jokeBonus"></span></p>
+        </div>
+      </details>
+
+      <details class="sec">
+        <summary>
+          <h2 class="hand">Random Fact of the Day:</h2>
+          <p class="lead" id="factText"></p>
+          <span class="more-link">tell me more</span>
+        </summary>
+        <div class="more"><p id="factMore"></p></div>
+      </details>
+    </section>
+
+    <!-- RIGHT PAGE: write -->
+    <section class="page right" aria-label="Today's journal entry">
+      <div class="ribbon" aria-hidden="true"></div>
+      <details class="sec">
+        <summary>
+          <h2 class="hand">Journal Entry Idea:</h2>
+          <p class="lead" id="promptText"></p>
+          <span class="more-link">why this helps &amp; how to start</span>
+        </summary>
+        <div class="more">
+          <p id="promptWhy"></p>
+          <p class="stuck">Stuck? Tap a line to start with it:</p>
+          <div class="starters" id="starters"></div>
+        </div>
+      </details>
+
+      <div class="lined">
+        <textarea id="entry" aria-label="Write your entry"></textarea>
+      </div>
+      <div class="save-row">
+        <span class="note" id="draftNote">Your words are kept as you type.</span>
+        <button id="saveBtn" class="save" type="button">Save</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Pause is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.
+  </footer>
+
+  <!-- Sign-up / log-in -->
+  <div class="modal" id="authModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="authTitle">Keep this entry</h2>
+      <p id="authMsg" class="muted"></p>
+      <form id="authForm" novalidate>
+        <label>Email<input type="email" id="email" required autocomplete="email"></label>
+        <label>Password<input type="password" id="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters"></label>
+        <p id="authErr" class="err" hidden></p>
+        <button class="save wide" type="submit" id="authSubmit">Create account &amp; save</button>
+      </form>
+      <p class="switch" id="switchRow"><span id="switchText">Already have an account?</span> <button class="link" id="switchMode" type="button">Log in</button></p>
+    </div>
+  </div>
+
+  <!-- Journal archive -->
+  <div class="modal" id="journalModal" hidden>
+    <div class="sheet big diary" role="dialog" aria-modal="true" aria-labelledby="journalTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="journalTitle">My Journal</h2>
+      <p class="muted" id="journalMeta"></p>
+      <input type="search" id="search" placeholder="Search your entries…" aria-label="Search entries">
+      <div id="entries" class="entries"></div>
+      <p class="switch"><button class="link" id="signOutBtn" type="button">Sign out</button></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
