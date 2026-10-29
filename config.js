@@ -10,6 +10,6 @@
 
 export const CONFIG = {
   APP_NAME: "Pause",
-  SUPABASE_URL: "",       // e.g. "https://abcdefghijk.supabase.co"
-  SUPABASE_ANON_KEY: "",  // the long "anon public" key
+  SUPABASE_URL: "https://bxfrgxxwbzeuhyqaydit.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_YQgSRqfTQg_5TX8f5_AzWQ_0YkZ4uom", // public key, safe to publish
 };
