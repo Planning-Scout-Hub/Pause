@@ -5,7 +5,6 @@ on:
   workflow_dispatch:        # lets you run it by hand from the Actions tab
 permissions:
   contents: write
-  models: read      # free AI writing via GitHub Models
 jobs:
   news:
     runs-on: ubuntu-latest
@@ -17,7 +16,8 @@ jobs:
       - name: Fetch good news and On this day
         run: python scripts/fetch_news.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
       - name: Save changes
         run: |
           git config user.name "pause-bot"

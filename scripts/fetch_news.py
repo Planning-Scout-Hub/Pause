@@ -13,7 +13,7 @@ Pause daily content job (runs every morning on GitHub Actions, see .github/workf
 4. Saves one story per day in news.json (keeps the last 60 days), plus "On this day".
 Only uses the Python standard library. If anything fails, the previous news.json is kept.
 """
-import json, subprocess, re, html, os, sys, datetime as dt, urllib.request, urllib.error, email.utils
+import json, re, html, os, sys, datetime as dt, urllib.request, urllib.error, email.utils
 import xml.etree.ElementTree as ET
 
 FEEDS = [
@@ -43,7 +43,7 @@ PERSONAL_FEAT = r"\b\d{1,3}-year-old\b|years? old\b|marathon|wheelchair|birthday
 UA = {"User-Agent": "PauseDailyBot/2.0 (+https://pause-diary.pages.dev/)"}
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "news.json")
-TOKEN = os.environ.get("GITHUB_TOKEN")
+
 MODEL = os.environ.get("PAUSE_MODEL", "openai/gpt-4o-mini")
 
 
@@ -185,40 +185,42 @@ Source text:
     return {k: data[k].strip() for k in ("headline", "story", "why")}
 
 
-ORG = os.environ.get("GITHUB_REPOSITORY_OWNER", "")
-ENDPOINTS = [("https://models.github.ai/inference/chat/completions", MODEL),
-             ("https://models.github.ai/inference/chat/completions", "openai/gpt-4.1-mini"),
-             (f"https://models.github.ai/orgs/{ORG}/inference/chat/completions", "openai/gpt-4.1-mini")]
-GOOD = []  # remembers the endpoint that worked
+# GitHub Models was retired on 30 July 2026, so the writer now uses Cloudflare Workers AI (free daily allowance).
+CF_ACCOUNT = os.environ.get("CF_ACCOUNT_ID", "").strip()
+CF_TOKEN = os.environ.get("CF_API_TOKEN", "").strip()
+CF_MODELS = [os.environ.get("PAUSE_MODEL") or "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "@cf/meta/llama-3.1-8b-instruct"]
+GOOD = []  # remembers the model that worked
 
 
 def call_model(prompt, max_tokens):
-    """Call GitHub Models with curl (exactly as GitHub's docs show), trying the legacy endpoint if needed."""
-    if not TOKEN:
+    """Ask Cloudflare Workers AI. Returns None when no token is set (the page then shows the source's own words)."""
+    if not (CF_ACCOUNT and CF_TOKEN):
         return None
     problems = []
-    for url, model in (GOOD or ENDPOINTS):
-        body = json.dumps({"model": model, "temperature": 0.4, "max_tokens": max_tokens,
+    for model in (GOOD or CF_MODELS):
+        url = f"https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT}/ai/run/{model}"
+        body = json.dumps({"max_tokens": max_tokens, "temperature": 0.4,
                            "messages": [{"role": "system", "content": "You are a careful science and good-news writer. You never invent facts."},
-                                        {"role": "user", "content": prompt}]})
+                                        {"role": "user", "content": prompt}]}).encode()
+        req = urllib.request.Request(url, data=body, method="POST", headers={
+            "Authorization": f"Bearer {CF_TOKEN}", "Content-Type": "application/json"})
         try:
-            out = subprocess.run(["curl", "-sS", "-L", "-X", "POST", url,
-                                  "-H", "Accept: application/json",
-                                  "-H", f"Authorization: Bearer {TOKEN}",
-                                  "-H", "Content-Type: application/json",
-                                  "--data-binary", "@-", "-w", "\n__HTTP__%{http_code}"],
-                                 input=body, capture_output=True, text=True, timeout=120)
-        except Exception as e:
-            problems.append(f"{url.split('/')[2]}: {e}")
+            with urllib.request.urlopen(req, timeout=120) as r:
+                raw = r.read().decode("utf-8", "ignore")
+        except urllib.error.HTTPError as e:
+            problems.append(f"{model} HTTP {e.code}: {e.read().decode('utf-8', 'ignore')[:150]}")
             continue
-        raw, _, code = out.stdout.rpartition("\n__HTTP__")
+        except Exception as e:
+            problems.append(f"{model}: {e}")
+            continue
         try:
-            text = json.loads(raw)["choices"][0]["message"]["content"]
+            res = json.loads(raw)["result"]["response"]
+            text = res if isinstance(res, str) else json.dumps(res)
             if not GOOD:
-                GOOD.append((url, model)); print("model OK via", url, model)
+                GOOD.append(model); print("model OK:", model)
             return text
         except Exception:
-            problems.append(f"{url.split('/', 3)[-1][:40]} {model} HTTP {code}: {raw.strip()[:150]!r} {out.stderr.strip()[:80]}")
+            problems.append(f"{model} unexpected reply: {raw[:150]!r}")
     raise RuntimeError(" | ".join(problems))
 
 
@@ -243,7 +245,7 @@ if shortlist:
     for i in order[:4]:
         c = shortlist[i]
         try:
-            written = write_story(c, article_text(c["link"])) if TOKEN else None
+            written = write_story(c, article_text(c["link"])) if CF_TOKEN else None
         except Exception as e:
             errors.append(f"model write: {e}"[:200]); written = None
         if written:
