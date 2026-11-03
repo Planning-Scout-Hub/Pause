@@ -1,87 +1,17 @@
 {
- "updated": "2026-11-03T18:51+00:00",
- "stories": [
-  {
-   "title": "He Donated His Ultra-rare Blood 545 Times While Visiting Every Blood Bank in Australia",
-   "summary": "Pictured here enjoying jokes and a juice box, Trevor Bergman has now successfully donated his ultra-rare blood at all 85 Australian donation centers. While on his journey, Bergman donated blood 545 times, helping patients from…",
-   "link": "https://www.goodnewsnetwork.org/ultra-rare-blood-carrier-finishes-grand-tour-around-australia-to-donate-at-all-85-blood-banks/",
-   "source": "Good News Network",
-   "date": "2026-11-03",
-   "topic": "Health"
-  },
-  {
-   "title": "This Wheelchair Skateboarding Teacher Already Conquered Mountains and Marathons",
-   "summary": "This rolling inspiration is Xie Junwu, an iron-willed wheelchair-bound althlete who’s climbed mountains, completed marathons, and now spends his days skateboarding. Xie has been breaking records and barriers for years with his…",
-   "link": "https://www.goodnewsnetwork.org/he-conquered-mountains-and-marathons-now-he-teaches-wheelchair-skateboarding-watch/",
-   "source": "Good News Network",
-   "date": "2026-11-03",
-   "topic": "People"
-  },
-  {
-   "title": "Rebuilding Mosques Brings Sikhs, Hindus and Muslims Together After Punjab Violence",
-   "summary": "In the Indian state of Punjab, Muslims are watching Sikhs and Hindus organize the rebuilding of old mosques destroyed following Partition. Emotional to say the least, the inter-faith community building is being led by many old…",
-   "link": "https://www.goodnewsnetwork.org/rebuilding-mosques-brings-sikhs-hindus-and-muslims-together-after-punjab-violence/",
-   "source": "Good News Network",
-   "date": "2026-11-03",
-   "topic": "People"
-  },
-  {
-   "title": "What if we stop treating social care like a service? This village shows the way",
-   "summary": "A village in England has created a social care community based on communal living and shared responsibility. Could it catch on?",
-   "link": "https://www.positive.news/society/what-if-we-stopped-treating-social-care-like-a-service/",
-   "source": "Positive News",
-   "date": "2026-11-03",
-   "topic": "Health"
-  },
-  {
-   "title": "The Counter-Extremism Expert Building Our Capacity for Compassion",
-   "summary": "A former Los Angeles gang member, a former skinhead and a former radical Islamist walk into a youth center. What sounds like the setup for an uneasy joke is at the core of Farah Pandith’s work: Put people who might otherwise…",
-   "link": "https://reasonstobecheerful.world/counter-extremism-expert-farah-pandith-compassion-rebuilding-connection/",
-   "source": "Reasons to be Cheerful",
-   "date": "2026-11-03",
-   "topic": "People"
-  },
-  {
-   "title": "Whale Festival Kicks Off on Amelia Island in Florida Celebrating the Return of the Right Whale",
-   "summary": "Have you ever heard of Amelia Island? Northeast Florida’s barrier island describes itself as a natural gem, and a great excuse to visit is happening this weekend in the form of the annual Right Whale Festival. Held every year…",
-   "link": "https://www.goodnewsnetwork.org/whale-festival-to-kick-off-amelia-island-in-florida-to-celebrate-the-return-of-the-right-whale/",
-   "source": "Good News Network",
-   "date": "2026-11-02",
-   "topic": "Climate"
-  },
-  {
-   "title": "Weather.pet App Generates Forecasts for Dogs’ Head and Paws Based on Ground Temps and More",
-   "summary": "A dog lover and entrepreneur has created a weather service tailored specifically to dogs. It broadcasts tens of thousands of reports to users every month with the weather at the level of a dog’s head and paws. It also includes…",
-   "link": "https://www.goodnewsnetwork.org/weather-pet-app-generates-forecasts-for-dogs-head-and-paws-based-on-ground-temps-and-more/",
-   "source": "Good News Network",
-   "date": "2026-11-02",
-   "topic": "Tech"
-  },
-  {
-   "title": "Islands Near Portugal Turn Off Lights to Protect Seabird Fledglings Every October – 30k Already Saved",
-   "summary": "Each autumn, during the last five nights in October, there is a blackout on Corvo island—but it’s not by accident. On the small island in the Portuguese Azores, more than 400 residents are protecting some of the world’s most…",
-   "link": "https://www.goodnewsnetwork.org/islands-near-portugal-turn-off-lights-to-protect-seabird-fledglings-every-oct/",
-   "source": "Good News Network",
-   "date": "2026-11-02",
-   "topic": "Climate"
-  },
-  {
-   "title": "The women’s boxing nights helping abuse survivors",
-   "summary": "A series of all-female fight nights aims to fund free boxing classes that help women rebuild their confidence after abusive relationships",
-   "link": "https://www.positive.news/society/the-womens-boxing-nights-helping-abuse-survivors/",
-   "source": "Positive News",
-   "date": "2026-11-02",
-   "topic": "Health"
-  },
-  {
-   "title": "Best Spud Harvest in a Decade Clears the Gloom of Crops Failing from Scorching Summer",
-   "summary": "Amid a summer of crop failures, a spud-tacular potato harvest in Japan showed that banner years are still in the almanac even as climate uncertainty continues to make farming more challenging. A potato industry outlet reports…",
-   "link": "https://www.goodnewsnetwork.org/best-spud-harvest-in-a-decade-clears-the-gloom-of-crops-failing-from-scorching-summer/",
-   "source": "Good News Network",
-   "date": "2026-10-30",
-   "topic": "Climate"
+ "updated": "2026-11-03T20:22+00:00",
+ "days": {
+  "2026-11-03": {
+   "headline": "Robot platform combines AI and rapid imaging to improve perovskite solar cell fabrication",
+   "story": "Solar cells generate electricity by absorbing sunlight in a thin layer of perovskite, a light-absorbing material. This layer is made with a liquid solution that dries and crystallizes into a solid film, but small changes in temperature, humidity and other conditions can affect the film and the performance of the solar cell.",
+   "why": "",
+   "topic": "AI & Tech",
+   "source": "Tech Xplore",
+   "link": "https://techxplore.com/news/2026-11-robot-platform-combines-ai-rapid.html",
+   "published": "2026-11-02",
+   "written_by": "source"
   }
- ],
+ },
  "onThisDay": {
   "date": "11-03",
   "events": [
@@ -106,16 +36,6 @@
     "link": "https://en.wikipedia.org/wiki/1935_Greek_monarchy_referendum"
    },
    {
-    "year": 1898,
-    "text": "The Fashoda Incident ended with French forces withdrawing after several months of military stalemate with the British in Fashoda (now in South Sudan).",
-    "link": "https://en.wikipedia.org/wiki/Fashoda_Incident"
-   },
-   {
-    "year": 1881,
-    "text": "Indigenous Mapuche began an uprising against the occupation of Araucanía by Chile.",
-    "link": "https://en.wikipedia.org/wiki/Mapuche"
-   },
-   {
     "year": 1880,
     "text": "The current melody of Kimigayo, the national anthem of Japan, was adopted.",
     "link": "https://en.wikipedia.org/wiki/Kimigayo"
@@ -126,16 +46,18 @@
     "link": "https://en.wikipedia.org/wiki/Constitution_of_the_Netherlands"
    },
    {
-    "year": 1793,
-    "text": "French Revolution: Playwright, journalist and outspoken feminist Olympe de Gouges was guillotined.",
-    "link": "https://en.wikipedia.org/wiki/French_Revolution"
-   },
-   {
     "year": 1534,
     "text": "The Parliament of England passed the first Act of Supremacy, making King Henry VIII head of the Church of England, supplanting the pope and the Catholic Church.",
     "link": "https://en.wikipedia.org/wiki/Parliament_of_England"
    }
   ]
  },
- "errors": []
+ "candidates_today": 92,
+ "errors": [
+  "model pick: Expecting value: line 1 column 1 (char 0)",
+  "model write: Expecting value: line 1 column 1 (char 0)",
+  "model write: Expecting value: line 1 column 1 (char 0)",
+  "model write: Expecting value: line 1 column 1 (char 0)",
+  "model write: Expecting value: line 1 column 1 (char 0)"
+ ]
 }
