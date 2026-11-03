@@ -16,7 +16,7 @@ jobs:
       - name: Fetch good news and On this day
         run: python scripts/fetch_news.py
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_ACCOUNT_ID: 946988b3b2c389cd600ef11788a3370d   # Cloudflare account id (not a secret)
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
       - name: Save changes
         run: |
