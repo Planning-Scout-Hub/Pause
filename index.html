@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    // The old GitHub address forwards to the main one (keeps invite links working)
+    if (location.hostname.endsWith("github.io")) location.replace("https://pause-diary.pages.dev/" + location.search + location.hash);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Pause — a daily diary for your mind</title>
   <meta name="description" content="One diary page a day: food for thought, what's happening in the sky, a fact worth sharing and a journal prompt that helps you reconnect with your thoughts.">

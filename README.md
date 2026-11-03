@@ -1,6 +1,6 @@
 # Pause — a daily diary for your mind
 
-**Live site:** https://planning-scout-hub.github.io/Pause/
+**Live site:** https://pause-diary.pages.dev/ (hosted on Cloudflare Pages; the old GitHub Pages address forwards here)
 
 A one-page, installable web app that looks like an open diary. Every day has a **theme chosen by what's happening in the sky** (the Moon's sign, a New or Full Moon, a planet changing sign or turning retrograde, an eclipse). The theme ties together:
 
