@@ -11,8 +11,8 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Pause — a daily diary for your mind">
   <meta property="og:description" content="Food for thought, today's sky, a fact worth sharing and a journal prompt. A new page every day.">
-  <meta property="og:url" content="https://planning-scout-hub.github.io/Pause/">
-  <meta property="og:image" content="https://planning-scout-hub.github.io/Pause/og-image.png">
+  <meta property="og:url" content="https://pause-diary.pages.dev/">
+  <meta property="og:image" content="https://pause-diary.pages.dev/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Installable web app -->
@@ -139,6 +139,7 @@
 
   <footer class="foot">
     <button class="link" id="shareAppBtn" type="button">Share Pause with a friend</button> ·
+    <button class="link" id="contactBtn" type="button">Contact the Pause team</button> ·
     Pause is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.
   </footer>
 
@@ -155,6 +156,7 @@
         <button class="save wide" type="submit" id="authSubmit">Create account</button>
       </form>
       <p class="switch" id="switchRow"><span id="switchText">Already have an account?</span> <button class="link" id="switchMode" type="button">Log in</button></p>
+      <p class="switch" id="forgotRow" hidden><button class="link" id="forgotBtn" type="button">Forgot your password?</button></p>
     </div>
   </div>
 
@@ -244,6 +246,39 @@
     </div>
   </div>
 
+
+
+  <!-- Set a new password (after clicking the reset link) -->
+  <div class="modal" id="newPassModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="newPassTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="newPassTitle">Choose a new password</h2>
+      <form id="newPassForm" novalidate>
+        <label>New password<input type="password" id="newPass" autocomplete="new-password" minlength="6" placeholder="At least 6 characters"></label>
+        <label>Type it again<input type="password" id="newPass2" autocomplete="new-password" minlength="6"></label>
+        <p id="newPassErr" class="err" hidden></p>
+        <button class="save wide" type="submit" id="newPassSubmit">Save new password</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contact the Pause team -->
+  <div class="modal" id="contactModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="contactTitle">Contact the Pause team</h2>
+      <p class="muted" id="contactMsg">Found a problem or have an idea? We read every message.</p>
+      <form id="contactForm" novalidate>
+        <label>What's it about?
+          <select id="cKind"><option>A problem</option><option>A suggestion</option><option>Something else</option></select>
+        </label>
+        <label>Your message<textarea id="cText" rows="5" maxlength="5000" placeholder="Tell us what happened or what you'd love to see…"></textarea></label>
+        <label>Your email <span class="opt">(so we can reply)</span><input type="email" id="cEmail" autocomplete="email"></label>
+        <p id="contactErr" class="err" hidden></p>
+        <button class="save wide" type="submit" id="contactSubmit">Send message</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Phone navigation -->
   <nav class="bottom-nav" id="bottomNav" aria-label="Main">

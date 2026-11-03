@@ -133,3 +133,20 @@ begin
 end $$;
 revoke all on function public.accept_invite(text) from public;
 grant execute on function public.accept_invite(text) to authenticated;
+
+-- ─────────────────────────────────────────────────────────────
+-- 6. Messages to the Pause team (read them in Table Editor → feedback)
+create table if not exists public.feedback (
+  id          uuid primary key default gen_random_uuid(),
+  created_at  timestamptz not null default now(),
+  user_id     uuid default auth.uid() references auth.users (id) on delete set null,
+  email       text,
+  kind        text,
+  message     text not null check (char_length(message) between 3 and 5000),
+  page        text,
+  user_agent  text
+);
+alter table public.feedback enable row level security;
+drop policy if exists "anyone can send feedback" on public.feedback;
+-- Anyone can send a message; nobody can read them through the app (only you, in the dashboard)
+create policy "anyone can send feedback" on public.feedback for insert to anon, authenticated with check (true);

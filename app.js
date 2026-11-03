@@ -40,6 +40,7 @@ const api = {
     const { data } = await sb.auth.getSession();
     user = data.session?.user ?? null;
     sb.auth.onAuthStateChange((_e, session) => {
+      if (_e === "PASSWORD_RECOVERY") setTimeout(() => open("#newPassModal"), 0);
       const changed = (session?.user?.id || null) !== (user?.id || null);
       user = session?.user ?? null;
       if (changed) setTimeout(onAuthChanged, 0);
@@ -56,7 +57,21 @@ const api = {
   async signIn(email, password) {
     if (DEMO) { user = { id: "demo", email }; store.set(K.demoUser, user); return; }
     const { error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) throw new Error(/invalid login/i.test(error.message) ? "That email and password don't match. Check them, or create a new account." : /not confirmed/i.test(error.message) ? "This email hasn't been confirmed yet. Try creating the account again." : error.message);
+    if (error) throw new Error(/invalid login/i.test(error.message) ? "That email and password don't match. Try again, or tap 'Forgot your password?' below to set a new one." : /not confirmed/i.test(error.message) ? "This email hasn't been confirmed yet. Try creating the account again." : error.message);
+  },
+  async resetPassword(email) {
+    if (DEMO) return;
+    const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: SITE_URL });
+    if (error) throw new Error(/rate limit|security purposes/i.test(error.message) ? "Too many reset requests. Please wait a few minutes and try again." : error.message);
+  },
+  async setPassword(password) {
+    const { error } = await sb.auth.updateUser({ password });
+    if (error) throw error;
+  },
+  async sendFeedback(row) {
+    if (DEMO) return;
+    const { error } = await sb.from("feedback").insert(row);
+    if (error) throw error;
   },
   async signOut() { if (DEMO) store.del(K.demoUser); else await sb.auth.signOut(); user = null; profile = null; friends = []; },
   async listEntries() {
@@ -364,6 +379,19 @@ let authMode = "signup";
 function setAuthMode(mode) {
   authMode = mode;
   const up = mode === "signup";
+  const reset = mode === "reset";
+  $("#password").closest("label").hidden = reset;
+  $("#forgotRow").hidden = mode !== "login";
+  if (reset) {
+    $("#authTitle").textContent = "Reset your password";
+    $("#authMsg").textContent = "Enter your email and we'll send you a link to choose a new password.";
+    $("#authSubmit").textContent = "Send reset link";
+    $("#switchText").textContent = "Remembered it?";
+    $("#switchMode").textContent = "Log in";
+    $("#authErr").hidden = true;
+    return;
+  }
+  if ($("#authTitle").textContent === "Reset your password") { $("#authTitle").textContent = up ? "Start your journal" : "Welcome back"; $("#authMsg").textContent = "Your journal is private to you, organised by month and searchable."; }
   const pending = !!store.get(K.pending);
   $("#authSubmit").textContent = up ? (pending ? "Create account & save" : "Create account") : (pending ? "Log in & save" : "Log in");
   $("#switchText").textContent = up ? "Already have an account?" : "New here?";
@@ -387,10 +415,23 @@ function openAuth(mode, reason = "") {
   open("#authModal");
   setTimeout(() => $("#email").focus(), 50);
 }
-$("#switchMode").onclick = () => setAuthMode(authMode === "signup" ? "login" : "signup");
+$("#switchMode").onclick = () => setAuthMode(authMode === "signup" ? "login" : authMode === "reset" ? "login" : "signup");
+$("#forgotBtn").onclick = () => setAuthMode("reset");
 $("#authForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = $("#email").value.trim(), password = $("#password").value, err = $("#authErr");
+  if (authMode === "reset") {
+    if (!email) { err.textContent = "Please enter your email."; err.hidden = false; return; }
+    $("#authSubmit").disabled = true;
+    try {
+      await api.resetPassword(email);
+      $("#authTitle").textContent = "Check your inbox";
+      $("#authMsg").textContent = `If there's an account for ${email}, a reset link is on its way. Open it on this device, and check your spam folder too.`;
+      $("#authForm").hidden = true; $("#forgotRow").hidden = true;
+    } catch (ex) { err.textContent = ex.message; err.hidden = false; }
+    finally { $("#authSubmit").disabled = false; }
+    return;
+  }
   if (!email || password.length < 6) { err.textContent = "Please enter your email and a password of at least 6 characters."; err.hidden = false; return; }
   $("#authSubmit").disabled = true;
   try {
@@ -487,6 +528,41 @@ $("#birthForm").addEventListener("submit", async (e) => {
     openChart();
   } catch (ex) { err.textContent = "Couldn't save: " + (ex.message || "please try again."); err.hidden = false; }
   finally { $("#birthSubmit").disabled = false; }
+});
+
+// ── New password (after the reset link) ──────────────────────
+$("#newPassForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const a = $("#newPass").value, b = $("#newPass2").value, err = $("#newPassErr");
+  if (a.length < 6) { err.textContent = "Please use at least 6 characters."; err.hidden = false; return; }
+  if (a !== b) { err.textContent = "The two passwords don't match."; err.hidden = false; return; }
+  $("#newPassSubmit").disabled = true;
+  try { await api.setPassword(a); close("#newPassModal"); history.replaceState(null, "", SITE_URL); toast("Password updated. You're logged in ✨"); }
+  catch (ex) { err.textContent = ex.message || "Couldn't update the password."; err.hidden = false; }
+  finally { $("#newPassSubmit").disabled = false; }
+});
+
+// ── Contact the Pause team ───────────────────────────────────
+$("#contactBtn").onclick = () => {
+  $("#contactForm").hidden = false; $("#contactErr").hidden = true;
+  $("#contactTitle").textContent = "Contact the Pause team";
+  $("#contactMsg").textContent = "Found a problem or have an idea? We read every message.";
+  if (user?.email && !$("#cEmail").value) $("#cEmail").value = user.email;
+  open("#contactModal");
+};
+$("#contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const text = $("#cText").value.trim(), err = $("#contactErr");
+  if (text.length < 3) { err.textContent = "Please write a short message."; err.hidden = false; return; }
+  $("#contactSubmit").disabled = true;
+  try {
+    await api.sendFeedback({ kind: $("#cKind").value, message: text, email: $("#cEmail").value.trim() || null, page: viewISO, user_agent: navigator.userAgent.slice(0, 300) });
+    $("#cText").value = "";
+    $("#contactForm").hidden = true;
+    $("#contactTitle").textContent = "Thank you 💛";
+    $("#contactMsg").textContent = "Your message reached the Pause team. If you left your email, we'll get back to you.";
+  } catch (ex) { err.textContent = "Couldn't send right now. Please try again in a moment."; err.hidden = false; }
+  finally { $("#contactSubmit").disabled = false; }
 });
 
 // ── My chart ─────────────────────────────────────────────────
