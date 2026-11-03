@@ -49,12 +49,14 @@ const api = {
     if (DEMO) { user = { id: "demo", email }; store.set(K.demoUser, user); return { needsConfirm: false }; }
     const { data, error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: SITE_URL } });
     if (error) throw error;
+    // Supabase hides whether an email is taken: an existing account comes back with no identities
+    if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) throw new Error("You already have an account with this email. Tap 'Log in' below and use your password.");
     return { needsConfirm: !data.session };
   },
   async signIn(email, password) {
     if (DEMO) { user = { id: "demo", email }; store.set(K.demoUser, user); return; }
     const { error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) throw error;
+    if (error) throw new Error(/invalid login/i.test(error.message) ? "That email and password don't match. Check them, or create a new account." : /not confirmed/i.test(error.message) ? "This email hasn't been confirmed yet. Try creating the account again." : error.message);
   },
   async signOut() { if (DEMO) store.del(K.demoUser); else await sb.auth.signOut(); user = null; profile = null; friends = []; },
   async listEntries() {
@@ -174,7 +176,41 @@ function renderPage() {
   renderStrip();
   renderSky();
   renderWriter();
+  renderNews();
+  renderOnThisDay();
   if (DEMO) $("#demoBanner").hidden = false;
+}
+
+// ── Good news (refreshed every morning by a scheduled job → news.json) ──
+let news = null;
+async function loadNews() {
+  try { news = await fetch("news.json", { cache: "no-cache" }).then((r) => r.json()); } catch { news = null; }
+  renderNews(); renderOnThisDay();
+}
+function renderNews() {
+  const list = $("#newsList");
+  list.innerHTML = "";
+  const items = news?.stories || [];
+  if (!items.length) { $("#newsLead").textContent = "Today's good news is on its way. Check back soon."; $("#newsTopic").textContent = ""; $("#newsUpdated").textContent = ""; return; }
+  const top = items[dayNum(viewISO) % Math.min(items.length, 3)];
+  $("#newsTopic").textContent = top.topic;
+  $("#newsLead").textContent = top.title;
+  items.slice(0, 6).forEach((n) => list.append(el("li", {},
+    el("span", { className: "topic", textContent: n.topic }), " ",
+    el("a", { href: n.link, target: "_blank", rel: "noopener", textContent: n.title }),
+    n.summary ? el("p", { textContent: n.summary }) : "",
+    el("span", { className: "fine", textContent: `${n.source} · ${niceDate(n.date, { day: "numeric", month: "short" })}` }))));
+  $("#newsUpdated").textContent = news.updated ? `Collected from good-news outlets every morning. Last updated ${new Date(news.updated).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}.` : "";
+}
+function renderOnThisDay() {
+  const box = $("#onThisDay");
+  const otd = news?.onThisDay;
+  const mmdd = viewISO.slice(5);
+  if (!otd || otd.date !== mmdd || !otd.events?.length) { box.hidden = true; return; }
+  const ev = otd.events[dayNum(viewISO) % otd.events.length];
+  box.innerHTML = "";
+  box.append(el("b", { textContent: `On this day in ${ev.year}: ` }), ev.text, " ", ev.link ? el("a", { href: ev.link, target: "_blank", rel: "noopener", textContent: "Wikipedia" }) : "");
+  box.hidden = false;
 }
 
 function renderStrip() {
@@ -628,6 +664,7 @@ function shareContent(kind, extra = {}) {
   const sky = day.sky;
   switch (kind) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
+    case "news": { const n = (news?.stories || [])[dayNum(viewISO) % Math.min((news?.stories || []).length || 1, 3)]; return n ? { label: "Good News", main: n.title, sub: n.source, text: `Some good news: ${n.title} (${n.source})`, url: n.link } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pause:" }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
     case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? sky.headline.title : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${sky.headline.title}. ${Astro.explainHeadline(sky)}` : "" };
     case "chart": {
@@ -756,6 +793,7 @@ function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.ad
 // ── Start ────────────────────────────────────────────────────
 renderPage();
 showOldDrafts();
+loadNews();
 api.init()
   .then(async () => { await onAuthChanged(); if (store.get(K.invite) && !user) showInvite(); })
   .catch(() => toast("Couldn't connect to the journal service. You can keep writing: your draft is kept on this device."));

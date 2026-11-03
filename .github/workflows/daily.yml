@@ -1,0 +1,23 @@
+name: Daily content
+on:
+  schedule:
+    - cron: "17 4 * * *"   # every day at 04:17 UTC (05:17 in Barcelona in winter)
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+permissions:
+  contents: write
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch good news and On this day
+        run: python scripts/fetch_news.py
+      - name: Save changes
+        run: |
+          git config user.name "pause-bot"
+          git config user.email "pause-bot@users.noreply.github.com"
+          git add news.json
+          git diff --staged --quiet || (git commit -m "Daily good news $(date -u +%F)" && git push)
