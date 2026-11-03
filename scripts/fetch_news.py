@@ -185,8 +185,11 @@ Source text:
     return {k: data[k].strip() for k in ("headline", "story", "why")}
 
 
+ORG = os.environ.get("GITHUB_REPOSITORY_OWNER", "")
 ENDPOINTS = [("https://models.github.ai/inference/chat/completions", MODEL),
-             ("https://models.inference.ai.azure.com/chat/completions", MODEL.split("/")[-1])]
+             ("https://models.github.ai/inference/chat/completions", "openai/gpt-4.1-mini"),
+             (f"https://models.github.ai/orgs/{ORG}/inference/chat/completions", "openai/gpt-4.1-mini")]
+GOOD = []  # remembers the endpoint that worked
 
 
 def call_model(prompt, max_tokens):
@@ -194,7 +197,7 @@ def call_model(prompt, max_tokens):
     if not TOKEN:
         return None
     problems = []
-    for url, model in ENDPOINTS:
+    for url, model in (GOOD or ENDPOINTS):
         body = json.dumps({"model": model, "temperature": 0.4, "max_tokens": max_tokens,
                            "messages": [{"role": "system", "content": "You are a careful science and good-news writer. You never invent facts."},
                                         {"role": "user", "content": prompt}]})
@@ -210,9 +213,12 @@ def call_model(prompt, max_tokens):
             continue
         raw, _, code = out.stdout.rpartition("\n__HTTP__")
         try:
-            return json.loads(raw)["choices"][0]["message"]["content"]
+            text = json.loads(raw)["choices"][0]["message"]["content"]
+            if not GOOD:
+                GOOD.append((url, model)); print("model OK via", url, model)
+            return text
         except Exception:
-            problems.append(f"{url.split('/')[2]} HTTP {code}: {raw.strip()[:150]!r} {out.stderr.strip()[:80]}")
+            problems.append(f"{url.split('/', 3)[-1][:40]} {model} HTTP {code}: {raw.strip()[:150]!r} {out.stderr.strip()[:80]}")
     raise RuntimeError(" | ".join(problems))
 
 
