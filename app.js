@@ -265,7 +265,9 @@ function renderSky() {
   if (!sky) { $("#skyHeadline").textContent = "The sky data couldn't load. Check your connection and refresh."; $("#personal").innerHTML = ""; return; }
   const h = sky.headline;
   $("#skyGlyph").textContent = h.planet ? Astro.glyph(h.planet) : h.type === "phase" ? ["🌑", "🌓", "🌕", "🌗"][h.quarter] : h.type === "eclipse" ? "🌘" : Astro.SIGNS.find((s) => s.name === sky.moon.sign).glyph;
-  $("#skyHeadline").textContent = h.title + (sky.events.length > 1 ? ` · plus ${sky.events.length - 1} more` : "");
+  const seed = Math.floor(Date.parse(viewISO) / 86400000);
+  $("#skyHeadline").textContent = Astro.catchyHeadline(sky, seed);
+  $("#skyTech").textContent = `In the sky: ${h.title}${sky.events.length > 1 ? ` (plus ${sky.events.length - 1} more)` : ""}`;
   $("#skyExplain").textContent = Astro.explainHeadline(sky);
   const km = Math.round(sky.moon.distanceKm);
   const when = viewISO === TODAY ? "Tonight's" : viewISO < TODAY ? "That night's" : "That night's";
@@ -759,7 +761,7 @@ function shareContent(kind, extra = {}) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
     case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on Pause:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pause:" }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
-    case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? sky.headline.title : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${sky.headline.title}. ${Astro.explainHeadline(sky)}` : "" };
+    case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000)) : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000))}. ${Astro.explainHeadline(sky)}` : "" };
     case "chart": {
       const c = myChart();
       const three = `Sun in ${c.pos.Sun.sign.name}${c.hasTime ? `, Moon in ${c.pos.Moon.sign.name}` : ""}${c.ascSign ? `, ${c.ascSign.name} Rising` : ""}`;

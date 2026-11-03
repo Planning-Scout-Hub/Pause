@@ -412,3 +412,5 @@ label[hidden] { display: none !important; }
 .source-link { display: inline-block; margin: 2px 0 8px; font-weight: 700; color: var(--brown); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 .source-link:active { opacity: .7; }
 .more-link[hidden], #newsBody[hidden] { display: none !important; }
+
+.sky-tech{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;opacity:.6;margin:.2rem 0 .4rem}

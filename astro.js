@@ -415,3 +415,79 @@ export function personalTheme(sky, chart) {
   const house = ((idx - first + 12) % 12) + 1;
   return { theme: HOUSE_THEME[house], house, solar: chart.asc == null };
 }
+
+// ── Friendly, eye-catching headline for the sky section ─────
+// The technical name (e.g. "Venus sextile Jupiter") is still shown underneath as a small tag.
+const NICK = { Sun: "your confidence", Moon: "your feelings", Mercury: "your words", Venus: "love", Mars: "your drive",
+  Jupiter: "good luck", Saturn: "discipline", Uranus: "change", Neptune: "imagination", Pluto: "transformation" };
+const SKY_PAIRS = {
+  "Venus-Jupiter": ["Love and luck are holding hands today", "Big-hearted skies: generosity pays off", "A sweet day: kindness comes back to you"],
+  "Venus-Mars": ["Sparks in the air: chemistry is high", "Heart and drive line up: go after what you love"],
+  "Sun-Jupiter": ["A lucky, open-hearted day", "Think bigger today: the sky is on your side"],
+  "Mercury-Jupiter": ["Big ideas day: say the bold thing", "Good news travels fast today"],
+  "Mars-Saturn": ["Slow and steady wins today", "Patience is your superpower today"],
+  "Venus-Saturn": ["Love gets serious: show up for what matters", "Small, loyal gestures count double today"],
+  "Mercury-Neptune": ["Dreamy minds: great for ideas, not for contracts", "Your imagination is louder than usual"],
+  "Venus-Neptune": ["Romance and daydreams are in the air", "A soft, dreamy day for the heart"],
+  "Sun-Saturn": ["A grown-up day: steady wins the race"],
+  "Mercury-Mars": ["Quick tongue day: count to three before replying", "Sharp mind, fast words: use them kindly"],
+  "Jupiter-Saturn": ["Dream big, plan carefully"],
+  "Venus-Uranus": ["Expect the unexpected in love and money", "A surprising spark: say yes to something new"],
+  "Mars-Jupiter": ["Bold moves pay off today", "Energy to spare: go for the big thing"],
+};
+const HARMONY = ["{A} and {b} work well together today", "{A} gets a boost from {b}", "An easy day for {a} and {b}"];
+const TENSION = ["{A} and {b} need a compromise today", "A little friction between {a} and {b}: go gently", "{A} and {b} pull in different directions"];
+const HARD_PAIRS = {
+  "Sun-Jupiter": ["Big plans, real limits: aim high but stay realistic"], "Sun-Mars": ["Short fuse day: breathe before you react"],
+  "Mercury-Mars": ["Quick tongue day: count to three before replying"], "Venus-Mars": ["Heart vs. head: what you want and what you do may clash"],
+  "Mars-Saturn": ["Feeling blocked? Slow and steady wins today"], "Sun-Saturn": ["A heavy-ish day: do one thing well"],
+  "Venus-Saturn": ["Love asks for patience today"], "Mercury-Neptune": ["Foggy thinking: double-check facts and plans"],
+};
+const MEET = ["{A} meets {b}: a fresh mix begins", "{A} and {b} join forces today"];
+const MOON_MOOD = {
+  Aries: "Bold mood: say yes to a small adventure", Taurus: "Slow and sweet: treat your senses today",
+  Gemini: "Chatty skies: follow your curiosity", Cancer: "Cosy mood: home and comfort are calling",
+  Leo: "Shine day: let yourself be seen", Virgo: "Tidy-up energy: small fixes feel great",
+  Libra: "Peace-making mood: good day to smooth things over", Scorpio: "Deep-feelings day: go beneath the surface",
+  Sagittarius: "Wanderlust mood: think big, explore", Capricorn: "Get-it-done energy: one solid step forward",
+  Aquarius: "Free-thinking day: try something different", Pisces: "Dreamy mood: rest, imagine, be gentle",
+};
+const MOON_MOOD2 = {
+  Aries: "Spark day: start the thing you keep postponing", Taurus: "Comfort day: good food, soft clothes, slow pace",
+  Gemini: "Message day: reach out to someone you miss", Cancer: "Feelings first: look after your inner circle",
+  Leo: "Play day: do something just for the joy of it", Virgo: "Fix-it mood: one small task, done well",
+  Libra: "Beauty and balance: make your space a little nicer", Scorpio: "Honest mood: say what you really feel",
+  Sagittarius: "Big-picture day: ask what really matters", Capricorn: "Steady mood: build something that lasts",
+  Aquarius: "Friendly skies: your people lift you up", Pisces: "Soft day: let your mind wander",
+};
+const INGRESS = {
+  Sun: (s) => `A new season begins: the Sun moves into ${s}`, Mercury: (s) => `Your mind changes gear: Mercury moves into ${s}`,
+  Venus: (s) => `Love gets a new style: Venus moves into ${s}`, Mars: (s) => `Your energy finds a new direction in ${s}`,
+  Jupiter: (s) => `Luck moves house: Jupiter enters ${s}`, Saturn: (s) => `New lessons begin: Saturn enters ${s}`,
+  Uranus: (s) => `A once-in-7-years shift: Uranus enters ${s}`, Neptune: (s) => `A dreamy new era: Neptune enters ${s}`,
+  Pluto: (s) => `A generational shift: Pluto enters ${s}`,
+};
+const cap1 = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+
+export function catchyHeadline(sky, seed = 0) {
+  const h = sky.headline;
+  const pick = (arr) => arr[Math.abs(seed) % arr.length];
+  switch (h.type) {
+    case "eclipse": return h.title.includes("solar") ? "Eclipse day: a turning point in the sky" : "Eclipse tonight: something comes to a head";
+    case "phase": return ["New Moon: a fresh start, set your intentions", "First Quarter Moon: time to act on your plans",
+      "Full Moon tonight: what's hidden comes to light", "Last Quarter Moon: clear out what you're done with"][h.quarter];
+    case "ingress": return h.planet === "Moon" ? (seed % 2 ? MOON_MOOD2 : MOON_MOOD)[h.sign] : INGRESS[h.planet](h.sign);
+    case "station":
+      if (h.planet === "Mercury") return h.retro ? "Mercury retrograde begins: double-check, don't rush" : "Mercury moves forward again: stuck things start to flow";
+      return h.retro ? `Time to revisit ${NICK[h.planet]}: ${h.planet} turns retrograde` : `${cap1(NICK[h.planet])} moves forward again: ${h.planet} turns direct`;
+    case "aspect": {
+      const key = [h.a, h.b].join("-");
+      const hard = h.aspect.angle === 90 || h.aspect.angle === 180;
+      if (hard && HARD_PAIRS[key]) return pick(HARD_PAIRS[key]);
+      if (!hard && SKY_PAIRS[key]) return pick(SKY_PAIRS[key]);
+      const tpl = h.aspect.angle === 0 ? MEET : hard ? TENSION : HARMONY;
+      return pick(tpl).replace("{A}", cap1(NICK[h.a])).replace("{a}", NICK[h.a]).replace("{b}", NICK[h.b]).replace(/^./, (c) => c.toUpperCase());
+    }
+    default: return (seed % 2 ? MOON_MOOD2 : MOON_MOOD)[sky.moon.sign];
+  }
+}
