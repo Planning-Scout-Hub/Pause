@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T20:22+00:00",
+ "updated": "2026-11-03T20:26+00:00",
  "days": {
   "2026-11-03": {
    "headline": "Robot platform combines AI and rapid imaging to improve perovskite solar cell fabrication",
@@ -54,10 +54,10 @@
  },
  "candidates_today": 92,
  "errors": [
-  "model pick: Expecting value: line 1 column 1 (char 0)",
-  "model write: Expecting value: line 1 column 1 (char 0)",
-  "model write: Expecting value: line 1 column 1 (char 0)",
-  "model write: Expecting value: line 1 column 1 (char 0)",
-  "model write: Expecting value: line 1 column 1 (char 0)"
+  "model pick: unexpected reply: 'OK\\r\\n'",
+  "model write: unexpected reply: 'OK\\r\\n'",
+  "model write: unexpected reply: 'OK\\r\\n'",
+  "model write: unexpected reply: 'OK\\r\\n'",
+  "model write: unexpected reply: 'OK\\r\\n'"
  ]
 }
