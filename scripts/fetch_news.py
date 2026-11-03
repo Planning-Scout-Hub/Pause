@@ -13,7 +13,7 @@ Pause daily content job (runs every morning on GitHub Actions, see .github/workf
 4. Saves one story per day in news.json (keeps the last 60 days), plus "On this day".
 Only uses the Python standard library. If anything fails, the previous news.json is kept.
 """
-import json, re, html, os, sys, datetime as dt, urllib.request, email.utils
+import json, re, html, os, sys, datetime as dt, urllib.request, urllib.error, email.utils
 import xml.etree.ElementTree as ET
 
 FEEDS = [
@@ -191,9 +191,18 @@ def call_model(prompt, max_tokens):
     body = json.dumps({"model": MODEL, "temperature": 0.4, "max_tokens": max_tokens,
                        "messages": [{"role": "system", "content": "You are a careful science and good-news writer. You never invent facts."},
                                     {"role": "user", "content": prompt}]}).encode()
-    res = get("https://models.github.ai/inference/chat/completions", timeout=60, data=body,
-              headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json", "Accept": "application/json"})
-    return json.loads(res)["choices"][0]["message"]["content"]
+    req = urllib.request.Request("https://models.github.ai/inference/chat/completions", data=body, method="POST", headers={
+        "Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json", "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": UA["User-Agent"]})
+    try:
+        with urllib.request.urlopen(req, timeout=90) as r:
+            raw = r.read().decode("utf-8", "ignore")
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"HTTP {e.code}: {e.read().decode('utf-8', 'ignore')[:200]}")
+    try:
+        return json.loads(raw)["choices"][0]["message"]["content"]
+    except Exception:
+        raise RuntimeError(f"unexpected reply: {raw[:200]!r}")
 
 
 TOPIC_GUESS = [("Health", r"health|patient|disease|cancer|vaccine|drug|therapy|brain|medic|hospital"),
