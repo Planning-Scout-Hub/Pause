@@ -213,3 +213,68 @@ form input:focus, #search:focus { outline: 2px solid var(--green); outline-offse
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ── v3 additions: sky, chart, friends, sharing, install ── */
+.banner.soft { background: #F4E3B5; color: var(--ink); }
+.banner.soft button { margin-left: 8px; }
+.theme-why { font-size: 13px; color: var(--muted); font-style: italic; margin-left: 6px; }
+.sky-glyph { font-size: 20px; color: var(--brown); }
+.moon-line { font-size: 15px; color: var(--muted); }
+.personal { margin: 10px 0; padding: 10px 12px; border: 1px dashed #C9B89E; border-radius: 8px; background: var(--paper); }
+.personal h3 { font-family: var(--write); font-size: 19px; margin: 0 0 4px; color: var(--brown); font-weight: 700; }
+.personal ul { margin: 4px 0 0; padding-left: 18px; }
+.personal li { margin-bottom: 4px; }
+.planets { margin: 8px 0; }
+.planets summary { cursor: pointer; font-family: var(--write); color: var(--brown); }
+.planets ul { columns: 2; padding-left: 18px; margin: 6px 0 0; font-size: 15px; }
+.fine { font-size: 12px; color: var(--muted); }
+.opt { font-weight: 400; color: var(--muted); }
+.check { display: flex !important; align-items: center; gap: 8px; font-weight: 400 !important; }
+.check input { width: auto !important; margin: 0 !important; }
+.place-results { display: grid; gap: 4px; margin: -6px 0 8px; }
+.place-results button { text-align: left; background: #fff; border: 1px solid #DDD2C1; border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+.place-results button:hover { border-color: var(--green); }
+
+.share-btn {
+  margin-top: 6px; font-family: var(--write); font-size: 15px; background: none;
+  border: 1px solid var(--brown); color: var(--brown); border-radius: 999px; padding: 2px 14px;
+}
+.share-btn::before { content: "↗ "; }
+.share-btn:hover { background: var(--brown); color: #fff; }
+.share-img { width: 100%; border-radius: 8px; border: 1px solid #E6DCCB; margin-bottom: 12px; }
+.share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.share-grid button, .share-grid a {
+  display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none;
+  border: 1px solid #DDD2C1; background: #fff; color: var(--ink); border-radius: 8px; padding: 9px 6px; font-size: 14px;
+}
+.share-grid button:hover, .share-grid a:hover { border-color: var(--brown); color: var(--brown); }
+.share-grid .wide { grid-column: 1 / -1; background: var(--brown); color: #fff; border-color: var(--brown); font-weight: 700; }
+
+.chart-big { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0 14px; }
+.chart-big div { background: #fff; border: 1px solid #E6DCCB; border-radius: 8px; padding: 10px; text-align: center; }
+.chart-big b { display: block; font-family: var(--write); font-size: 22px; color: var(--brown); }
+.chart-big span { font-size: 13px; color: var(--muted); }
+.chart-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.chart-table td { padding: 5px 4px; border-bottom: 1px dashed #E6DCCB; }
+
+.friends { margin-top: 14px; display: grid; gap: 12px; }
+.friend { border: 1px solid #E6DCCB; border-radius: 10px; padding: 12px 14px; background: #fff; }
+.friend-head { display: flex; align-items: center; gap: 12px; }
+.score { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: var(--write); font-weight: 700; font-size: 20px; color: #fff; background: var(--green); flex: none; }
+.friend-name { font-family: var(--write); font-size: 22px; font-weight: 700; }
+.friend-sub { font-size: 13px; color: var(--muted); }
+.friend ul { margin: 8px 0; padding-left: 18px; font-size: 15px; }
+.friend .today { background: rgba(232, 196, 112, .2); border-radius: 6px; padding: 8px 10px; font-size: 15px; }
+.friend-actions { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+
+.tab.install { background: var(--brown); color: #fff; }
+.install-steps { padding-left: 20px; }
+.install-steps li { margin-bottom: 10px; }
+
+@media (max-width: 860px) {
+  .tabs { overflow-x: auto; max-width: 70vw; scrollbar-width: none; }
+  .tab { white-space: nowrap; padding: 7px 10px 5px; font-size: 15px; }
+  .planets ul { columns: 1; }
+  .share-grid { grid-template-columns: repeat(2, 1fr); }
+  .chart-big { grid-template-columns: 1fr 1fr 1fr; }
+}

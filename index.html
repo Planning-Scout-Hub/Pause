@@ -4,30 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pause — a daily diary for your mind</title>
-  <meta name="description" content="One diary page a day: food for thought, a joke, a fact worth sharing and a journal prompt that helps you reconnect with your thoughts.">
+  <meta name="description" content="One diary page a day: food for thought, what's happening in the sky, a fact worth sharing and a journal prompt that helps you reconnect with your thoughts.">
+  <meta name="theme-color" content="#8B3A17">
+
+  <!-- Link previews (WhatsApp, iMessage, Facebook, X, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pause — a daily diary for your mind">
+  <meta property="og:description" content="Food for thought, today's sky, a fact worth sharing and a journal prompt. A new page every day.">
+  <meta property="og:url" content="https://planning-scout-hub.github.io/Pause/">
+  <meta property="og:image" content="https://planning-scout-hub.github.io/Pause/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Installable web app -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pause">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Kalam:wght@400;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
 </head>
 <body>
-  <div id="demoBanner" class="banner" hidden>Preview mode: entries are kept in this browser only. Connect Supabase (see README) to turn on real accounts.</div>
+  <div id="demoBanner" class="banner" hidden>Preview mode: entries are kept in this browser only.</div>
+  <div id="draftBanner" class="banner soft" hidden></div>
 
   <header class="topbar">
     <div class="brand"><span id="appName">Pause</span><small>a daily diary for your mind</small></div>
     <nav class="tabs">
+      <button id="installBtn" class="tab install" hidden>Install app</button>
+      <button id="chartBtn" class="tab">My chart</button>
+      <button id="friendsBtn" class="tab">Friends</button>
       <button id="journalBtn" class="tab">My journal</button>
       <button id="authBtn" class="tab">Log in</button>
     </nav>
   </header>
 
   <main class="book">
-    <!-- LEFT PAGE: today's page -->
+    <!-- LEFT PAGE -->
     <section class="page left" aria-label="Today's page">
       <h1 class="title" id="title"></h1>
-      <p class="theme"><span class="tape">Today's theme: <strong id="theme"></strong></span></p>
+      <p class="theme"><span class="tape">Today's theme: <strong id="theme"></strong></span> <span class="theme-why" id="themeWhy"></span></p>
 
-      <details class="sec">
+      <details class="sec" data-sec="thought">
         <summary>
           <h2 class="hand">Food for Thought:</h2>
           <p class="lead" id="thoughtText"></p>
@@ -36,35 +59,46 @@
         <div class="more">
           <p id="thoughtMore"></p>
           <p class="ask">Something to sit with: <em id="thoughtAsk"></em></p>
+          <button class="share-btn" data-share="thought" type="button">Share this</button>
         </div>
       </details>
 
-      <details class="sec">
+      <details class="sec" data-sec="sky">
         <summary>
-          <h2 class="hand">Joke of the Day:</h2>
-          <p class="lead" id="jokeSetup"></p>
-          <span class="more-link">reveal the punchline</span>
+          <h2 class="hand">Today in the Sky:</h2>
+          <p class="lead"><span class="sky-glyph" id="skyGlyph"></span> <span id="skyHeadline"></span></p>
+          <span class="more-link">what it means &amp; how it affects you</span>
         </summary>
         <div class="more">
-          <p class="punch" id="jokePunch"></p>
-          <p class="bonus">One more: <span id="jokeBonus"></span></p>
+          <p id="skyExplain"></p>
+          <p class="moon-line" id="moonLine"></p>
+          <div id="personal" class="personal"></div>
+          <details class="planets">
+            <summary>Where every planet is today</summary>
+            <ul id="planetList"></ul>
+          </details>
+          <p class="fine">Positions are calculated live from astronomical data. Interpretations follow traditional Western astrology, for reflection and fun.</p>
+          <button class="share-btn" data-share="sky" type="button">Share this</button>
         </div>
       </details>
 
-      <details class="sec">
+      <details class="sec" data-sec="fact">
         <summary>
           <h2 class="hand">Random Fact of the Day:</h2>
           <p class="lead" id="factText"></p>
           <span class="more-link">tell me more</span>
         </summary>
-        <div class="more"><p id="factMore"></p></div>
+        <div class="more">
+          <p id="factMore"></p>
+          <button class="share-btn" data-share="fact" type="button">Share this</button>
+        </div>
       </details>
     </section>
 
-    <!-- RIGHT PAGE: write -->
+    <!-- RIGHT PAGE -->
     <section class="page right" aria-label="Today's journal entry">
       <div class="ribbon" aria-hidden="true"></div>
-      <details class="sec">
+      <details class="sec" data-sec="prompt">
         <summary>
           <h2 class="hand">Journal Entry Idea:</h2>
           <p class="lead" id="promptText"></p>
@@ -81,17 +115,18 @@
         <textarea id="entry" aria-label="Write your entry"></textarea>
       </div>
       <div class="save-row">
-        <span class="note" id="draftNote">Your words are kept as you type.</span>
+        <span class="note" id="draftNote">Your words are kept safely as you type.</span>
         <button id="saveBtn" class="save" type="button">Save</button>
       </div>
     </section>
   </main>
 
   <footer class="foot">
+    <button class="link" id="shareAppBtn" type="button">Share Pause with a friend</button> ·
     Pause is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.
   </footer>
 
-  <!-- Sign-up / log-in -->
+  <!-- Sign up / log in -->
   <div class="modal" id="authModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="authTitle">
       <button class="x" data-close aria-label="Close">×</button>
@@ -101,9 +136,49 @@
         <label>Email<input type="email" id="email" required autocomplete="email"></label>
         <label>Password<input type="password" id="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters"></label>
         <p id="authErr" class="err" hidden></p>
-        <button class="save wide" type="submit" id="authSubmit">Create account &amp; save</button>
+        <button class="save wide" type="submit" id="authSubmit">Create account</button>
       </form>
       <p class="switch" id="switchRow"><span id="switchText">Already have an account?</span> <button class="link" id="switchMode" type="button">Log in</button></p>
+    </div>
+  </div>
+
+  <!-- Birth details (used for My chart and for friends) -->
+  <div class="modal" id="birthModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="birthTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="birthTitle">Your birth chart</h2>
+      <p class="muted" id="birthMsg">Your birth date, time and place let Pause show how today's sky touches your own chart.</p>
+      <form id="birthForm" novalidate>
+        <label>Name<input type="text" id="bName" autocomplete="given-name"></label>
+        <label>Birth date<input type="date" id="bDate" required></label>
+        <label>Birth time <span class="opt">(as exact as you can)</span><input type="time" id="bTime"></label>
+        <label class="check"><input type="checkbox" id="bNoTime"> I don't know the time</label>
+        <label>Birth place<input type="text" id="bPlace" placeholder="Start typing a city…" autocomplete="off"></label>
+        <div id="placeResults" class="place-results"></div>
+        <p class="fine" id="placePicked"></p>
+        <p id="birthErr" class="err" hidden></p>
+        <button class="save wide" type="submit" id="birthSubmit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- My chart -->
+  <div class="modal" id="chartModal" hidden>
+    <div class="sheet big diary" role="dialog" aria-modal="true" aria-labelledby="chartTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="chartTitle">My Chart</h2>
+      <div id="chartBody"></div>
+    </div>
+  </div>
+
+  <!-- Friends & compatibility -->
+  <div class="modal" id="friendsModal" hidden>
+    <div class="sheet big diary" role="dialog" aria-modal="true" aria-labelledby="friendsTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="friendsTitle">Friends &amp; Compatibility</h2>
+      <p class="muted">Add the people in your life to see your connection and what today's sky is doing between you.</p>
+      <button class="save" id="addFriendBtn" type="button">+ Add a person</button>
+      <div id="friendsList" class="friends"></div>
     </div>
   </div>
 
@@ -119,8 +194,30 @@
     </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- Share sheet -->
+  <div class="modal" id="shareModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="shareTitle">Share</h2>
+      <img id="shareImg" class="share-img" alt="Preview of the image you'll share">
+      <div class="share-grid" id="shareGrid"></div>
+    </div>
+  </div>
 
+  <!-- Install help (iPhone) -->
+  <div class="modal" id="installModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="installTitle">Add Pause to your phone</h2>
+      <ol class="install-steps">
+        <li><strong>iPhone (Safari):</strong> tap the Share button, then <em>Add to Home Screen</em>.</li>
+        <li><strong>Android (Chrome):</strong> tap the ⋮ menu, then <em>Install app</em> or <em>Add to Home screen</em>.</li>
+        <li><strong>Computer (Chrome or Edge):</strong> click the install icon at the right end of the address bar.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script type="module" src="app.js"></script>
 </body>
 </html>

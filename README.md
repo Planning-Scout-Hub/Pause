@@ -1,97 +1,39 @@
 # Pause — a daily diary for your mind
 
-A one-page web app that looks like an open diary. Every day has a **theme** (Time, Fear, Kindness, Rest…) that ties together four sections:
+**Live site:** https://planning-scout-hub.github.io/Pause/
 
-- **Food for Thought**: a reminder of how strange and wonderful this human experience is, and what we have and haven't figured out yet.
-- **Joke of the Day**: the punchline is hidden until you tap.
+A one-page, installable web app that looks like an open diary. Every day has a **theme chosen by what's happening in the sky** (the Moon's sign, a New or Full Moon, a planet changing sign or turning retrograde, an eclipse). The theme ties together:
+
+- **Food for Thought**: a true, mind-bending fact about the universe or being human, with a question to sit with.
+- **Today in the Sky**: the day's main astrological event, calculated live from real astronomical positions, plus a personal reading for signed-in users who add their birth date, time and place.
 - **Random Fact of the Day**: history, science or anthropology worth telling people about.
-- **Journal Entry Idea**: a creative prompt with a therapeutic benefit, plus tap-to-insert sentence starters for people who "never write".
+- **Journal Entry Idea**: a creative, therapeutic prompt with tap-to-insert sentence starters.
 
-Each section opens to show more. Visitors write on the lined right-hand page and press **Save**. Saving asks them to sign up, and their entries are then kept in their own private journal, organised by month and searchable.
+Signed-in users also get **My chart** (Sun, Moon, Rising, every planet and house), **Friends** (compatibility and "today between you" for people they add) and **My journal** (every entry by date, searchable). Everything has share buttons, including a diary-style image for Instagram and TikTok stories.
 
-**Total cost: €0.** It runs on GitHub Pages (free hosting) and Supabase (free accounts + database). A custom domain is optional, roughly €10–15/year.
+## Files
 
----
+| File | What it does |
+|---|---|
+| `index.html`, `styles.css` | Layout and diary look |
+| `app.js` | The app: saving, accounts, chart, friends, sharing, install |
+| `astro.js` | Astronomy + astrology engine (positions, events, charts, compatibility) |
+| `content.js` | Food for thought and journal ideas by theme, plus daily facts. **Add content here.** |
+| `config.js` | App name + Supabase connection |
+| `supabase-setup.sql` | Database tables and privacy rules (already run) |
+| `manifest.webmanifest`, `sw.js`, `icons/` | Makes it installable on phones and computers, and lets it open offline |
+| `og-image.png` | Preview image shown when the link is shared |
 
-## What's in this folder
+## How data is kept safe
 
-| File | What it does | Do you edit it? |
-|---|---|---|
-| `index.html` | The page layout | Rarely |
-| `styles.css` | Colours, fonts, spacing | If you want a different look |
-| `content.js` | All the daily pages (theme + the four sections) | **Yes, this is where you add content** |
-| `config.js` | App name + your Supabase keys | **Yes, once** (Step 4) |
-| `app.js` | The logic (daily rotation, saving, sign-up, journal) | No |
-| `supabase-setup.sql` | Creates the secure journal table | Paste once into Supabase (Step 3) |
-
----
-
-## Step 1 — Put the files on GitHub (5 min)
-
-1. Go to **github.com** → click **+** (top right) → **New repository**.
-2. Name it, for example `pause`. Set it to **Public** (free GitHub Pages needs a public repo; the journal entries are *not* in the repo, they live in Supabase, so nothing private is exposed).
-3. Tick **Add a README file** → **Create repository**.
-4. In the new repo click **Add file → Upload files**.
-5. Unzip the folder I gave you and drag **all the files** into the upload box (not the folder itself, the files inside it).
-6. Click **Commit changes**.
-
-## Step 2 — Turn on free hosting with GitHub Pages (2 min)
-
-1. In your repo go to **Settings → Pages**.
-2. Under **Build and deployment → Source** choose **Deploy from a branch**.
-3. Branch: **main**, folder: **/ (root)** → **Save**.
-4. Wait 1–2 minutes and refresh. You'll see: *"Your site is live at `https://YOUR-USERNAME.github.io/pause/`"*.
-
-At this point the site works in **preview mode**: everything works, but entries are only stored in the visitor's own browser. Steps 3–5 turn on real accounts.
-
-## Step 3 — Create the free account system with Supabase (10 min)
-
-1. Go to **supabase.com** → **Start your project** → sign in with GitHub.
-2. **New project** → give it a name, set a strong database password (save it somewhere), pick the region closest to your users (e.g. *West EU*), plan **Free** → **Create**.
-3. When it's ready, open **SQL Editor** (left sidebar) → **New query**.
-4. Open `supabase-setup.sql`, copy everything, paste it in, click **Run**. You should see "Success".
-   This creates the `entries` table and the security rules that make sure every person can only see their own journal.
-
-## Step 4 — Connect your site to Supabase (3 min)
-
-1. In Supabase go to **Project Settings → API** (sometimes labelled *Data API* / *API Keys*).
-2. Copy the **Project URL** and the **anon public** key.
-3. In GitHub open `config.js` → click the ✏️ pencil → paste them in:
-
-```js
-SUPABASE_URL: "https://abcdefghijk.supabase.co",
-SUPABASE_ANON_KEY: "eyJhbGciOi...",
-```
-
-4. **Commit changes.** GitHub Pages republishes in about a minute.
-
-> The anon key is designed to be public. Security comes from the Row Level Security rules in Step 3. **Never** paste the `service_role` key anywhere in this project.
-
-## Step 5 — Tell Supabase where your site lives (2 min)
-
-So that the "confirm your email" link sends people back to your page:
-
-1. Supabase → **Authentication → URL Configuration**.
-2. **Site URL**: `https://YOUR-USERNAME.github.io/pause/`
-3. **Redirect URLs** → add the same address.
-4. Save.
-
-By default Supabase asks new users to confirm their email. The app handles this: the entry is kept safe while they confirm, and saved automatically when they come back through the link. If you'd rather skip confirmation while testing: **Authentication → Providers → Email → turn off "Confirm email"**.
-
-## Step 6 — Test it
-
-1. Open your site, write something on the lined page, press **Save**.
-2. Create an account → confirm the email → you land back on the page and see "Saved to your journal ✎".
-3. Click **My journal**: your entry is there, grouped by month.
-4. In Supabase → **Table Editor → entries** you'll see the row.
-
----
+- Saved entries, drafts, birth details and friends are stored in your Supabase database. Row Level Security means each account can only ever read its own rows.
+- While someone is writing, the draft is saved on the device on every keystroke and, when signed in, to their account about a second later. Shutting the laptop or closing the tab loses nothing; unsaved drafts from earlier days are offered back with a one-tap "Save it to my journal".
 
 ## Adding daily content
 
-Open `content.js`. It holds a list called `DAYS`; each day is one block with a `theme`, a `thought`, a `joke`, a `fact` and a `prompt`. The site shows one day per calendar day and loops back to the start when it reaches the end, so 15 days means every page repeats every 15 days. Aim for 60–90 days before launch so regular visitors rarely see a repeat.
+Open `content.js`. `THOUGHTS` and `PROMPTS` are grouped by theme; `FACTS` is one list that rotates daily. The Moon stays in each sign for 2–3 days, so each theme needs at least 3 thoughts and 2–3 prompts to avoid repeats; more is better. On GitHub you can edit straight in the browser (open the file → ✏️ → edit → **Commit changes**).
 
-To add a day: copy a whole block from `{` to `},`, paste it at the end of the list, and change the text. On GitHub you can do this straight in the browser (open the file → ✏️ → edit → **Commit changes**).
+Which sky event maps to which theme is set in `astro.js` (`SIGN_THEME` and `themeFor`).
 
 A few rules that keep the quality up:
 
