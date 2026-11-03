@@ -226,12 +226,13 @@ function renderPersonal() {
     return;
   }
   const pd = Astro.personalDay(sky, chart);
-  const rising = chart.ascSign ? `, Rising ${chart.ascSign.name}` : "";
-  box.append(el("h3", { textContent: `For you (Sun ${chart.pos.Sun.sign.name}, Moon ${chart.hasTime ? chart.pos.Moon.sign.name : "?"}${rising})` }));
-  if (day.personal) box.append(el("p", { textContent: `${sky.headline.title} lands in your ${ordinal(day.personal.house)} house, the part of your chart about ${Astro.HOUSE_TOPIC[day.personal.house]}. That's why your theme ${viewISO === TODAY ? "today" : "for this day"} is "${day.theme}".${day.personal.solar ? " (Without a birth time, houses are counted from your Sun sign.)" : ""}` }));
-  if (pd.moonHouse && sky.headline.type !== "moon" && sky.headline.planet !== "Moon") box.append(el("p", { textContent: `The Moon itself is in your ${ordinal(pd.moonHouse)} house: ${Astro.MOON_IN[sky.moon.sign]}` }));
-  if (pd.notes.length) { const ul = el("ul"); pd.notes.forEach((n) => ul.append(el("li", { textContent: Astro.describeTransit(n) }))); box.append(ul); }
-  else box.append(el("p", { textContent: `No exact links between the planets and your chart${viewISO === TODAY ? " today" : " on this day"}. A quieter day: let the Moon in ${sky.moon.sign} set the tone.` }));
+  const big3 = [`☉ ${chart.pos.Sun.sign.name}`, chart.hasTime ? `☽ ${chart.pos.Moon.sign.name}` : null, chart.ascSign ? `↑ ${chart.ascSign.name}` : null].filter(Boolean).join(" · ");
+  box.append(el("h3", { textContent: viewISO === TODAY ? "Your day" : `Your day · ${niceDate(viewISO, { weekday: "short", day: "numeric", month: "short" })}` }), el("p", { className: "fine big3", textContent: big3 }));
+  const hr = day.personal && Astro.HOUSE_READING[day.personal.house];
+  if (hr) box.append(el("p", { textContent: hr.text }));
+  if (pd.notes.length) { const ul = el("ul"); pd.notes.forEach((n) => ul.append(el("li", { textContent: Astro.describeTransit(n, sky.pos[n.transit].retro) }))); box.append(ul); }
+  if (hr) box.append(el("p", { className: "goodfor" }, el("b", { textContent: "Good for: " }), hr.good, el("br"), el("b", { textContent: "Go easy on: " }), hr.easy));
+  if (!chart.hasTime) box.append(el("p", { className: "fine", textContent: "Add your birth time for a more precise reading." }));
 }
 
 // ── Writing area & drafts (kept for every date until saved) ──

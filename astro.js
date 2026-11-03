@@ -292,22 +292,79 @@ export function personalDay(sky, chart) {
     }
   }
   notes.sort((x, y) => y.score - x.score);
+  const seen = new Set();
+  const unique = notes.filter((n) => (seen.has(n.transit) ? false : seen.add(n.transit)));
+  notes.length = 0; notes.push(...unique);
   const house = chart.asc != null ? wholeSignHouse(sky.pos.Moon.lon, chart.asc) : null;
-  return { notes: notes.slice(0, 3), moonHouse: house };
+  return { notes: notes.slice(0, 2), moonHouse: house };
 }
 
-const ASPECT_ADVICE = {
-  conjunction: "This part of you is turned up loud today.",
-  sextile: "An easy opening: a small effort here brings good results.",
-  square: "Expect some tension here. It's a push to grow, not a bad sign.",
-  trine: "Things flow naturally here today, so make the most of it.",
-  opposition: "Other people may mirror this back to you. Look for balance.",
+// Horoscope-style readings: what each moving planet does to a part of your chart.
+// "soft" = trine or sextile, "hard" = square or opposition (traditional meanings).
+const AREA = {
+  Sun: "your confidence and sense of self", Moon: "your emotions and what you need to feel safe",
+  Venus: "your love life and what you enjoy", Mars: "your energy and drive", Ascendant: "the way you come across to others",
 };
-export function describeTransit(n) {
-  const target = n.target.key === "Ascendant" ? "Ascendant" : n.target.key;
-  const t = n.transit === "Sun" || n.transit === "Moon" ? `the ${n.transit}` : n.transit;
-  return `Today ${t} forms a ${n.aspect.name} with your ${target} (${PLANET_MEANING[n.target.key]}). ${ASPECT_ADVICE[n.aspect.name]}`;
+const READ = {
+  Sun: {
+    conjunction: "The spotlight is on {a}. You'll feel more visible and more like yourself, so take the lead.",
+    soft: "Things flow your way with {a}. Confidence comes easily today, so use it to ask for what you want.",
+    hard: "Something may knock {a}. Don't take it personally: it's showing you where an old habit no longer fits.",
+  },
+  Moon: {
+    conjunction: "Feelings run close to the surface around {a}. Be gentle with yourself and don't decide anything big on mood alone.",
+    soft: "A comfortable, easy mood supports {a}. Good for small pleasures and honest chats.",
+    hard: "You may feel touchy about {a}, but it passes within the day. Eat, rest, and wait before replying to anything that annoys you.",
+  },
+  Mercury: {
+    conjunction: "Your mind is busy with {a}. Write it down, have the conversation, send the message.",
+    soft: "Words come easily where {a} is concerned. A good moment to explain yourself or clear up a misunderstanding.",
+    hard: "Mixed messages are likely around {a}. Double-check what you heard before reacting, and reread texts before you send them.",
+  },
+  Venus: {
+    conjunction: "Warmth and charm are on your side with {a}. Treat yourself, dress up, say something kind.",
+    soft: "A sweet, easy energy surrounds {a}. Good for dates, making up and anything beautiful.",
+    hard: "You may want more than you're getting around {a}. Watch for overspending or chasing approval to fill the gap.",
+  },
+  Mars: {
+    conjunction: "Big energy around {a}. Put it into a workout or a task you've been avoiding, not into an argument.",
+    soft: "Extra drive fuels {a}. A great day to start or finish something.",
+    hard: "Patience runs short around {a}. Pick your battles, and move your body to burn off the tension.",
+  },
+  Jupiter: {
+    conjunction: "Luck and generosity grow around {a}. Say yes to opportunities and think bigger than usual.",
+    soft: "Optimism lifts {a}. Doors open more easily, so ask, apply, reach out.",
+    hard: "The risk is too much of a good thing with {a}: overpromising, overdoing, overspending. Aim high but stay realistic.",
+  },
+  Saturn: {
+    conjunction: "A serious, testing time for {a}. Slow, steady effort now builds something that lasts.",
+    soft: "Discipline pays off with {a}. A good day for commitments, plans and grown-up decisions.",
+    hard: "{A} may feel heavy or blocked. It's not a no, it's a not yet: be patient and keep doing the work.",
+  },
+};
+const RETRO_NOTE = { Mercury: " Mercury is retrograde, so it's better for revisiting than for starting.", Venus: " Venus is retrograde, so old feelings or exes may resurface." };
+export function describeTransit(n, retro) {
+  const kind = n.aspect.name === "conjunction" ? "conjunction" : ["trine", "sextile"].includes(n.aspect.name) ? "soft" : "hard";
+  const a = AREA[n.target.key];
+  const text = READ[n.transit][kind].replace("{a}", a).replace("{A}", a.charAt(0).toUpperCase() + a.slice(1));
+  return text + (retro && RETRO_NOTE[n.transit] ? RETRO_NOTE[n.transit] : "");
 }
+
+// "Your day": what it means when the day's main event lands in each house
+export const HOUSE_READING = [null,
+  { text: "All eyes are on you. You'll feel more noticed and more like yourself: a good day for a fresh start, a new look or putting yourself first.", good: "new beginnings, self-care, taking the lead", easy: "trying to do everything alone" },
+  { text: "Money, possessions and self-worth come into focus. Check your budget, value your time, and notice what you truly can't live without.", good: "budgeting, treating yourself wisely, knowing your worth", easy: "impulse buys" },
+  { text: "Your mind is quick and chatty. Messages, short trips, siblings and neighbours feature. Say what you mean and learn something new.", good: "conversations, writing, errands", easy: "gossip and overthinking" },
+  { text: "Home and family pull at you. Cook, tidy, call family, or simply stay in. You'll recharge best somewhere you feel safe.", good: "home, family time, a cosy evening", easy: "overcommitting outside the house" },
+  { text: "Play, romance and creativity light up. Do something purely for fun, flirt a little, make something with your hands.", good: "dates, hobbies, creative projects", easy: "taking life too seriously" },
+  { text: "Routines, health and everyday tasks need attention. Small improvements go a long way: a walk, a clean inbox, an early night.", good: "organising, exercise, healthy habits", easy: "perfectionism" },
+  { text: "Other people take centre stage. Partners, close friends and one-to-one conversations matter most. Listen as much as you talk.", good: "partnerships, compromise, meeting up", easy: "people-pleasing" },
+  { text: "Deep feelings and hidden matters surface. Trust, intimacy and shared money are in focus. Let go of something you've been holding on to.", good: "honest talks, letting go, research", easy: "jealousy and control" },
+  { text: "Your horizons widen. Plan a trip, read something that challenges you, ask the big questions. Curiosity is your compass.", good: "learning, travel plans, big-picture thinking", easy: "preaching to others" },
+  { text: "Career and reputation are in focus. People notice what you do, so show up well and take one step toward a long-term goal.", good: "work goals, ambition, being seen", easy: "neglecting rest" },
+  { text: "Friends and groups bring good energy. Reach out, join in, and think about what you hope for in the future.", good: "friends, teamwork, future plans", easy: "comparing yourself to others" },
+  { text: "A day to slow down and recharge. Your energy is better spent on rest, reflection and time alone than on pushing ahead. Pay attention to dreams and gut feelings.", good: "rest, journaling, quiet time", easy: "big launches and crowds" },
+];
 
 // ── Compatibility (synastry) ─────────────────────────────────
 const ELEMENT_FIT = { "Fire-Fire": 3, "Earth-Earth": 3, "Air-Air": 3, "Water-Water": 3, "Fire-Air": 2, "Air-Fire": 2, "Earth-Water": 2, "Water-Earth": 2 };
