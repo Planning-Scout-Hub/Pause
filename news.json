@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T18:48+00:00",
+ "updated": "2026-11-03T18:51+00:00",
  "stories": [
   {
    "title": "He Donated His Ultra-rare Blood 545 Times While Visiting Every Blood Bank in Australia",
@@ -26,20 +26,20 @@
    "topic": "People"
   },
   {
-   "title": "Good News in History, November 3",
-   "summary": "70 years ago today, The Wizard of Oz was televised for the first time, and was so successful—with 53% of US television viewers tuning in—that it was destined to become an annual event in American homes. CBS ran it again three…",
-   "link": "https://www.goodnewsnetwork.org/events061103/",
-   "source": "Good News Network",
-   "date": "2026-11-03",
-   "topic": "People"
-  },
-  {
    "title": "What if we stop treating social care like a service? This village shows the way",
    "summary": "A village in England has created a social care community based on communal living and shared responsibility. Could it catch on?",
    "link": "https://www.positive.news/society/what-if-we-stopped-treating-social-care-like-a-service/",
    "source": "Positive News",
    "date": "2026-11-03",
    "topic": "Health"
+  },
+  {
+   "title": "The Counter-Extremism Expert Building Our Capacity for Compassion",
+   "summary": "A former Los Angeles gang member, a former skinhead and a former radical Islamist walk into a youth center. What sounds like the setup for an uneasy joke is at the core of Farah Pandith’s work: Put people who might otherwise…",
+   "link": "https://reasonstobecheerful.world/counter-extremism-expert-farah-pandith-compassion-rebuilding-connection/",
+   "source": "Reasons to be Cheerful",
+   "date": "2026-11-03",
+   "topic": "People"
   },
   {
    "title": "Whale Festival Kicks Off on Amelia Island in Florida Celebrating the Return of the Right Whale",
@@ -86,29 +86,9 @@
   "date": "11-03",
   "events": [
    {
-    "year": 2002,
-    "text": "A CIA drone strike kills six militants in Yemen, constituting the first targeted killing of the war on terror.",
-    "link": "https://en.wikipedia.org/wiki/2002_Marib_airstrike"
-   },
-   {
-    "year": 1996,
-    "text": "Abdullah Çatlı, a leader of the ultra-nationalist Grey Wolves, was killed in a car crash near Susurluk, Turkey, sparking a scandal that exposed the depth of the state's complicity in organized crime.",
-    "link": "https://en.wikipedia.org/wiki/Abdullah_%C3%87atl%C4%B1"
-   },
-   {
-    "year": 1969,
-    "text": "U.S. president Richard Nixon made a plea for support from the \"silent majority\", referring to those Americans who did not join in the large demonstrations against the Vietnam War at the time.",
-    "link": "https://en.wikipedia.org/wiki/Richard_Nixon"
-   },
-   {
     "year": 1957,
     "text": "The Soviet Union launched Sputnik 2, carrying the space dog Laika as the first living creature to enter orbit around Earth.",
     "link": "https://en.wikipedia.org/wiki/Sputnik_2"
-   },
-   {
-    "year": 1956,
-    "text": "Suez Crisis: During an invasion of the Gaza Strip, Israeli soldiers shot and killed hundreds of Palestinian refugees and local inhabitants in Khan Yunis.",
-    "link": "https://en.wikipedia.org/wiki/Suez_Crisis"
    },
    {
     "year": 1954,
@@ -119,16 +99,6 @@
     "year": 1948,
     "text": "The Chicago Daily Tribune published the erroneous headline \"Dewey Defeats Truman\" (pictured) in its early morning edition shortly after incumbent U.S. president Harry S. Truman officially upset the heavily favored…",
     "link": "https://en.wikipedia.org/wiki/Chicago_Tribune"
-   },
-   {
-    "year": 1943,
-    "text": "The Holocaust: The largest massacre of Jews by German forces began at the Majdanek concentration camp in occupied Poland.",
-    "link": "https://en.wikipedia.org/wiki/The_Holocaust"
-   },
-   {
-    "year": 1942,
-    "text": "World War II: U.S. Marines and U.S. Army forces began an attempt to encircle and destroy a regiment of Imperial Japanese Army troops on Guadalcanal.",
-    "link": "https://en.wikipedia.org/wiki/World_War_II"
    },
    {
     "year": 1935,
@@ -144,6 +114,26 @@
     "year": 1881,
     "text": "Indigenous Mapuche began an uprising against the occupation of Araucanía by Chile.",
     "link": "https://en.wikipedia.org/wiki/Mapuche"
+   },
+   {
+    "year": 1880,
+    "text": "The current melody of Kimigayo, the national anthem of Japan, was adopted.",
+    "link": "https://en.wikipedia.org/wiki/Kimigayo"
+   },
+   {
+    "year": 1848,
+    "text": "A new constitution drafted by Johan Rudolph Thorbecke was proclaimed, limiting the powers of the Dutch monarchy.",
+    "link": "https://en.wikipedia.org/wiki/Constitution_of_the_Netherlands"
+   },
+   {
+    "year": 1793,
+    "text": "French Revolution: Playwright, journalist and outspoken feminist Olympe de Gouges was guillotined.",
+    "link": "https://en.wikipedia.org/wiki/French_Revolution"
+   },
+   {
+    "year": 1534,
+    "text": "The Parliament of England passed the first Act of Supremacy, making King Henry VIII head of the Church of England, supplanting the pope and the Catholic Church.",
+    "link": "https://en.wikipedia.org/wiki/Parliament_of_England"
    }
   ]
  },
