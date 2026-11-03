@@ -88,7 +88,7 @@ on_this_day = []
 try:
     today = now
     data = json.loads(get(f"https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/{today:%m}/{today:%d}"))
-    DARK = r"kill|war\b|wars\b|attack|bomb|murder|massacre|assassin|terror|strike|died|death|dead|shoot|crash|disaster|genocide|execut|invasion|invade|riot|explosion|hostage|militant|coup|nazi|holocaust|earthquake|famine|sank|sinking"
+    DARK = r"kill|war\b|wars\b|attack|bomb|murder|massacre|assassin|terror|strike|died|death|dead|shoot|crash|disaster|genocide|execut|invasion|invade|riot|explosion|hostage|militant|coup|nazi|holocaust|earthquake|famine|sank|sinking|guillotin|uprising|occupation|military|battle|slave|plague|epidemic|hanged|prison"
     for ev in [e for e in data.get("selected", []) if not re.search(DARK, e.get("text", ""), re.I)][:12]:
         page = (ev.get("pages") or [{}])[0]
         on_this_day.append({
