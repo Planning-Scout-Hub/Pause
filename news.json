@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-03T20:32+00:00",
+ "updated": "2026-11-03T20:58+00:00",
  "days": {
   "2026-11-03": {
-   "headline": "Robot platform combines AI and rapid imaging to improve perovskite solar cell fabrication",
-   "story": "Solar cells generate electricity by absorbing sunlight in a thin layer of perovskite, a light-absorbing material. This layer is made with a liquid solution that dries and crystallizes into a solid film, but small changes in temperature, humidity and other conditions can affect the film and the performance of the solar cell.",
-   "why": "",
-   "topic": "AI & Tech",
-   "source": "Tech Xplore",
-   "link": "https://techxplore.com/news/2026-11-robot-platform-combines-ai-rapid.html",
+   "headline": "New Drug May Help Fight Alzheimer's",
+   "story": "Scientists found a drug that can repair DNA damage and reduce brain inflammation, which are key features of Alzheimer's disease. This drug was originally developed for spinal cord injuries. It has already been tested for safety in humans, which could speed up the development process. The drug showed promising results in a mouse model of Alzheimer's disease.",
+   "why": "This discovery could lead to new therapies that target the roots of Alzheimer's disease, potentially offering a new way to address this complex condition. If effective in humans, it might provide a more convenient treatment option since it can be taken by mouth.",
+   "topic": "Health",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261102075806.htm",
    "published": "2026-11-02",
-   "written_by": "source"
+   "written_by": "ai"
   }
  },
  "onThisDay": {
@@ -53,11 +53,5 @@
   ]
  },
  "candidates_today": 92,
- "errors": [
-  "model pick: inference/chat/completions openai/gpt-4o-mini HTTP 200: 'OK'  | inference/chat/completions openai/gpt-4.1-mini HTTP 200: 'OK'  | orgs/Planning-Scout-Hub/inference/chat/c openai/gpt-4.1-min",
-  "model write: inference/chat/completions openai/gpt-4o-mini HTTP 200: 'OK'  | inference/chat/completions openai/gpt-4.1-mini HTTP 200: 'OK'  | orgs/Planning-Scout-Hub/inference/chat/c openai/gpt-4.1-mi",
-  "model write: inference/chat/completions openai/gpt-4o-mini HTTP 200: 'OK'  | inference/chat/completions openai/gpt-4.1-mini HTTP 200: 'OK'  | orgs/Planning-Scout-Hub/inference/chat/c openai/gpt-4.1-mi",
-  "model write: inference/chat/completions openai/gpt-4o-mini HTTP 200: 'OK'  | inference/chat/completions openai/gpt-4.1-mini HTTP 200: 'OK'  | orgs/Planning-Scout-Hub/inference/chat/c openai/gpt-4.1-mi",
-  "model write: inference/chat/completions openai/gpt-4o-mini HTTP 200: 'OK'  | inference/chat/completions openai/gpt-4.1-mini HTTP 200: 'OK'  | orgs/Planning-Scout-Hub/inference/chat/c openai/gpt-4.1-mi"
- ]
+ "errors": []
 }
