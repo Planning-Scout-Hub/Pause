@@ -13,7 +13,7 @@ Pause daily content job (runs every morning on GitHub Actions, see .github/workf
 4. Saves one story per day in news.json (keeps the last 60 days), plus "On this day".
 Only uses the Python standard library. If anything fails, the previous news.json is kept.
 """
-import json, re, html, os, sys, datetime as dt, urllib.request, urllib.error, email.utils
+import json, subprocess, re, html, os, sys, datetime as dt, urllib.request, urllib.error, email.utils
 import xml.etree.ElementTree as ET
 
 FEEDS = [
@@ -185,24 +185,35 @@ Source text:
     return {k: data[k].strip() for k in ("headline", "story", "why")}
 
 
+ENDPOINTS = [("https://models.github.ai/inference/chat/completions", MODEL),
+             ("https://models.inference.ai.azure.com/chat/completions", MODEL.split("/")[-1])]
+
+
 def call_model(prompt, max_tokens):
+    """Call GitHub Models with curl (exactly as GitHub's docs show), trying the legacy endpoint if needed."""
     if not TOKEN:
         return None
-    body = json.dumps({"model": MODEL, "temperature": 0.4, "max_tokens": max_tokens,
-                       "messages": [{"role": "system", "content": "You are a careful science and good-news writer. You never invent facts."},
-                                    {"role": "user", "content": prompt}]}).encode()
-    req = urllib.request.Request("https://models.github.ai/inference/chat/completions", data=body, method="POST", headers={
-        "Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json", "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": UA["User-Agent"]})
-    try:
-        with urllib.request.urlopen(req, timeout=90) as r:
-            raw = r.read().decode("utf-8", "ignore")
-    except urllib.error.HTTPError as e:
-        raise RuntimeError(f"HTTP {e.code}: {e.read().decode('utf-8', 'ignore')[:200]}")
-    try:
-        return json.loads(raw)["choices"][0]["message"]["content"]
-    except Exception:
-        raise RuntimeError(f"unexpected reply: {raw[:200]!r}")
+    problems = []
+    for url, model in ENDPOINTS:
+        body = json.dumps({"model": model, "temperature": 0.4, "max_tokens": max_tokens,
+                           "messages": [{"role": "system", "content": "You are a careful science and good-news writer. You never invent facts."},
+                                        {"role": "user", "content": prompt}]})
+        try:
+            out = subprocess.run(["curl", "-sS", "-L", "-X", "POST", url,
+                                  "-H", "Accept: application/json",
+                                  "-H", f"Authorization: Bearer {TOKEN}",
+                                  "-H", "Content-Type: application/json",
+                                  "--data-binary", "@-", "-w", "\n__HTTP__%{http_code}"],
+                                 input=body, capture_output=True, text=True, timeout=120)
+        except Exception as e:
+            problems.append(f"{url.split('/')[2]}: {e}")
+            continue
+        raw, _, code = out.stdout.rpartition("\n__HTTP__")
+        try:
+            return json.loads(raw)["choices"][0]["message"]["content"]
+        except Exception:
+            problems.append(f"{url.split('/')[2]} HTTP {code}: {raw.strip()[:150]!r} {out.stderr.strip()[:80]}")
+    raise RuntimeError(" | ".join(problems))
 
 
 TOPIC_GUESS = [("Health", r"health|patient|disease|cancer|vaccine|drug|therapy|brain|medic|hospital"),
