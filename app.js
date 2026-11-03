@@ -156,7 +156,7 @@ let day = buildDay(viewISO);
 function renderPage() {
   day = buildDay(viewISO);
   $("#appName").textContent = CONFIG.APP_NAME;
-  $("#title").textContent = parseISO(viewISO).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  $("#title").textContent = parseISO(viewISO).toLocaleDateString("en-GB", { weekday: innerWidth < 380 ? "short" : "long", day: "numeric", month: "long", year: "numeric" });
   $("#theme").textContent = day.theme;
   $("#themeWhy").textContent = day.why ? `(${day.why})` : "";
 
@@ -188,6 +188,8 @@ function renderStrip() {
     b.onclick = () => { viewISO = iso; renderPage(); window.scrollTo({ top: 0, behavior: "smooth" }); };
     strip.append(b);
   }
+  const on = strip.querySelector(".on");
+  if (on) strip.scrollLeft = on.offsetLeft - strip.clientWidth / 2 + on.clientWidth / 2;
 }
 
 function renderSky() {
@@ -543,10 +545,11 @@ function openFriends() {
 function friendsDot(clear = false) {
   const btn = $("#friendsBtn");
   btn.textContent = "Friends";
+  $("#navDot").hidden = true;
   const sky = skyFor(TODAY), me = myChart();
   if (clear || !user || !sky || !me || !friends.length) return;
   const active = friends.filter((f) => { const t = f.birth_date && Astro.natalChart(f); return t && /touches both/.test(Astro.todayBetween(sky, me, t)); });
-  if (active.length) { btn.textContent = "Friends •"; btn.title = `Something's happening today with ${active.map((f) => f.display_name).join(", ")}`; }
+  if (active.length) { $("#navDot").hidden = false; btn.textContent = "Friends •"; btn.title = `Something's happening today with ${active.map((f) => f.display_name).join(", ")}`; }
 }
 
 // Arriving through an invite link
@@ -708,6 +711,39 @@ $("#installBtn").onclick = async () => {
   else open("#installModal");
 };
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+
+// ── Phone navigation, swiping and typing mode ────────────────
+function setNav(name) { document.querySelectorAll("#bottomNav button").forEach((b) => b.classList.toggle("on", b.dataset.nav === name)); }
+document.querySelectorAll("#bottomNav button").forEach((b) => (b.onclick = () => {
+  const n = b.dataset.nav;
+  document.querySelectorAll(".modal:not([hidden])").forEach((m) => (m.hidden = true));
+  if (n === "today") { if (viewISO !== TODAY) { viewISO = TODAY; renderPage(); } window.scrollTo({ top: 0, behavior: "smooth" }); }
+  else if (n === "write") { $(".page.right").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  else ({ journal: "#journalBtn", chart: "#chartBtn", friends: "#friendsBtn" })[n] && $(({ journal: "#journalBtn", chart: "#chartBtn", friends: "#friendsBtn" })[n]).click();
+  setNav(n);
+}));
+// Returning to "Today" highlight when a sheet closes
+new MutationObserver(() => { if (!document.querySelector(".modal:not([hidden])")) setNav(window.scrollY > $(".page.right").offsetTop - 200 ? "write" : "today"); })
+  .observe(document.body, { subtree: true, attributes: true, attributeFilter: ["hidden"] });
+// Hide the bottom bar while the keyboard is up
+ta.addEventListener("focus", () => document.body.classList.add("typing"));
+ta.addEventListener("blur", () => setTimeout(() => document.body.classList.remove("typing"), 100));
+document.querySelectorAll("form input").forEach((i) => { i.addEventListener("focus", () => document.body.classList.add("typing")); i.addEventListener("blur", () => document.body.classList.remove("typing")); });
+// Swipe left/right on the page to move between days (within the 5-day window)
+let touch = null;
+$(".book").addEventListener("touchstart", (e) => {
+  if (e.target.closest("textarea, .day-strip, .planets, input")) { touch = null; return; }
+  touch = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+}, { passive: true });
+$(".book").addEventListener("touchend", (e) => {
+  if (!touch) return;
+  const dx = e.changedTouches[0].clientX - touch.x, dy = e.changedTouches[0].clientY - touch.y;
+  if (Math.abs(dx) > 70 && Math.abs(dy) < 45 && Date.now() - touch.t < 600) {
+    const next = addDays(viewISO, dx < 0 ? 1 : -1);
+    if (next >= addDays(TODAY, -5) && next <= addDays(TODAY, 5)) { viewISO = next; renderPage(); toast(niceDate(viewISO)); }
+  }
+  touch = null;
+}, { passive: true });
 
 // ── Modal + toast helpers ────────────────────────────────────
 function open(sel) { $(sel).hidden = false; }
