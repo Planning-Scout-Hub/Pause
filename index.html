@@ -92,12 +92,13 @@
         <summary>
           <h2 class="hand">Good News:</h2>
           <p class="lead"><span class="topic" id="newsTopic"></span> <span id="newsLead">Loading today's good news…</span></p>
-          <span class="more-link">more good news</span>
+          <span class="more-link" id="newsMore">read the story</span>
         </summary>
-        <div class="more">
-          <ul class="news-list" id="newsList"></ul>
-          <p class="fine" id="newsUpdated"></p>
-          <button class="share-btn" data-share="news" type="button">Share this</button>
+        <div class="more" id="newsBody">
+          <p id="newsStory"></p>
+          <p class="ask" id="newsWhyWrap">What it means for us: <em id="newsWhy"></em></p>
+          <a class="source-link" id="newsLink" target="_blank" rel="noopener"></a>
+          <div><button class="share-btn" data-share="news" type="button">Share this</button></div>
         </div>
       </details>
 

@@ -407,3 +407,8 @@ form select, form textarea { display: block; width: 100%; margin-top: 4px; paddi
 form textarea { resize: vertical; min-height: 110px; }
 form select:focus, form textarea:focus { outline: 2px solid var(--green); outline-offset: -1px; }
 label[hidden] { display: none !important; }
+
+/* ── v9: one good-news story per day ── */
+.source-link { display: inline-block; margin: 2px 0 8px; font-weight: 700; color: var(--brown); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.source-link:active { opacity: .7; }
+.more-link[hidden], #newsBody[hidden] { display: none !important; }

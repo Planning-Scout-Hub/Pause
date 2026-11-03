@@ -202,20 +202,37 @@ async function loadNews() {
   try { news = await fetch("news.json", { cache: "no-cache" }).then((r) => r.json()); } catch { news = null; }
   renderNews(); renderOnThisDay();
 }
+// One story per day. Older news.json files (a list of stories) still work.
+function newsFor(iso) {
+  if (!news) return null;
+  const days = news.days || {};
+  if (days[iso]) return days[iso];
+  if (iso === TODAY) { // before the morning job runs, show the most recent story
+    const last = Object.keys(days).sort().pop();
+    if (last) return days[last];
+    const s = (news.stories || [])[0];
+    if (s) return { headline: s.title, story: s.summary, why: "", topic: s.topic, source: s.source, link: s.link, published: s.date };
+  }
+  return null;
+}
 function renderNews() {
-  const list = $("#newsList");
-  list.innerHTML = "";
-  const items = news?.stories || [];
-  if (!items.length) { $("#newsLead").textContent = "Today's good news is on its way. Check back soon."; $("#newsTopic").textContent = ""; $("#newsUpdated").textContent = ""; return; }
-  const top = items[dayNum(viewISO) % Math.min(items.length, 3)];
-  $("#newsTopic").textContent = top.topic;
-  $("#newsLead").textContent = top.title;
-  items.slice(0, 6).forEach((n) => list.append(el("li", {},
-    el("span", { className: "topic", textContent: n.topic }), " ",
-    el("a", { href: n.link, target: "_blank", rel: "noopener", textContent: n.title }),
-    n.summary ? el("p", { textContent: n.summary }) : "",
-    el("span", { className: "fine", textContent: `${n.source} · ${niceDate(n.date, { day: "numeric", month: "short" })}` }))));
-  $("#newsUpdated").textContent = news.updated ? `Collected from good-news outlets every morning. Last updated ${new Date(news.updated).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}.` : "";
+  const n = newsFor(viewISO);
+  const show = (on) => { $("#newsBody").hidden = !on; $("#newsMore").hidden = !on; };
+  if (!n) {
+    $("#newsTopic").textContent = "";
+    $("#newsLead").textContent = !news ? "Loading today's good news…" : viewISO > TODAY ? "This day's good news arrives that morning." : "No good news was saved for this day.";
+    show(false);
+    return;
+  }
+  show(true);
+  $("#newsTopic").textContent = n.topic || "";
+  $("#newsLead").textContent = n.headline;
+  $("#newsStory").textContent = n.story || "";
+  $("#newsWhy").textContent = n.why || "";
+  $("#newsWhyWrap").hidden = !n.why;
+  const link = $("#newsLink");
+  link.href = n.link;
+  link.textContent = `Read the full story at ${n.source} →`;
 }
 function renderOnThisDay() {
   const box = $("#onThisDay");
@@ -740,7 +757,7 @@ function shareContent(kind, extra = {}) {
   const sky = day.sky;
   switch (kind) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
-    case "news": { const n = (news?.stories || [])[dayNum(viewISO) % Math.min((news?.stories || []).length || 1, 3)]; return n ? { label: "Good News", main: n.title, sub: n.source, text: `Some good news: ${n.title} (${n.source})`, url: n.link } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pause:" }; }
+    case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on Pause:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pause:" }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
     case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? sky.headline.title : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${sky.headline.title}. ${Astro.explainHeadline(sky)}` : "" };
     case "chart": {
