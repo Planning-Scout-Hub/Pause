@@ -278,3 +278,16 @@ form input:focus, #search:focus { outline: 2px solid var(--green); outline-offse
   .share-grid { grid-template-columns: repeat(2, 1fr); }
   .chart-big { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+/* ── v4: day strip, invite note ── */
+.day-strip { display: flex; gap: 4px; margin: 6px 0 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.day-strip::-webkit-scrollbar { display: none; }
+.day { flex: 1 0 auto; min-width: 42px; background: none; border: 1px solid transparent; border-radius: 8px; padding: 3px 4px; color: var(--ink); line-height: 1.1; }
+.day span { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.day b { font-family: var(--write); font-size: 19px; }
+.day:hover { border-color: #DDD2C1; }
+.day.future { opacity: .6; }
+.day.today span { color: var(--brown); font-weight: 700; }
+.day.on { background: var(--tape); border-color: rgba(139, 58, 23, .25); opacity: 1; }
+.wide-note { grid-column: 1 / -1; margin: 4px 0 0; }
+textarea:disabled { cursor: not-allowed; }

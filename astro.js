@@ -179,7 +179,7 @@ export function skyForDay(localDate = new Date()) {
       const f0 = f(start), f1 = f(end);
       if (Math.sign(f0) !== Math.sign(f1) && Math.abs(f0) < 3 && Math.abs(f1) < 3) {
         if (asp.angle === 0 && a === "Sun" && (b === "Mercury" || b === "Venus")) { /* still valid */ }
-        events.push({ type: "aspect", a, b, aspect: asp, title: `${a} ${asp.name} ${b}`, weight: 40 + (["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].includes(b) ? 15 : 0) });
+        events.push({ type: "aspect", a, b, aspect: asp, sign: pos[a].sign.name, title: `${a} ${asp.name} ${b}`, weight: 40 + (["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].includes(b) ? 15 : 0) });
       }
     }
   }
@@ -345,4 +345,16 @@ export function todayBetween(sky, a, b) {
   const sa = a.pos.Sun.sign.element, sb = b.pos.Sun.sign.element, me = sky.pos.Moon.sign.element;
   if (me === sa || me === sb) return `Today's Moon is in ${sky.moon.sign}, a ${me} sign, like ${me === sa && me === sb ? "both of your" : me === sa ? "your" : "their"} Sun. A good day to reach out and talk about how you're both feeling.`;
   return `No strong link between you in today's sky. A quiet day for this connection: a short message goes a long way.`;
+}
+
+// ── Personal theme: where today's main event lands in YOUR chart ──
+const HOUSE_THEME = [null, "The Self", "Small Wonders", "Curiosity", "Home", "Laughter", "The Body", "Kindness", "Change", "Stories", "Time", "Beginnings", "Calm"];
+export const HOUSE_SHORT = [null, "self", "values", "communication", "home", "joy", "health", "relationships", "transformation", "meaning", "career", "friendship", "rest"];
+export function personalTheme(sky, chart) {
+  const signName = sky.headline.sign || sky.moon.sign;
+  const idx = SIGNS.findIndex((x) => x.name === signName);
+  // Whole-sign houses from the Rising sign; without a birth time, use the Sun sign as the 1st house (a 'solar chart')
+  const first = chart.asc != null ? Math.floor(norm(chart.asc) / 30) : Math.floor(norm(chart.pos.Sun.lon) / 30);
+  const house = ((idx - first + 12) % 12) + 1;
+  return { theme: HOUSE_THEME[house], house, solar: chart.asc == null };
 }
