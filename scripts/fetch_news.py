@@ -58,6 +58,8 @@ for source, url in FEEDS:
             date = parse_date(item.findtext("pubDate") or "")
             if not title or not link.startswith("http") or not date:
                 continue
+            if re.search(r"^good news in history|^weekly roundup|^the week in good news", title, re.I):
+                continue  # round-ups, not stories
             if (now - date).days > 10:
                 continue
             summary = clean(item.findtext("description"))
@@ -86,7 +88,8 @@ on_this_day = []
 try:
     today = now
     data = json.loads(get(f"https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/{today:%m}/{today:%d}"))
-    for ev in data.get("selected", [])[:12]:
+    DARK = r"kill|war\b|wars\b|attack|bomb|murder|massacre|assassin|terror|strike|died|death|dead|shoot|crash|disaster|genocide|execut|invasion|invade|riot|explosion|hostage|militant|coup|nazi|holocaust|earthquake|famine|sank|sinking"
+    for ev in [e for e in data.get("selected", []) if not re.search(DARK, e.get("text", ""), re.I)][:12]:
         page = (ev.get("pages") or [{}])[0]
         on_this_day.append({
             "year": ev.get("year"), "text": clean(ev.get("text"), 220),
