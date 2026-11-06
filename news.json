@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T12:23+00:00",
+ "updated": "2026-11-06T12:08+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -30,28 +30,53 @@
    "link": "https://medicalxpress.com/news/2026-11-crispr-proteins-access-heart-disease.html",
    "published": "2026-11-04",
    "written_by": "ai"
+  },
+  "2026-11-06": {
+   "headline": "Gel Could Help Regrow Tooth Enamel",
+   "story": "Scientists have created a gel that may help regrow lost tooth enamel. This gel uses minerals found in saliva to rebuild the enamel. It forms a thin coating on the tooth's surface and helps create a framework for new enamel to grow. The new enamel behaves like healthy enamel, which could lead to a simple treatment for damaged teeth.",
+   "why": "This could mean a new way to repair damaged teeth and prevent decay, making dental care easier and more effective. It could also reduce tooth sensitivity, which would be a welcome change for many people.",
+   "topic": "Health",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261104005059.htm",
+   "published": "2026-11-05",
+   "written_by": "ai"
   }
  },
  "onThisDay": {
-  "date": "11-05",
+  "date": "11-06",
   "events": [
    {
-    "year": 2013,
-    "text": "The Indian Space Research Organisation launched the Mars Orbiter Mission, India's first interplanetary probe.",
-    "link": "https://en.wikipedia.org/wiki/ISRO"
+    "year": 2012,
+    "text": "Tammy Baldwin became the first openly gay politician to be elected to the United States Senate.",
+    "link": "https://en.wikipedia.org/wiki/Tammy_Baldwin"
    },
    {
-    "year": 1605,
-    "text": "The arrest of Guy Fawkes, found during a search of the Palace of Westminster, foiled the Gunpowder Plot, which planned to blow up the House of Lords.",
-    "link": "https://en.wikipedia.org/wiki/Guy_Fawkes"
+    "year": 1944,
+    "text": "The B Reactor at the Hanford Site in the U.S. state of Washington began producing plutonium, with the facility later going on to create more for nearly the entire American nuclear arsenal.",
+    "link": "https://en.wikipedia.org/wiki/B_Reactor"
    },
    {
-    "year": 1138,
-    "text": "Lý Anh Tông was enthroned as the emperor of Đại Việt at the age of two, beginning a 37-year reign.",
-    "link": "https://en.wikipedia.org/wiki/L%C3%BD_Anh_T%C3%B4ng"
+    "year": 1939,
+    "text": "As part of their plan to eradicate the Polish intellectual elite, the Gestapo arrested 184 professors, students and employees of the Jagiellonian University (location pictured) in Kraków.",
+    "link": "https://en.wikipedia.org/wiki/Intelligenzaktion"
+   },
+   {
+    "year": 1924,
+    "text": "The Spanish anarchist group Los Solidarios unsuccessfully attempted to launch an insurrection against the dictatorship of Miguel Primo de Rivera.",
+    "link": "https://en.wikipedia.org/wiki/Los_Solidarios"
+   },
+   {
+    "year": 1856,
+    "text": "The first story from the collection Scenes of Clerical Life by the English author George Eliot was submitted for publication.",
+    "link": "https://en.wikipedia.org/wiki/Scenes_of_Clerical_Life"
+   },
+   {
+    "year": 1217,
+    "text": "King Henry III of England issued the Charter of the Forest, re-establishing the rights of access of free men to royal forests.",
+    "link": "https://en.wikipedia.org/wiki/Henry_III_of_England"
    }
   ]
  },
- "candidates_today": 94,
+ "candidates_today": 91,
  "errors": []
 }
