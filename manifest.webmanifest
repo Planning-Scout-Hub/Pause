@@ -1,7 +1,7 @@
 {
-  "name": "Pause — a daily diary for your mind",
-  "short_name": "Pause",
-  "description": "Food for thought, today's sky, a fact worth sharing and a journal prompt. A new page every day.",
+  "name": "Pauz-it — a daily diary for your mind",
+  "short_name": "Pauz-it",
+  "description": "One good news story, a word of the day, food for thought and a journal prompt. A new page every day.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

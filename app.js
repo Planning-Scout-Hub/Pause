@@ -14,7 +14,7 @@ const store = {
 };
 const K = {
   drafts: "pause_drafts", pending: "pause_pending", after: "pause_after_auth", invite: "pause_invite", knownFriends: "pause_known_friends",
-  demoUser: "pause_demo_user", demoEntries: "pause_demo_entries", demoProfile: "pause_demo_profile",
+  astro: "pause_astro", demoUser: "pause_demo_user", demoEntries: "pause_demo_entries", demoProfile: "pause_demo_profile",
 };
 try { navigator.storage?.persist?.(); } catch { /* ignore */ }
 
@@ -31,6 +31,7 @@ const ordinal = (n) => n + (["th", "st", "nd", "rd"][(n % 100 > 10 && n % 100 < 
 // ── Backend ──────────────────────────────────────────────────
 const DEMO = !CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY;
 let sb = null, user = null, profile = null, friends = [];
+let news = null; // good news + word of the day (news.json)
 
 const api = {
   async init() {
@@ -46,9 +47,10 @@ const api = {
       if (changed) setTimeout(onAuthChanged, 0);
     });
   },
-  async signUp(email, password) {
+  async signUp(email, password, astro = true) {
+    store.set(K.astro, astro);
     if (DEMO) { user = { id: "demo", email }; store.set(K.demoUser, user); return { needsConfirm: false }; }
-    const { data, error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: SITE_URL } });
+    const { data, error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: SITE_URL, data: { astro } } });
     if (error) throw error;
     // Supabase hides whether an email is taken: an existing account comes back with no identities
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) throw new Error("You already have an account with this email. Tap 'Log in' below and use your password.");
@@ -72,6 +74,13 @@ const api = {
     if (DEMO) return;
     const { error } = await sb.from("feedback").insert(row);
     if (error) throw error;
+  },
+  async setAstro(on) {
+    store.set(K.astro, on);
+    if (DEMO || !user) return;
+    const { data, error } = await sb.auth.updateUser({ data: { astro: on } });
+    if (error) throw error;
+    if (data?.user) user = data.user;
   },
   async signOut() { if (DEMO) store.del(K.demoUser); else await sb.auth.signOut(); user = null; profile = null; friends = []; },
   async listEntries() {
@@ -147,23 +156,25 @@ function skyFor(iso) {
   return skyCache[iso];
 }
 const myChart = () => (profile ? Astro.natalChart(profile) : null);
+// Astrology is optional: saved on the account (or on this device for guests)
+function astroOn() {
+  const m = user && !DEMO ? user.user_metadata?.astro : undefined;
+  return m !== undefined ? m !== false : store.get(K.astro) !== false;
+}
+function applyAstro() { const on = astroOn(); document.querySelectorAll("[data-astro]").forEach((e) => (e.hidden = !on)); }
 
 function buildDay(iso) {
   const n = dayNum(iso);
-  const sky = skyFor(iso);
-  const chart = myChart();
-  let theme = sky?.theme, why = "", personal = null;
-  if (sky && chart) {
-    personal = Astro.personalTheme(sky, chart);
-    theme = personal.theme;
-    why = `${sky.headline.title}, in your ${ordinal(personal.house)} house of ${Astro.HOUSE_SHORT[personal.house]}`;
-  } else if (sky) {
-    why = sky.headline.type === "moon" ? `the Moon is in ${sky.moon.sign}` : sky.headline.title;
-  }
+  const astro = astroOn();
+  const sky = astro ? skyFor(iso) : null;
+  const chart = astro ? myChart() : null;
+  const personal = sky && chart ? Astro.personalTheme(sky, chart) : null;
+  // The day's theme comes from the Word of the day, chosen from that day's good news
+  const word = newsFor(iso)?.word || null;
   const themes = Object.keys(THOUGHTS);
-  if (!THOUGHTS[theme]) theme = themes[n % themes.length];
+  const theme = THOUGHTS[word?.theme] ? word.theme : themes[n % themes.length];
   const pick = (arr, o = 0) => arr[(n + o) % arr.length];
-  return { iso, sky, theme, why, personal, thought: pick(THOUGHTS[theme]), prompt: pick(PROMPTS[theme]), fact: pick(FACTS, 6) };
+  return { iso, sky, theme, word, personal, thought: pick(THOUGHTS[theme]), prompt: pick(PROMPTS[theme]), fact: pick(FACTS, 6) };
 }
 
 let viewISO = TODAY;
@@ -174,8 +185,11 @@ function renderPage() {
   day = buildDay(viewISO);
   $("#appName").textContent = CONFIG.APP_NAME;
   $("#title").textContent = parseISO(viewISO).toLocaleDateString("en-GB", { weekday: innerWidth < 380 ? "short" : "long", day: "numeric", month: "long", year: "numeric" });
-  $("#theme").textContent = day.theme;
-  $("#themeWhy").textContent = day.why ? `(${day.why})` : "";
+  applyAstro();
+  const w = day.word;
+  $("#word").textContent = w ? w.word : (news ? "Wonder" : "…");
+  $("#wordMeaning").textContent = w ? (w.meaning || "") : !news ? "Choosing today's word from today's good news…" : viewISO > TODAY ? "This day's word arrives that morning, with its good news." : "A word to carry with you today.";
+  $("#wordToNews").hidden = !newsFor(viewISO);
 
   $("#thoughtText").textContent = day.thought.text;
   $("#thoughtMore").textContent = day.thought.more;
@@ -189,7 +203,7 @@ function renderPage() {
   day.prompt.starters.forEach((s) => box.append(el("button", { type: "button", className: "starter", textContent: s, onclick: () => insertStarter(s) })));
 
   renderStrip();
-  renderSky();
+  if (day.sky || astroOn()) renderSky();
   renderWriter();
   renderNews();
   renderOnThisDay();
@@ -197,10 +211,9 @@ function renderPage() {
 }
 
 // ── Good news (refreshed every morning by a scheduled job → news.json) ──
-let news = null;
 async function loadNews() {
-  try { news = await fetch("news.json", { cache: "no-cache" }).then((r) => r.json()); } catch { news = null; }
-  renderNews(); renderOnThisDay();
+  try { news = await fetch("news.json", { cache: "no-cache" }).then((r) => r.json()); } catch { news = { days: {} }; }
+  renderPage();
 }
 // One story per day. Older news.json files (a list of stories) still work.
 function newsFor(iso) {
@@ -286,14 +299,14 @@ function renderPersonal() {
   if (!sky) return;
   if (!user) {
     box.append(el("h3", { textContent: "How does this affect you?" }),
-      el("p", { textContent: "Create a free account and add your birth date, time and place. Your daily theme and reading will then come from where today's sky lands in your own chart." }),
+      el("p", { textContent: "Create a free account and add your birth date, time and place. Your daily reading will then come from where today's sky lands in your own chart." }),
       el("button", { className: "share-btn", type: "button", textContent: "See my reading", onclick: () => { store.set(K.after, "birth"); openAuth("signup", "chart"); } }));
     return;
   }
   const chart = myChart();
   if (!chart) {
     box.append(el("h3", { textContent: "Your personal reading" }),
-      el("p", { textContent: "Add your birth details to make your daily theme and reading personal." }),
+      el("p", { textContent: "Add your birth details to make your daily reading personal." }),
       el("button", { className: "share-btn", type: "button", textContent: "Add birth details", onclick: () => openBirth() }));
     return;
   }
@@ -381,7 +394,7 @@ async function persist(entry) {
   } finally { saving = false; $("#saveBtn").disabled = viewISO > TODAY; }
 }
 function saveEntryFor(date, body, prompt) {
-  const entry = { entry_date: date, theme: date === viewISO ? day.theme : null, prompt, body: body.trim() };
+  const entry = { entry_date: date, theme: date === viewISO ? (day.word?.word || day.theme) : null, prompt, body: body.trim() };
   if (user) return persist(entry);
   store.set(K.pending, entry);
   openAuth("signup", "save");
@@ -400,6 +413,7 @@ function setAuthMode(mode) {
   const up = mode === "signup";
   const reset = mode === "reset";
   $("#password").closest("label").hidden = reset;
+  $("#astroRow").hidden = mode !== "signup";
   $("#forgotRow").hidden = mode !== "login";
   if (reset) {
     $("#authTitle").textContent = "Reset your password";
@@ -455,7 +469,7 @@ $("#authForm").addEventListener("submit", async (e) => {
   $("#authSubmit").disabled = true;
   try {
     if (authMode === "signup") {
-      const { needsConfirm } = await api.signUp(email, password);
+      const { needsConfirm } = await api.signUp(email, password, $("#astroOpt").checked);
       if (needsConfirm) {
         $("#authTitle").textContent = "Check your inbox";
         $("#authMsg").textContent = `We've sent a confirmation link to ${email}. Click it and you'll come back here${store.get(K.pending) ? ", and your entry will be saved automatically" : ""}${store.get(K.invite) ? ", and you can finish accepting the invite" : ""}.`;
@@ -481,13 +495,39 @@ async function onAuthChanged() {
     const after = store.get(K.after);
     store.del(K.after);
     if (store.get(K.invite)) { if (store.get(K.invite + "_ok")) continueInvite(); else showInvite(); }
-    else if (after === "birth" && !profile) openBirth();
+    else if (after === "birth" && !profile && astroOn()) openBirth();
     else if (after === "friends") openFriends();
   } else friends = [];
   renderPage();
   friendsDot();
 }
 $("#authBtn").onclick = async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("login"); };
+
+// ── Settings ─────────────────────────────────────────────────
+function openSettings() {
+  $("#setWho").textContent = user ? `Signed in as ${user.email}` : "You're using Pauz-it as a guest. Create a free account to keep your journal.";
+  $("#astroToggle").checked = astroOn();
+  $("#setAuth").textContent = user ? "Sign out" : "Log in or create an account";
+  $("#setInstall").hidden = standalone;
+  applyAstro();
+  open("#settingsModal");
+}
+$("#settingsBtn").onclick = openSettings;
+document.querySelectorAll("[data-open-settings]").forEach((b) => (b.onclick = (e) => { e.preventDefault(); openSettings(); }));
+$("#astroToggle").onchange = async () => {
+  const on = $("#astroToggle").checked;
+  try { await api.setAstro(on); } catch { toast("Saved on this device. We'll sync it next time you're online."); }
+  renderPage(); applyAstro();
+  toast(on ? "Astrology is on ✦" : "Astrology is off. You can turn it back on anytime.");
+};
+const closeSettingsThen = (fn) => () => { close("#settingsModal"); fn(); };
+$("#setChart").onclick = closeSettingsThen(() => $("#chartBtn").click());
+$("#setJournal").onclick = closeSettingsThen(() => $("#journalBtn").click());
+$("#setInstall").onclick = closeSettingsThen(() => $("#installBtn").hidden ? open("#installModal") : $("#installBtn").click());
+$("#setShare").onclick = closeSettingsThen(() => openShare("app"));
+$("#setContact").onclick = closeSettingsThen(() => $("#contactBtn").click());
+$("#setAuth").onclick = closeSettingsThen(async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("signup"); });
+$("#wordToNews").onclick = () => { const d = document.querySelector('[data-sec="news"]'); d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); };
 
 // ── Birth details ────────────────────────────────────────────
 let picked = null;
@@ -496,7 +536,7 @@ function openBirth() {
   $("#birthTitle").textContent = "Your birth chart";
   $("#birthMsg").textContent = store.get(K.invite)
     ? "Last step: add your birth details so you and your friend can see your compatibility. Your friends will be able to see your chart."
-    : "Your birth date, time and place make your daily theme and reading personal. Only you and friends you accept can see this.";
+    : "Your birth date, time and place make your daily reading personal. Only you and friends you accept can see this.";
   const p = profile;
   $("#bName").value = p?.display_name || "";
   $("#bDate").value = p?.birth_date || "";
@@ -561,10 +601,10 @@ $("#newPassForm").addEventListener("submit", async (e) => {
   finally { $("#newPassSubmit").disabled = false; }
 });
 
-// ── Contact the Pause team ───────────────────────────────────
+// ── Contact the Pauz-it team ───────────────────────────────────
 $("#contactBtn").onclick = () => {
   $("#contactForm").hidden = false; $("#contactErr").hidden = true;
-  $("#contactTitle").textContent = "Contact the Pause team";
+  $("#contactTitle").textContent = "Contact the Pauz-it team";
   $("#contactMsg").textContent = "Found a problem or have an idea? We read every message.";
   if (user?.email && !$("#cEmail").value) $("#cEmail").value = user.email;
   open("#contactModal");
@@ -579,7 +619,7 @@ $("#contactForm").addEventListener("submit", async (e) => {
     $("#cText").value = "";
     $("#contactForm").hidden = true;
     $("#contactTitle").textContent = "Thank you 💛";
-    $("#contactMsg").textContent = "Your message reached the Pause team. If you left your email, we'll get back to you.";
+    $("#contactMsg").textContent = "Your message reached the Pauz-it team. If you left your email, we'll get back to you.";
   } catch (ex) { err.textContent = "Couldn't send right now. Please try again in a moment."; err.hidden = false; }
   finally { $("#contactSubmit").disabled = false; }
 });
@@ -637,7 +677,7 @@ function openFriends() {
   list.innerHTML = "";
   const me = myChart();
   if (!me) {
-    list.append(el("p", { className: "empty", textContent: "First add your own birth details, so Pause can compare charts." }),
+    list.append(el("p", { className: "empty", textContent: "First add your own birth details, so Pauz-it can compare charts." }),
       el("button", { className: "share-btn", type: "button", textContent: "Add my birth details", onclick: () => { close("#friendsModal"); openBirth(); } }));
     open("#friendsModal");
     return;
@@ -696,7 +736,7 @@ async function showInvite() {
   if (inv.is_mine) { store.del(K.invite); return toast("That's your own invite link. Send it to a friend!"); }
   const name = inv.inviter_name || "A friend";
   $("#inviteTitle").textContent = `${name} invited you`;
-  $("#inviteMsg").textContent = `${name} wants to be friends on Pause, a daily diary for your mind. Accept to see your cosmic compatibility and what's happening between you two each day. You'll be able to see each other's birth charts.`;
+  $("#inviteMsg").textContent = `${name} wants to be friends on Pauz-it, a daily diary for your mind. Accept to see your cosmic compatibility and what's happening between you two each day. You'll be able to see each other's birth charts.`;
   open("#inviteModal");
 }
 $("#inviteAccept").onclick = () => { store.set(K.invite + "_ok", true); close("#inviteModal"); continueInvite(); };
@@ -759,7 +799,8 @@ function shareContent(kind, extra = {}) {
   const sky = day.sky;
   switch (kind) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
-    case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on Pause:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pause:" }; }
+    case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on Pauz-it:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pauz-it:" }; }
+    case "word": { const w = day.word; return { label: "Word of the day", main: w ? w.word : "Wonder", sub: w?.meaning || "", text: `Today's word: ${w ? w.word : "Wonder"}. ${w?.meaning || ""}` }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
     case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000)) : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000))}. ${Astro.explainHeadline(sky)}` : "" };
     case "chart": {
@@ -771,8 +812,8 @@ function shareContent(kind, extra = {}) {
       const { f, c, me, them } = extra;
       return { label: "Our Cosmic Match", main: `${me.pos.Sun.sign.glyph} ${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.glyph} ${them.pos.Sun.sign.name}: ${c.score}%`, sub: `Me & ${f.display_name || "my friend"}`, text: `${f.display_name || "My friend"} and I are a ${c.score}% cosmic match (${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.name}). Check yours:` };
     }
-    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} wants to see your cosmic compatibility`, sub: "Tap the link to accept", text: `I'd love to see our cosmic compatibility on Pause 🌙 Accept my invite here:`, url: extra.url, title: "Invite a friend" };
-    default: return { label: "Pause", main: "A daily diary for your mind", sub: "Food for thought, today's sky, a fact worth sharing and a journal idea that helps.", text: "I've been using Pause, a daily diary for your mind. A new page every day:" };
+    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} wants to see your cosmic compatibility`, sub: "Tap the link to accept", text: `I'd love to see our cosmic compatibility on Pauz-it 🌙 Accept my invite here:`, url: extra.url, title: "Invite a friend" };
+    default: return { label: "Pauz-it", main: "A daily diary for your mind", sub: "One good news story, a word for the day, food for thought and a journal idea that helps.", text: "I've been using Pauz-it, a daily diary for your mind. A new page every day:" };
   }
 }
 async function makeCard(c) {
@@ -851,6 +892,7 @@ document.querySelectorAll("#bottomNav button").forEach((b) => (b.onclick = () =>
   document.querySelectorAll(".modal:not([hidden])").forEach((m) => (m.hidden = true));
   if (n === "today") { if (viewISO !== TODAY) { viewISO = TODAY; renderPage(); } window.scrollTo({ top: 0, behavior: "smooth" }); }
   else if (n === "write") { $(".page.right").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  else if (n === "me") openSettings();
   else ({ journal: "#journalBtn", chart: "#chartBtn", friends: "#friendsBtn" })[n] && $(({ journal: "#journalBtn", chart: "#chartBtn", friends: "#friendsBtn" })[n]).click();
   setNav(n);
 }));

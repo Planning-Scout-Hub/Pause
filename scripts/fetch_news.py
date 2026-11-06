@@ -1,8 +1,8 @@
 """
-Pause daily content job (runs every morning on GitHub Actions, see .github/workflows/daily.yml)
+Pauz-it daily content job (runs every morning on GitHub Actions, see .github/workflows/daily.yml)
 
 1. Collects recent stories from good-news outlets AND science / health / tech news sources.
-2. Filters for the kind of news Pause wants first thing in the morning:
+2. Filters for the kind of news Pauz-it wants first thing in the morning:
    discoveries, research breakthroughs, AI for good, health, helpful technology,
    and people improving life for their communities. Skips personal feats, celebrities,
    cute-animal stories, politics and anything negative.
@@ -139,7 +139,7 @@ def numbers(s):
 
 def ask_model(shortlist):
     listing = "\n".join(f"[{i}] ({c['source']}) {c['title']} — {c['summary'][:300]}" for i, c in enumerate(shortlist))
-    prompt = f"""You choose the single best "good news" story for Pause, a calm daily diary app people read with their morning coffee.
+    prompt = f"""You choose the single best "good news" story for Pauz-it, a calm daily diary app people read with their morning coffee.
 
 Pick ONE story that is about: a scientific discovery or research breakthrough, AI or technology helping people, a health or medical advance, a clean-energy or environmental solution that works, or people/communities finding ways to live better together.
 Do NOT pick: personal feats or human-interest stories about one individual, celebrities, cute animals, sport, politics, anything sad, scary or uncertain.
@@ -155,7 +155,7 @@ Reply with JSON only: {{"pick": <number>, "backup": <number>, "topic": "Science|
 
 def write_story(c, body):
     source_text = f"{c['title']}\n{c['summary']}\n{body}"
-    prompt = f"""Retell this news story for Pause, a warm daily diary app. Write for a curious adult with no science background, reading on their phone with a coffee.
+    prompt = f"""Retell this news story for Pauz-it, a warm daily diary app. Write for a curious adult with no science background, reading on their phone with a coffee.
 
 Rules:
 - Use ONLY facts stated in the source text below. Never add names, numbers, dates, places or claims that are not in it.
@@ -262,6 +262,56 @@ if shortlist:
 if story:
     days[today] = story
 days = dict(sorted(days.items())[-60:])
+
+# Word of the day: one word inspired by the day's good news (it also picks the day's theme for thoughts and prompts)
+THEMES = ["Time", "The Body", "Home", "Laughter", "Calm", "Change", "Small Wonders", "Stories", "Fear", "Kindness",
+          "Curiosity", "Nature", "The Self", "Rest", "Beginnings"]
+FALLBACK_WORD = {"Health": ("Healing", "The Body"), "AI & Tech": ("Ingenuity", "Curiosity"), "Planet": ("Renewal", "Nature"),
+                 "Community": ("Together", "Kindness"), "Science": ("Wonder", "Small Wonders")}
+
+
+def word_of_day(st, recent):
+    prompt = f"""Choose the Word of the Day for Pauz-it, a calm daily diary app. It must be inspired by today's good news story below.
+
+Rules:
+- One single, simple, positive English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing).
+- Avoid repeating these recent words: {", ".join(recent) or "none"}.
+- "meaning": one warm sentence (max 22 words) linking the word to the story. Use only facts from the story; no numbers.
+- "theme": the closest match from this exact list: {", ".join(THEMES)}.
+
+Return JSON only: {{"word": "...", "meaning": "...", "theme": "..."}}
+
+Today's good news:
+{st.get("headline", "")}. {st.get("story", "")} {st.get("why", "")}"""
+    out = call_model(prompt, max_tokens=160)
+    m = re.search(r"\{.*\}", out or "", re.S)
+    if not m:
+        return None
+    d = json.loads(m.group(0))
+    w = str(d.get("word", "")).strip().strip(".").split()[0].capitalize() if d.get("word") else ""
+    mean = str(d.get("meaning", "")).strip()
+    th = d.get("theme") if d.get("theme") in THEMES else None
+    if not w or not w.isalpha() or not mean or numbers(mean):
+        return None
+    return {"word": w, "meaning": mean, "theme": th or FALLBACK_WORD.get(st.get("topic"), ("", "Small Wonders"))[1], "by": "ai"}
+
+
+recent_words = []
+for d in sorted(days)[-8:]:
+    st = days[d]
+    if st.get("word") and not (d == today and st["word"].get("by") != "ai"):
+        recent_words.append(st["word"]["word"]); continue
+    wd = None
+    if CF_TOKEN:
+        try:
+            wd = word_of_day(st, recent_words)
+        except Exception as e:
+            errors.append(f"word: {e}"[:200])
+    if not wd:
+        w, th = FALLBACK_WORD.get(st.get("topic"), ("Wonder", "Small Wonders"))
+        wd = {"word": w, "meaning": f"Inspired by today's good news: {st.get('headline', '')}", "theme": th, "by": "fallback"}
+    st["word"] = wd
+    recent_words.append(wd["word"])
 
 # On this day in history (Wikipedia), keeping only uplifting events
 on_this_day = None

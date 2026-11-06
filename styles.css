@@ -355,7 +355,7 @@ html, body { overflow-x: clip; }
 
   /* Bottom tab bar */
   .bottom-nav {
-    display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
     background: rgba(255, 253, 247, .96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid #E6DCCB; padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
     transition: transform .2s ease;
@@ -414,3 +414,43 @@ label[hidden] { display: none !important; }
 .more-link[hidden], #newsBody[hidden] { display: none !important; }
 
 .sky-tech{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;opacity:.6;margin:.2rem 0 .4rem}
+
+/* ── v7: Pauz-it · Word of the day, cleaner sections, settings ── */
+.wotd { position: relative; margin: 6px 0 22px; padding: 18px 20px 14px; border-radius: 16px; background: linear-gradient(135deg, #fff6de, #fbe6c8); border: 1px solid #efd9b3; box-shadow: 0 6px 18px rgba(139, 58, 23, .08); }
+.wotd-label { display: inline-block; font: 800 12px var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--brown); background: var(--tape); padding: 3px 10px; border-radius: 4px; transform: rotate(-1.5deg); }
+.wotd-word { display: block; font-family: var(--hand); font-weight: 400; font-size: 54px; line-height: 1.05; color: var(--brown); margin: 6px 0 2px; }
+.wotd-meaning { margin: 0 0 8px; color: var(--ink); }
+.wotd-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.wotd-actions .link { font-family: var(--write); color: var(--green); }
+.share-btn.small { padding: 4px 14px; font-size: 14px; }
+
+.sec { background: rgba(255, 255, 255, .55); border: 1px solid #eee3d1; border-radius: 14px; padding: 10px 14px 8px; margin-bottom: 14px; transition: box-shadow .2s, border-color .2s; }
+.sec[open] { border-color: #e3cfae; box-shadow: 0 6px 18px rgba(60, 40, 20, .07); }
+.sec summary { margin: 0; padding: 2px 0 4px; }
+.sec summary:hover { background: none; }
+.hand .ico { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 50%; background: var(--brown); color: #fff; font: 700 17px var(--body); vertical-align: 4px; margin-right: 4px; }
+.more-link { display: inline-block; margin-top: 4px; padding: 2px 12px; border-radius: 14px; background: rgba(139, 58, 23, .08); }
+.more-link::after { content: " ▾"; }
+.sec[open] .more-link::after { content: " ▴"; }
+.page.right .sec { background: transparent; border: 0; padding: 0; box-shadow: none; }
+
+.switch-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 12px 14px; margin: 10px 0; border: 1px solid #eadfcd; border-radius: 12px; background: #fffaf0; cursor: pointer; position: relative; }
+.switch-row span { display: flex; flex-direction: column; }
+.switch-row small { color: var(--muted); font-size: 13px; line-height: 1.35; margin-top: 2px; }
+.switch-row input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch-row .sw { flex: none; width: 52px; height: 30px; border-radius: 15px; background: #d6cbbb; position: relative; transition: background .2s; }
+.switch-row .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); transition: transform .2s; }
+.switch-row input:checked + .sw { background: var(--green); }
+.switch-row input:checked + .sw::after { transform: translateX(22px); }
+.switch-row input:focus-visible + .sw { outline: 2px dashed var(--brown); outline-offset: 2px; }
+.set-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.set-list button { text-align: left; padding: 13px 16px; border-radius: 12px; border: 1px solid #eadfcd; background: #fff; color: var(--ink); font-weight: 600; }
+.set-list button:hover { background: #fff6e6; }
+.set-list #setAuth { background: var(--brown); color: #fff; border-color: var(--brown); text-align: center; }
+.foot p { margin: 8px auto 0; max-width: 640px; }
+@media (max-width: 760px) {
+  .wotd { margin: 4px 0 16px; padding: 14px 16px 12px; }
+  .wotd-word { font-size: 46px; }
+  .hand .ico { width: 30px; height: 30px; font-size: 15px; }
+  #settingsBtn { display: none; }
+}

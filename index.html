@@ -7,14 +7,14 @@
     if (location.hostname.endsWith("github.io")) location.replace("https://pause-diary.pages.dev/" + location.search + location.hash);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Pause — a daily diary for your mind</title>
-  <meta name="description" content="One diary page a day: food for thought, what's happening in the sky, a fact worth sharing and a journal prompt that helps you reconnect with your thoughts.">
+  <title>Pauz-it — a daily diary for your mind</title>
+  <meta name="description" content="One diary page a day: one good news story, a word of the day, food for thought, a wild fact and a journal prompt that helps you reconnect with your thoughts.">
   <meta name="theme-color" content="#8B3A17">
 
   <!-- Link previews (WhatsApp, iMessage, Facebook, X, LinkedIn…) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pause — a daily diary for your mind">
-  <meta property="og:description" content="Food for thought, today's sky, a fact worth sharing and a journal prompt. A new page every day.">
+  <meta property="og:title" content="Pauz-it — a daily diary for your mind">
+  <meta property="og:description" content="One good news story, a word of the day, food for thought and a journal prompt. A new page every day.">
   <meta property="og:url" content="https://pause-diary.pages.dev/">
   <meta property="og:image" content="https://pause-diary.pages.dev/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,7 +24,7 @@
   <link rel="icon" type="image/png" href="icons/favicon.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Pause">
+  <meta name="apple-mobile-web-app-title" content="Pauz-it">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
 
@@ -39,12 +39,13 @@
   <div id="draftBanner" class="banner soft" hidden></div>
 
   <header class="topbar">
-    <div class="brand"><span id="appName">Pause</span><small>a daily diary for your mind</small></div>
+    <div class="brand"><span id="appName">Pauz-it</span><small>a daily diary for your mind</small></div>
     <nav class="tabs">
       <button id="installBtn" class="tab install" hidden>Install app</button>
-      <button id="chartBtn" class="tab">My chart</button>
-      <button id="friendsBtn" class="tab">Friends</button>
+      <button id="chartBtn" class="tab" data-astro>My chart</button>
+      <button id="friendsBtn" class="tab" data-astro>Friends</button>
       <button id="journalBtn" class="tab">My journal</button>
+      <button id="settingsBtn" class="tab" aria-label="Settings">⚙ Settings</button>
       <button id="authBtn" class="tab">Log in</button>
     </nav>
   </header>
@@ -54,11 +55,30 @@
     <section class="page left" aria-label="Today's page">
       <h1 class="title" id="title"></h1>
       <nav class="day-strip" id="dayStrip" aria-label="Browse the last and next 5 pages"></nav>
-      <p class="theme"><span class="tape">Today's theme: <strong id="theme"></strong></span> <span class="theme-why" id="themeWhy"></span></p>
+      <div class="wotd" id="wotd">
+        <span class="wotd-label">Word of the day</span>
+        <strong class="wotd-word" id="word">…</strong>
+        <p class="wotd-meaning" id="wordMeaning">Choosing today's word from today's good news…</p>
+        <div class="wotd-actions"><button class="link" id="wordToNews" type="button">Read the story behind it ↓</button> <button class="share-btn small" data-share="word" type="button">Share</button></div>
+      </div>
+
+      <details class="sec" data-sec="news">
+        <summary>
+          <h2 class="hand"><span class="ico" aria-hidden="true">☀</span> Good News</h2>
+          <p class="lead"><span class="topic" id="newsTopic"></span> <span id="newsLead">Loading today's good news…</span></p>
+          <span class="more-link" id="newsMore">read the story</span>
+        </summary>
+        <div class="more" id="newsBody">
+          <p id="newsStory"></p>
+          <p class="ask" id="newsWhyWrap">What it means for us: <em id="newsWhy"></em></p>
+          <a class="source-link" id="newsLink" target="_blank" rel="noopener"></a>
+          <div><button class="share-btn" data-share="news" type="button">Share this</button></div>
+        </div>
+      </details>
 
       <details class="sec" data-sec="thought">
         <summary>
-          <h2 class="hand">Food for Thought:</h2>
+          <h2 class="hand"><span class="ico" aria-hidden="true">☁</span> Food for Thought</h2>
           <p class="lead" id="thoughtText"></p>
           <span class="more-link">keep reading</span>
         </summary>
@@ -69,9 +89,9 @@
         </div>
       </details>
 
-      <details class="sec" data-sec="sky">
+      <details class="sec" data-sec="sky" data-astro>
         <summary>
-          <h2 class="hand">Today in the Sky:</h2>
+          <h2 class="hand"><span class="ico" aria-hidden="true">✦</span> Today in the Sky</h2>
           <p class="lead"><span class="sky-glyph" id="skyGlyph"></span> <span id="skyHeadline"></span></p>
           <span class="more-link">what it means &amp; how it affects you</span>
         </summary>
@@ -84,28 +104,14 @@
             <summary>Where every planet is today</summary>
             <ul id="planetList"></ul>
           </details>
-          <p class="fine">Positions are calculated live from astronomical data. Interpretations follow traditional Western astrology, for reflection and fun.</p>
+          <p class="fine">Positions are calculated live from astronomical data. Interpretations follow traditional Western astrology, for reflection and fun. Not into astrology? <button class="link" type="button" data-open-settings>Turn it off</button>.</p>
           <button class="share-btn" data-share="sky" type="button">Share this</button>
-        </div>
-      </details>
-
-      <details class="sec" data-sec="news">
-        <summary>
-          <h2 class="hand">Good News:</h2>
-          <p class="lead"><span class="topic" id="newsTopic"></span> <span id="newsLead">Loading today's good news…</span></p>
-          <span class="more-link" id="newsMore">read the story</span>
-        </summary>
-        <div class="more" id="newsBody">
-          <p id="newsStory"></p>
-          <p class="ask" id="newsWhyWrap">What it means for us: <em id="newsWhy"></em></p>
-          <a class="source-link" id="newsLink" target="_blank" rel="noopener"></a>
-          <div><button class="share-btn" data-share="news" type="button">Share this</button></div>
         </div>
       </details>
 
       <details class="sec" data-sec="fact">
         <summary>
-          <h2 class="hand">Random Fact of the Day:</h2>
+          <h2 class="hand"><span class="ico" aria-hidden="true">?</span> Random Fact</h2>
           <p class="lead" id="factText"></p>
           <span class="more-link">tell me more</span>
         </summary>
@@ -122,7 +128,7 @@
       <div class="ribbon" aria-hidden="true"></div>
       <details class="sec" data-sec="prompt">
         <summary>
-          <h2 class="hand">Journal Entry Idea:</h2>
+          <h2 class="hand"><span class="ico" aria-hidden="true">✎</span> Journal Idea</h2>
           <p class="lead" id="promptText"></p>
           <span class="more-link">why this helps &amp; how to start</span>
         </summary>
@@ -144,9 +150,9 @@
   </main>
 
   <footer class="foot">
-    <button class="link" id="shareAppBtn" type="button">Share Pause with a friend</button> ·
-    <button class="link" id="contactBtn" type="button">Contact the Pause team</button> ·
-    Pause is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.
+    <button class="link" id="shareAppBtn" type="button">Share Pauz-it</button> ·
+    <button class="link" id="contactBtn" type="button">Contact us</button>
+    <p>Pauz-it is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.</p>
   </footer>
 
   <!-- Sign up / log in -->
@@ -158,6 +164,7 @@
       <form id="authForm" novalidate>
         <label>Email<input type="email" id="email" required autocomplete="email"></label>
         <label>Password<input type="password" id="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters"></label>
+        <label class="switch-row" id="astroRow"><span><b>Include astrology ✦</b><small>A daily horoscope, your birth chart and friend matches. You can change this anytime in Settings.</small></span><input type="checkbox" id="astroOpt" role="switch" checked><i class="sw" aria-hidden="true"></i></label>
         <p id="authErr" class="err" hidden></p>
         <button class="save wide" type="submit" id="authSubmit">Create account</button>
       </form>
@@ -171,7 +178,7 @@
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="birthTitle">
       <button class="x" data-close aria-label="Close">×</button>
       <h2 class="hand big" id="birthTitle">Your birth chart</h2>
-      <p class="muted" id="birthMsg">Your birth date, time and place let Pause show how today's sky touches your own chart.</p>
+      <p class="muted" id="birthMsg">Your birth date, time and place let Pauz-it show how today's sky touches your own chart.</p>
       <form id="birthForm" novalidate>
         <label>Your name <span class="opt">(friends will see this)</span><input type="text" id="bName" autocomplete="given-name"></label>
         <label>Birth date<input type="date" id="bDate" required></label>
@@ -243,7 +250,7 @@
   <div class="modal" id="installModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="installTitle">
       <button class="x" data-close aria-label="Close">×</button>
-      <h2 class="hand big" id="installTitle">Add Pause to your phone</h2>
+      <h2 class="hand big" id="installTitle">Add Pauz-it to your phone</h2>
       <ol class="install-steps">
         <li><strong>iPhone (Safari):</strong> tap the Share button, then <em>Add to Home Screen</em>.</li>
         <li><strong>Android (Chrome):</strong> tap the ⋮ menu, then <em>Install app</em> or <em>Add to Home screen</em>.</li>
@@ -268,11 +275,11 @@
     </div>
   </div>
 
-  <!-- Contact the Pause team -->
+  <!-- Contact the Pauz-it team -->
   <div class="modal" id="contactModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
       <button class="x" data-close aria-label="Close">×</button>
-      <h2 class="hand big" id="contactTitle">Contact the Pause team</h2>
+      <h2 class="hand big" id="contactTitle">Contact the Pauz-it team</h2>
       <p class="muted" id="contactMsg">Found a problem or have an idea? We read every message.</p>
       <form id="contactForm" novalidate>
         <label>What's it about?
@@ -286,13 +293,31 @@
     </div>
   </div>
 
+  <!-- Settings -->
+  <div class="modal" id="settingsModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="settingsTitle">Settings</h2>
+      <p class="muted" id="setWho"></p>
+      <label class="switch-row"><span><b>Astrology ✦</b><small>Show Today in the Sky, your birth chart and friend matches.</small></span><input type="checkbox" id="astroToggle" role="switch"><i class="sw" aria-hidden="true"></i></label>
+      <div class="set-list">
+        <button type="button" id="setChart" data-astro>✦ My birth chart</button>
+        <button type="button" id="setJournal">✎ My journal</button>
+        <button type="button" id="setInstall">📱 Add Pauz-it to your phone</button>
+        <button type="button" id="setShare">💌 Share Pauz-it with a friend</button>
+        <button type="button" id="setContact">✉ Contact the Pauz-it team</button>
+        <button type="button" id="setAuth">Log in</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Phone navigation -->
   <nav class="bottom-nav" id="bottomNav" aria-label="Main">
     <button type="button" data-nav="today" class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span>Today</span></button>
     <button type="button" data-nav="write"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg><span>Write</span></button>
     <button type="button" data-nav="journal"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg><span>Journal</span></button>
-    <button type="button" data-nav="chart"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg><span>Chart</span></button>
-    <button type="button" data-nav="friends"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg><span>Friends</span><i class="dot" id="navDot" hidden></i></button>
+    <button type="button" data-nav="friends" data-astro><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg><span>Friends</span><i class="dot" id="navDot" hidden></i></button>
+    <button type="button" data-nav="me"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Me</span></button>
   </nav>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script type="module" src="app.js"></script>

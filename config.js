@@ -9,7 +9,7 @@
 // ─────────────────────────────────────────────────────────────
 
 export const CONFIG = {
-  APP_NAME: "Pause",
+  APP_NAME: "Pauz-it",
   SUPABASE_URL: "https://bxfrgxxwbzeuhyqaydit.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_YQgSRqfTQg_5TX8f5_AzWQ_0YkZ4uom", // public key, safe to publish
 };
