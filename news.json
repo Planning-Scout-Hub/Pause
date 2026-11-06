@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T12:08+00:00",
+ "updated": "2026-11-06T12:44+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -9,7 +9,13 @@
    "source": "ScienceDaily",
    "link": "https://www.sciencedaily.com/releases/2026/11/261102075806.htm",
    "published": "2026-11-02",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Hope",
+    "meaning": "New drug brings hope to fight Alzheimer's",
+    "theme": "The Body",
+    "by": "ai"
+   }
   },
   "2026-11-04": {
    "headline": "New Robot Helps Improve Solar Cells",
@@ -19,7 +25,13 @@
    "source": "Tech Xplore",
    "link": "https://techxplore.com/news/2026-11-robot-platform-combines-ai-rapid.html",
    "published": "2026-11-02",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Improvement",
+    "meaning": "Robot helps make better solar cells",
+    "theme": "Change",
+    "by": "ai"
+   }
   },
   "2026-11-05": {
    "headline": "CRISPR editing expands to heart disease genes",
@@ -29,17 +41,29 @@
    "source": "Medical Xpress",
    "link": "https://medicalxpress.com/news/2026-11-crispr-proteins-access-heart-disease.html",
    "published": "2026-11-04",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Progress",
+    "meaning": "Researchers make progress in gene editing",
+    "theme": "Change",
+    "by": "ai"
+   }
   },
   "2026-11-06": {
-   "headline": "Gel Could Help Regrow Tooth Enamel",
-   "story": "Scientists have created a gel that may help regrow lost tooth enamel. This gel uses minerals found in saliva to rebuild the enamel. It forms a thin coating on the tooth's surface and helps create a framework for new enamel to grow. The new enamel behaves like healthy enamel, which could lead to a simple treatment for damaged teeth.",
-   "why": "This could mean a new way to repair damaged teeth and prevent decay, making dental care easier and more effective. It could also reduce tooth sensitivity, which would be a welcome change for many people.",
+   "headline": "Gel to regrow tooth enamel developed",
+   "story": "Scientists have created a gel that could help regrow lost tooth enamel. This gel uses minerals found in saliva to rebuild the enamel. It forms a thin coating on the tooth's surface and helps create a framework for new enamel to grow. The new enamel behaves like healthy enamel, which could lead to a simple treatment for damaged teeth.",
+   "why": "This could mean a new way to repair damaged teeth and prevent decay, making dental care easier and more effective. It could also help reduce tooth sensitivity, which would be a welcome change for many people.",
    "topic": "Health",
    "source": "ScienceDaily",
    "link": "https://www.sciencedaily.com/releases/2026/11/261104005059.htm",
    "published": "2026-11-05",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Renewal",
+    "meaning": "Gel helps regrow lost tooth enamel",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
@@ -77,6 +101,6 @@
    }
   ]
  },
- "candidates_today": 91,
+ "candidates_today": 89,
  "errors": []
 }
