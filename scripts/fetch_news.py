@@ -276,7 +276,7 @@ def word_of_day(st, recent):
 Rules:
 - One single, simple, positive English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing).
 - Avoid repeating these recent words: {", ".join(recent) or "none"}.
-- "meaning": one warm sentence (max 22 words) linking the word to the story. Use only facts from the story; no numbers.
+- "meaning": one warm sentence (max 22 words) speaking to the reader: link the word to the story, then to their own day (for example "Like enamel that can grow back, small repairs add up. What could you mend today?"). Use only facts from the story; no numbers.
 - "theme": the closest match from this exact list: {", ".join(THEMES)}.
 
 Return JSON only: {{"word": "...", "meaning": "...", "theme": "..."}}
