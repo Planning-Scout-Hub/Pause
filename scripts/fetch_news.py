@@ -274,7 +274,7 @@ def word_of_day(st, recent):
     prompt = f"""Choose the Word of the Day for PausKIT, a calm daily diary app. It must be inspired by today's good news story below.
 
 Rules:
-- One single, simple, positive English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing).
+- One single, simple, gentle and uplifting English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing, Belonging, Hope, Care). Never words about power, control, winning or money.
 - Avoid repeating these recent words: {", ".join(recent) or "none"}.
 - "meaning": one warm sentence (max 22 words) speaking to the reader: link the word to the story, then to their own day (for example "Like enamel that can grow back, small repairs add up. What could you mend today?"). Use only facts from the story; no numbers.
 - "theme": the closest match from this exact list: {", ".join(THEMES)}.
