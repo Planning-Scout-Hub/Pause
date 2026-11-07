@@ -33,12 +33,19 @@ const DEMO = !CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY;
 let sb = null, user = null, profile = null, friends = [];
 let news = null; // good news + word of the day (news.json)
 
+// Small helpers so a slow or blocked connection never leaves the page loading forever
+function withTimeout(p, ms) { return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]); }
+function loadScript(src, ms = 10000) {
+  return withTimeout(new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = () => rej(new Error("load")); document.head.appendChild(s); }), ms);
+}
+function showNetbar(on) { const n = document.getElementById("netbar"); if (n) n.hidden = !on; }
+
 const api = {
   async init() {
     if (DEMO) { user = store.get(K.demoUser); return; }
-    const { createClient } = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
-    sb = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
-    const { data } = await sb.auth.getSession();
+    await loadScript("vendor/supabase.js"); // hosted with the app, no outside CDN
+    sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    const { data } = await withTimeout(sb.auth.getSession(), 8000);
     user = data.session?.user ?? null;
     sb.auth.onAuthStateChange((_e, session) => {
       if (_e === "PASSWORD_RECOVERY") setTimeout(() => open("#newPassModal"), 0);
@@ -212,7 +219,8 @@ function renderPage() {
 
 // ── Good news (refreshed every morning by a scheduled job → news.json) ──
 async function loadNews() {
-  try { news = await fetch("news.json", { cache: "no-cache" }).then((r) => r.json()); } catch { news = { days: {} }; }
+  try { news = await withTimeout(fetch("news.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }), 8000); showNetbar(false); }
+  catch { news = news || { days: {} }; showNetbar(true); }
   renderPage();
 }
 // One story per day. Older news.json files (a list of stories) still work.
@@ -523,7 +531,7 @@ $("#astroToggle").onchange = async () => {
 const closeSettingsThen = (fn) => () => { close("#settingsModal"); fn(); };
 $("#setChart").onclick = closeSettingsThen(() => $("#chartBtn").click());
 $("#setJournal").onclick = closeSettingsThen(() => $("#journalBtn").click());
-$("#setInstall").onclick = closeSettingsThen(() => $("#installBtn").hidden ? open("#installModal") : $("#installBtn").click());
+$("#setInstall").onclick = closeSettingsThen(() => openGet());
 $("#setShare").onclick = closeSettingsThen(() => openShare("app"));
 $("#setContact").onclick = closeSettingsThen(() => $("#contactBtn").click());
 $("#setAuth").onclick = closeSettingsThen(async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("signup"); });
@@ -877,12 +885,25 @@ $("#shareAppBtn").onclick = () => openShare("app");
 // ── Install as an app ────────────────────────────────────────
 let installEvent = null;
 const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
-window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvent = e; $("#installBtn").hidden = false; });
-if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) $("#installBtn").hidden = false;
-$("#installBtn").onclick = async () => {
-  if (installEvent) { installEvent.prompt(); await installEvent.userChoice.catch(() => {}); installEvent = null; $("#installBtn").hidden = true; }
-  else open("#installModal");
-};
+const device = /iphone|ipad|ipod/i.test(navigator.userAgent) ? "iphone" : /android/i.test(navigator.userAgent) ? "android" : "computer";
+if (standalone) $("#installBtn").hidden = true;
+window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvent = e; syncInstall(); });
+function syncInstall() {
+  document.querySelectorAll("[data-install-now]").forEach((b) => (b.hidden = !installEvent));
+  document.querySelectorAll("[data-install-manual]").forEach((b) => (b.hidden = !!installEvent));
+}
+function showGetTab(name) {
+  document.querySelectorAll(".get-tabs button").forEach((b) => b.classList.toggle("on", b.dataset.get === name));
+  document.querySelectorAll(".get-pane").forEach((p) => (p.hidden = p.dataset.pane !== name));
+}
+document.querySelectorAll(".get-tabs button").forEach((b) => (b.onclick = () => showGetTab(b.dataset.get)));
+document.querySelectorAll("[data-install-now]").forEach((b) => (b.onclick = async () => {
+  if (!installEvent) return; installEvent.prompt(); const r = await installEvent.userChoice.catch(() => ({})); installEvent = null; syncInstall();
+  if (r.outcome === "accepted") { close("#installModal"); toast("PausKIT is installed ✦"); }
+}));
+window.addEventListener("appinstalled", () => { $("#installBtn").hidden = true; });
+function openGet() { showGetTab(device); syncInstall(); open("#installModal"); }
+$("#installBtn").onclick = openGet;
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
 
 // ── Phone navigation, swiping and typing mode ────────────────
@@ -928,6 +949,8 @@ let toastTimer;
 function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 3200); }
 
 // ── Start ────────────────────────────────────────────────────
+document.getElementById("netRetry")?.addEventListener("click", () => location.reload());
+if (new URLSearchParams(location.search).has("get")) setTimeout(() => openGet(), 300);
 renderPage();
 showOldDrafts();
 loadNews();

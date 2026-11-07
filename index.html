@@ -28,20 +28,21 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Kalam:wght@400;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/nunito-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/shadows.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+  <script defer src="vendor/astronomy.min.js"></script>
 </head>
 <body>
+  <div class="netbar" id="netbar" hidden role="status">Your connection can't reach PausKIT right now, so you're seeing the last saved page. Your drafts are safe on this device. <button class="link" type="button" id="netRetry">Try again</button></div>
   <div id="demoBanner" class="banner" hidden>Preview mode: entries are kept in this browser only.</div>
   <div id="draftBanner" class="banner soft" hidden></div>
 
   <header class="topbar">
     <div class="brand"><span id="appName">PausKIT</span><small>a daily diary for your mind</small></div>
     <nav class="tabs">
-      <button id="installBtn" class="tab install" hidden>Install app</button>
+      <button id="installBtn" class="tab install">Get the app</button>
       <button id="chartBtn" class="tab" data-astro>My chart</button>
       <button id="friendsBtn" class="tab" data-astro>Friends</button>
       <button id="journalBtn" class="tab">My journal</button>
@@ -250,16 +251,47 @@
   <div class="modal" id="installModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="installTitle">
       <button class="x" data-close aria-label="Close">×</button>
-      <h2 class="hand big" id="installTitle">Add PausKIT to your phone</h2>
-      <ol class="install-steps">
-        <li><strong>iPhone (Safari):</strong> tap the Share button, then <em>Add to Home Screen</em>.</li>
-        <li><strong>Android (Chrome):</strong> tap the ⋮ menu, then <em>Install app</em> or <em>Add to Home screen</em>.</li>
-        <li><strong>Computer (Chrome or Edge):</strong> click the install icon at the right end of the address bar.</li>
-      </ol>
+      <h2 class="hand big" id="installTitle">Get PausKIT</h2>
+      <p class="muted">Free. No app store, no account needed to start.</p>
+      <div class="get-tabs" role="tablist">
+        <button type="button" role="tab" data-get="iphone">iPhone</button>
+        <button type="button" role="tab" data-get="android">Android</button>
+        <button type="button" role="tab" data-get="computer">Computer</button>
+      </div>
+      <div class="get-pane" data-pane="iphone">
+        <ol class="steps">
+          <li>Open this page in <b>Safari</b>. Coming from Instagram? Tap <b>•••</b> then <b>Open in browser</b>.</li>
+          <li>Tap the <b>Share</b> button <span class="key">⬆</span> at the bottom.</li>
+          <li>Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li>
+        </ol>
+      </div>
+      <div class="get-pane" data-pane="android" hidden>
+        <button type="button" class="save wide" data-install-now hidden>Install PausKIT now</button>
+        <ol class="steps">
+          <li>Open this page in <b>Chrome</b>. Coming from Instagram? Tap <b>⋮</b> then <b>Open in Chrome</b>.</li>
+          <li>Tap the <b>⋮</b> menu at the top right.</li>
+          <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
+        </ol>
+      </div>
+      <div class="get-pane" data-pane="computer" hidden>
+        <h3>Easiest: install it as an app (1 click)</h3>
+        <button type="button" class="save wide" data-install-now hidden>Install PausKIT on this computer</button>
+        <ol class="steps" data-install-manual>
+          <li>In <b>Chrome</b> or <b>Edge</b>, click the install icon <span class="key">⊕</span> at the right end of the address bar.</li>
+          <li>No icon? Open the <b>⋮</b> menu → <b>Cast, save and share</b> → <b>Install page as app</b>.</li>
+        </ol>
+        <h3>Or: a button in your Chrome toolbar</h3>
+        <p class="muted">Shows today's word and good news in one click.</p>
+        <a class="save wide" href="PausKIT-for-Chrome.zip" download>Download the Chrome add-on</a>
+        <ol class="steps">
+          <li>Unzip the downloaded file.</li>
+          <li>Open <b>chrome://extensions</b> and switch on <b>Developer mode</b> (top right).</li>
+          <li>Click <b>Load unpacked</b> and choose the <b>pauskit-chrome</b> folder.</li>
+          <li>Click the puzzle icon <span class="key">🧩</span> and pin PausKIT.</li>
+        </ol>
+      </div>
     </div>
   </div>
-
-
 
   <!-- Set a new password (after clicking the reset link) -->
   <div class="modal" id="newPassModal" hidden>
@@ -303,7 +335,7 @@
       <div class="set-list">
         <button type="button" id="setChart" data-astro>✦ My birth chart</button>
         <button type="button" id="setJournal">✎ My journal</button>
-        <button type="button" id="setInstall">📱 Add PausKIT to your phone</button>
+        <button type="button" id="setInstall">📱 Get PausKIT on your phone or computer</button>
         <button type="button" id="setShare">💌 Share PausKIT with a friend</button>
         <button type="button" id="setContact">✉ Contact the PausKIT team</button>
         <button type="button" id="setAuth">Log in</button>

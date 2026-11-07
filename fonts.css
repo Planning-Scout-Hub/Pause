@@ -1,0 +1,7 @@
+/* Fonts are hosted with the app (no outside servers), so the page opens fast everywhere */
+@font-face{font-family:'Shadows Into Light';font-weight:400;font-display:swap;src:url(fonts/shadows.woff2) format('woff2')}
+@font-face{font-family:'Kalam';font-weight:400;font-display:swap;src:url(fonts/kalam-400.woff2) format('woff2')}
+@font-face{font-family:'Kalam';font-weight:700;font-display:swap;src:url(fonts/kalam-700.woff2) format('woff2')}
+@font-face{font-family:'Nunito';font-weight:400;font-display:swap;src:url(fonts/nunito-400.woff2) format('woff2')}
+@font-face{font-family:'Nunito';font-weight:600;font-display:swap;src:url(fonts/nunito-600.woff2) format('woff2')}
+@font-face{font-family:'Nunito';font-weight:800;font-display:swap;src:url(fonts/nunito-800.woff2) format('woff2')}
