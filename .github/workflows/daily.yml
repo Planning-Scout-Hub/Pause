@@ -18,6 +18,10 @@ jobs:
         env:
           CF_ACCOUNT_ID: 946988b3b2c389cd600ef11788a3370d   # Cloudflare account id (not a secret)
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      - name: Keep database awake (free Supabase projects pause after 7 quiet days)
+        run: |
+          curl -s -o /dev/null -w "supabase %{http_code}\n" "https://bxfrgxxwbzeuhyqaydit.supabase.co/rest/v1/entries?select=id&limit=1" \
+            -H "apikey: sb_publishable_YQgSRqfTQg_5TX8f5_AzWQ_0YkZ4uom" -H "Authorization: Bearer sb_publishable_YQgSRqfTQg_5TX8f5_AzWQ_0YkZ4uom" || true
       - name: Save changes
         run: |
           git config user.name "pause-bot"
