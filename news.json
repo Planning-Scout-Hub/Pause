@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T12:44+00:00",
+ "updated": "2026-11-07T11:05+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -64,43 +64,79 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-07": {
+   "headline": "Community Land Trusts Keep Housing Affordable",
+   "story": "In a neighborhood where investors were buying up properties, a community came together to find a solution. They discovered community land trusts, which allow communities to own the land and keep housing affordable. This approach has been used in other areas to preserve affordability. The community is working to make this model a reality in their neighborhood.",
+   "why": "This approach could mean that people can stay in their communities without being priced out, and that neighborhoods can retain their character. It's a way for communities to have more control over their own land and housing.",
+   "topic": "Community",
+   "source": "Reasons to be Cheerful",
+   "link": "https://reasonstobecheerful.world/the-spark-community-land-trusts/",
+   "published": "2026-11-06",
+   "written_by": "ai",
+   "word": {
+    "word": "Control",
+    "meaning": "Like a community owning its land, take charge of your day.",
+    "theme": "Home",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-06",
+  "date": "11-07",
   "events": [
    {
-    "year": 2012,
-    "text": "Tammy Baldwin became the first openly gay politician to be elected to the United States Senate.",
-    "link": "https://en.wikipedia.org/wiki/Tammy_Baldwin"
+    "year": 2000,
+    "text": "Hillary Clinton was elected as a US senator from New York, the first time a first lady had been elected to public office.",
+    "link": "https://en.wikipedia.org/wiki/Hillary_Clinton"
    },
    {
-    "year": 1944,
-    "text": "The B Reactor at the Hanford Site in the U.S. state of Washington began producing plutonium, with the facility later going on to create more for nearly the entire American nuclear arsenal.",
-    "link": "https://en.wikipedia.org/wiki/B_Reactor"
+    "year": 1996,
+    "text": "NASA launched Mars Global Surveyor from the Kennedy Space Center at Cape Canaveral, Florida.",
+    "link": "https://en.wikipedia.org/wiki/NASA"
    },
    {
-    "year": 1939,
-    "text": "As part of their plan to eradicate the Polish intellectual elite, the Gestapo arrested 184 professors, students and employees of the Jagiellonian University (location pictured) in Kraków.",
-    "link": "https://en.wikipedia.org/wiki/Intelligenzaktion"
+    "year": 1991,
+    "text": "Magic Johnson announced his retirement from professional basketball due to HIV infection.",
+    "link": "https://en.wikipedia.org/wiki/Magic_Johnson"
    },
    {
-    "year": 1924,
-    "text": "The Spanish anarchist group Los Solidarios unsuccessfully attempted to launch an insurrection against the dictatorship of Miguel Primo de Rivera.",
-    "link": "https://en.wikipedia.org/wiki/Los_Solidarios"
+    "year": 1987,
+    "text": "Tunisian prime minister Zine El Abidine Ben Ali deposed and replaced President Habib Bourguiba by declaring him medically unfit for the duties of the office.",
+    "link": "https://en.wikipedia.org/wiki/Zine_El_Abidine_Ben_Ali"
    },
    {
-    "year": 1856,
-    "text": "The first story from the collection Scenes of Clerical Life by the English author George Eliot was submitted for publication.",
-    "link": "https://en.wikipedia.org/wiki/Scenes_of_Clerical_Life"
+    "year": 1987,
+    "text": "Singapore's first Mass Rapid Transit line opened, with train services running between Yio Chu Kang and Toa Payoh.",
+    "link": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)"
    },
    {
-    "year": 1217,
-    "text": "King Henry III of England issued the Charter of the Forest, re-establishing the rights of access of free men to royal forests.",
-    "link": "https://en.wikipedia.org/wiki/Henry_III_of_England"
+    "year": 1949,
+    "text": "Oil was discovered in the Caspian Sea off the coast of Azerbaijan, leading to the construction of Neft Daşları, the world's first offshore oil platform.",
+    "link": "https://en.wikipedia.org/wiki/Caspian_Sea"
+   },
+   {
+    "year": 1934,
+    "text": "The first specimens of the tufted jay (pictured) to be scientifically described were collected in Mexico.",
+    "link": "https://en.wikipedia.org/wiki/Tufted_jay"
+   },
+   {
+    "year": 1916,
+    "text": "Jeannette Rankin (pictured) became the first woman to be elected to the United States House of Representatives.",
+    "link": "https://en.wikipedia.org/wiki/Jeannette_Rankin"
+   },
+   {
+    "year": 1723,
+    "text": "O Ewigkeit, du Donnerwort, BWV 60, a dialogue cantata by Johann Sebastian Bach for Leipzig, was first performed.",
+    "link": "https://en.wikipedia.org/wiki/O_Ewigkeit%2C_du_Donnerwort%2C_BWV_60"
+   },
+   {
+    "year": 680,
+    "text": "The Third Council of Constantinople convened to settle the Christological controversies of monoenergism and monothelitism.",
+    "link": "https://en.wikipedia.org/wiki/Third_Council_of_Constantinople"
    }
   ]
  },
- "candidates_today": 89,
+ "candidates_today": 94,
  "errors": []
 }
