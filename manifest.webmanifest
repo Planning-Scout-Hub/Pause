@@ -1,6 +1,6 @@
 {
-  "name": "Pauz-it — a daily diary for your mind",
-  "short_name": "Pauz-it",
+  "name": "PausKIT — a daily diary for your mind",
+  "short_name": "PausKIT",
   "description": "One good news story, a word of the day, food for thought and a journal prompt. A new page every day.",
   "start_url": "./",
   "scope": "./",

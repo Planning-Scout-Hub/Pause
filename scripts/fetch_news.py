@@ -1,8 +1,8 @@
 """
-Pauz-it daily content job (runs every morning on GitHub Actions, see .github/workflows/daily.yml)
+PausKIT daily content job (runs every morning on GitHub Actions, see .github/workflows/daily.yml)
 
 1. Collects recent stories from good-news outlets AND science / health / tech news sources.
-2. Filters for the kind of news Pauz-it wants first thing in the morning:
+2. Filters for the kind of news PausKIT wants first thing in the morning:
    discoveries, research breakthroughs, AI for good, health, helpful technology,
    and people improving life for their communities. Skips personal feats, celebrities,
    cute-animal stories, politics and anything negative.
@@ -139,7 +139,7 @@ def numbers(s):
 
 def ask_model(shortlist):
     listing = "\n".join(f"[{i}] ({c['source']}) {c['title']} — {c['summary'][:300]}" for i, c in enumerate(shortlist))
-    prompt = f"""You choose the single best "good news" story for Pauz-it, a calm daily diary app people read with their morning coffee.
+    prompt = f"""You choose the single best "good news" story for PausKIT, a calm daily diary app people read with their morning coffee.
 
 Pick ONE story that is about: a scientific discovery or research breakthrough, AI or technology helping people, a health or medical advance, a clean-energy or environmental solution that works, or people/communities finding ways to live better together.
 Do NOT pick: personal feats or human-interest stories about one individual, celebrities, cute animals, sport, politics, anything sad, scary or uncertain.
@@ -155,7 +155,7 @@ Reply with JSON only: {{"pick": <number>, "backup": <number>, "topic": "Science|
 
 def write_story(c, body):
     source_text = f"{c['title']}\n{c['summary']}\n{body}"
-    prompt = f"""Retell this news story for Pauz-it, a warm daily diary app. Write for a curious adult with no science background, reading on their phone with a coffee.
+    prompt = f"""Retell this news story for PausKIT, a warm daily diary app. Write for a curious adult with no science background, reading on their phone with a coffee.
 
 Rules:
 - Use ONLY facts stated in the source text below. Never add names, numbers, dates, places or claims that are not in it.
@@ -271,7 +271,7 @@ FALLBACK_WORD = {"Health": ("Healing", "The Body"), "AI & Tech": ("Ingenuity", "
 
 
 def word_of_day(st, recent):
-    prompt = f"""Choose the Word of the Day for Pauz-it, a calm daily diary app. It must be inspired by today's good news story below.
+    prompt = f"""Choose the Word of the Day for PausKIT, a calm daily diary app. It must be inspired by today's good news story below.
 
 Rules:
 - One single, simple, positive English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing).

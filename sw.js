@@ -1,6 +1,6 @@
-// Pauz-it service worker: makes the app installable and lets the page open offline.
+// PausKIT service worker: makes the app installable and lets the page open offline.
 // Journal data is NOT stored here; it lives in your account (Supabase) and in drafts on the device.
-const CACHE = "pause-v11";
+const CACHE = "pause-v12";
 const SHELL = ["./", "index.html", "styles.css", "app.js", "astro.js", "content.js", "config.js", "manifest.webmanifest", "news.json", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {

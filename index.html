@@ -7,13 +7,13 @@
     if (location.hostname.endsWith("github.io")) location.replace("https://pause-diary.pages.dev/" + location.search + location.hash);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Pauz-it — a daily diary for your mind</title>
+  <title>PausKIT — a daily diary for your mind</title>
   <meta name="description" content="One diary page a day: one good news story, a word of the day, food for thought, a wild fact and a journal prompt that helps you reconnect with your thoughts.">
   <meta name="theme-color" content="#8B3A17">
 
   <!-- Link previews (WhatsApp, iMessage, Facebook, X, LinkedIn…) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pauz-it — a daily diary for your mind">
+  <meta property="og:title" content="PausKIT — a daily diary for your mind">
   <meta property="og:description" content="One good news story, a word of the day, food for thought and a journal prompt. A new page every day.">
   <meta property="og:url" content="https://pause-diary.pages.dev/">
   <meta property="og:image" content="https://pause-diary.pages.dev/og-image.png">
@@ -24,7 +24,7 @@
   <link rel="icon" type="image/png" href="icons/favicon.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Pauz-it">
+  <meta name="apple-mobile-web-app-title" content="PausKIT">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
 
@@ -39,7 +39,7 @@
   <div id="draftBanner" class="banner soft" hidden></div>
 
   <header class="topbar">
-    <div class="brand"><span id="appName">Pauz-it</span><small>a daily diary for your mind</small></div>
+    <div class="brand"><span id="appName">PausKIT</span><small>a daily diary for your mind</small></div>
     <nav class="tabs">
       <button id="installBtn" class="tab install" hidden>Install app</button>
       <button id="chartBtn" class="tab" data-astro>My chart</button>
@@ -150,9 +150,9 @@
   </main>
 
   <footer class="foot">
-    <button class="link" id="shareAppBtn" type="button">Share Pauz-it</button> ·
+    <button class="link" id="shareAppBtn" type="button">Share PausKIT</button> ·
     <button class="link" id="contactBtn" type="button">Contact us</button>
-    <p>Pauz-it is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.</p>
+    <p>PausKIT is a space for reflection, not a replacement for professional support. If you're struggling, please reach out to someone you trust or a local helpline.</p>
   </footer>
 
   <!-- Sign up / log in -->
@@ -178,7 +178,7 @@
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="birthTitle">
       <button class="x" data-close aria-label="Close">×</button>
       <h2 class="hand big" id="birthTitle">Your birth chart</h2>
-      <p class="muted" id="birthMsg">Your birth date, time and place let Pauz-it show how today's sky touches your own chart.</p>
+      <p class="muted" id="birthMsg">Your birth date, time and place let PausKIT show how today's sky touches your own chart.</p>
       <form id="birthForm" novalidate>
         <label>Your name <span class="opt">(friends will see this)</span><input type="text" id="bName" autocomplete="given-name"></label>
         <label>Birth date<input type="date" id="bDate" required></label>
@@ -250,7 +250,7 @@
   <div class="modal" id="installModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="installTitle">
       <button class="x" data-close aria-label="Close">×</button>
-      <h2 class="hand big" id="installTitle">Add Pauz-it to your phone</h2>
+      <h2 class="hand big" id="installTitle">Add PausKIT to your phone</h2>
       <ol class="install-steps">
         <li><strong>iPhone (Safari):</strong> tap the Share button, then <em>Add to Home Screen</em>.</li>
         <li><strong>Android (Chrome):</strong> tap the ⋮ menu, then <em>Install app</em> or <em>Add to Home screen</em>.</li>
@@ -275,11 +275,11 @@
     </div>
   </div>
 
-  <!-- Contact the Pauz-it team -->
+  <!-- Contact the PausKIT team -->
   <div class="modal" id="contactModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
       <button class="x" data-close aria-label="Close">×</button>
-      <h2 class="hand big" id="contactTitle">Contact the Pauz-it team</h2>
+      <h2 class="hand big" id="contactTitle">Contact the PausKIT team</h2>
       <p class="muted" id="contactMsg">Found a problem or have an idea? We read every message.</p>
       <form id="contactForm" novalidate>
         <label>What's it about?
@@ -303,9 +303,9 @@
       <div class="set-list">
         <button type="button" id="setChart" data-astro>✦ My birth chart</button>
         <button type="button" id="setJournal">✎ My journal</button>
-        <button type="button" id="setInstall">📱 Add Pauz-it to your phone</button>
-        <button type="button" id="setShare">💌 Share Pauz-it with a friend</button>
-        <button type="button" id="setContact">✉ Contact the Pauz-it team</button>
+        <button type="button" id="setInstall">📱 Add PausKIT to your phone</button>
+        <button type="button" id="setShare">💌 Share PausKIT with a friend</button>
+        <button type="button" id="setContact">✉ Contact the PausKIT team</button>
         <button type="button" id="setAuth">Log in</button>
       </div>
     </div>

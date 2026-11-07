@@ -505,7 +505,7 @@ $("#authBtn").onclick = async () => { if (user) { await api.signOut(); onAuthCha
 
 // ── Settings ─────────────────────────────────────────────────
 function openSettings() {
-  $("#setWho").textContent = user ? `Signed in as ${user.email}` : "You're using Pauz-it as a guest. Create a free account to keep your journal.";
+  $("#setWho").textContent = user ? `Signed in as ${user.email}` : "You're using PausKIT as a guest. Create a free account to keep your journal.";
   $("#astroToggle").checked = astroOn();
   $("#setAuth").textContent = user ? "Sign out" : "Log in or create an account";
   $("#setInstall").hidden = standalone;
@@ -601,10 +601,10 @@ $("#newPassForm").addEventListener("submit", async (e) => {
   finally { $("#newPassSubmit").disabled = false; }
 });
 
-// ── Contact the Pauz-it team ───────────────────────────────────
+// ── Contact the PausKIT team ───────────────────────────────────
 $("#contactBtn").onclick = () => {
   $("#contactForm").hidden = false; $("#contactErr").hidden = true;
-  $("#contactTitle").textContent = "Contact the Pauz-it team";
+  $("#contactTitle").textContent = "Contact the PausKIT team";
   $("#contactMsg").textContent = "Found a problem or have an idea? We read every message.";
   if (user?.email && !$("#cEmail").value) $("#cEmail").value = user.email;
   open("#contactModal");
@@ -619,7 +619,7 @@ $("#contactForm").addEventListener("submit", async (e) => {
     $("#cText").value = "";
     $("#contactForm").hidden = true;
     $("#contactTitle").textContent = "Thank you 💛";
-    $("#contactMsg").textContent = "Your message reached the Pauz-it team. If you left your email, we'll get back to you.";
+    $("#contactMsg").textContent = "Your message reached the PausKIT team. If you left your email, we'll get back to you.";
   } catch (ex) { err.textContent = "Couldn't send right now. Please try again in a moment."; err.hidden = false; }
   finally { $("#contactSubmit").disabled = false; }
 });
@@ -677,7 +677,7 @@ function openFriends() {
   list.innerHTML = "";
   const me = myChart();
   if (!me) {
-    list.append(el("p", { className: "empty", textContent: "First add your own birth details, so Pauz-it can compare charts." }),
+    list.append(el("p", { className: "empty", textContent: "First add your own birth details, so PausKIT can compare charts." }),
       el("button", { className: "share-btn", type: "button", textContent: "Add my birth details", onclick: () => { close("#friendsModal"); openBirth(); } }));
     open("#friendsModal");
     return;
@@ -736,7 +736,7 @@ async function showInvite() {
   if (inv.is_mine) { store.del(K.invite); return toast("That's your own invite link. Send it to a friend!"); }
   const name = inv.inviter_name || "A friend";
   $("#inviteTitle").textContent = `${name} invited you`;
-  $("#inviteMsg").textContent = `${name} wants to be friends on Pauz-it, a daily diary for your mind. Accept to see your cosmic compatibility and what's happening between you two each day. You'll be able to see each other's birth charts.`;
+  $("#inviteMsg").textContent = `${name} wants to be friends on PausKIT, a daily diary for your mind. Accept to see your cosmic compatibility and what's happening between you two each day. You'll be able to see each other's birth charts.`;
   open("#inviteModal");
 }
 $("#inviteAccept").onclick = () => { store.set(K.invite + "_ok", true); close("#inviteModal"); continueInvite(); };
@@ -799,7 +799,7 @@ function shareContent(kind, extra = {}) {
   const sky = day.sky;
   switch (kind) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
-    case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on Pauz-it:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on Pauz-it:" }; }
+    case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on PausKIT:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on PausKIT:" }; }
     case "word": { const w = day.word; return { label: "Word of the day", main: w ? w.word : "Wonder", sub: w?.meaning || "", text: `Today's word: ${w ? w.word : "Wonder"}. ${w?.meaning || ""}` }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
     case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000)) : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000))}. ${Astro.explainHeadline(sky)}` : "" };
@@ -812,8 +812,8 @@ function shareContent(kind, extra = {}) {
       const { f, c, me, them } = extra;
       return { label: "Our Cosmic Match", main: `${me.pos.Sun.sign.glyph} ${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.glyph} ${them.pos.Sun.sign.name}: ${c.score}%`, sub: `Me & ${f.display_name || "my friend"}`, text: `${f.display_name || "My friend"} and I are a ${c.score}% cosmic match (${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.name}). Check yours:` };
     }
-    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} wants to see your cosmic compatibility`, sub: "Tap the link to accept", text: `I'd love to see our cosmic compatibility on Pauz-it 🌙 Accept my invite here:`, url: extra.url, title: "Invite a friend" };
-    default: return { label: "Pauz-it", main: "A daily diary for your mind", sub: "One good news story, a word for the day, food for thought and a journal idea that helps.", text: "I've been using Pauz-it, a daily diary for your mind. A new page every day:" };
+    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} wants to see your cosmic compatibility`, sub: "Tap the link to accept", text: `I'd love to see our cosmic compatibility on PausKIT 🌙 Accept my invite here:`, url: extra.url, title: "Invite a friend" };
+    default: return { label: "PausKIT", main: "A daily diary for your mind", sub: "One good news story, a word for the day, food for thought and a journal idea that helps.", text: "I've been using PausKIT, a daily diary for your mind. A new page every day:" };
   }
 }
 async function makeCard(c) {
