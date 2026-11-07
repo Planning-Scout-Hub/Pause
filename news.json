@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T11:05+00:00",
+ "updated": "2026-11-07T12:34+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -67,13 +67,19 @@
   },
   "2026-11-07": {
    "headline": "Community Land Trusts Keep Housing Affordable",
-   "story": "In a neighborhood where investors were buying up properties, a community came together to find a solution. They discovered community land trusts, which allow communities to own the land and keep housing affordable. This approach has been used in other areas to preserve affordability. The community is working to make this model a reality in their neighborhood.",
-   "why": "This approach could mean that people can stay in their communities without being priced out, and that neighborhoods can retain their character. It's a way for communities to have more control over their own land and housing.",
+   "story": "In a neighborhood where investors were buying up properties, residents took action to keep housing affordable. They formed a community organization and reached out to local nonprofits to explore options. A community land trust was considered as a way to provide long-term affordable housing. This model allows the community to retain ownership of the land, keeping homes cheaper and preserving affordability.",
+   "why": "This approach could mean that communities have more control over their own housing, allowing long-term residents to stay in their neighborhoods. It's a way for communities to protect their land and create affordable housing options, which can help preserve the character of a neighborhood.",
    "topic": "Community",
    "source": "Reasons to be Cheerful",
    "link": "https://reasonstobecheerful.world/the-spark-community-land-trusts/",
    "published": "2026-11-06",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Stewardship",
+    "meaning": "Like community land trusts, caring for shared spaces strengthens neighborhoods.",
+    "theme": "Home",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
@@ -131,6 +137,6 @@
    }
   ]
  },
- "candidates_today": 94,
+ "candidates_today": 93,
  "errors": []
 }
