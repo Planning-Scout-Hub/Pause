@@ -950,6 +950,10 @@ function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.ad
 
 // ── Start ────────────────────────────────────────────────────
 document.getElementById("netRetry")?.addEventListener("click", () => location.reload());
+// PausKIT lives at two addresses (GitHub Pages = main, Cloudflare = backup). The notice links to the other one.
+(() => { const alt = document.getElementById("netAlt"); if (!alt) return;
+  const other = location.hostname.endsWith("github.io") ? "https://pause-diary.pages.dev/" : "https://planning-scout-hub.github.io/Pause/";
+  alt.href = other + location.search; })();
 if (new URLSearchParams(location.search).has("get")) setTimeout(() => openGet(), 300);
 renderPage();
 showOldDrafts();

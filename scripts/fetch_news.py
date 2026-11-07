@@ -40,7 +40,7 @@ POSITIVE = r"breakthrough|discover|first[- ]ever|for the first time|new (treatme
 NEGATIVE = r"\b(death|deaths|dies|died|dead|kill|killed|war|attack|crisis|threat|warn|danger|decline|worse|worst|fear|collapse|toxic|poison|shooting|linked to (higher|increased)|fails?|failure|lawsuit|scandal|layoff|shortage|outbreak|pandemic|disaster|fraud|hack|breach)\b"
 PERSONAL_FEAT = r"\b\d{1,3}-year-old\b|years? old\b|marathon|wheelchair|birthday|grandm|grandf|graduat|wedding|propos|puppy|kitten|dog\b|cat\b|celebrit|singer|actor|actress|surpris|reunit|lottery|record[- ]breaking (walk|swim|run)|walk(ed)? around the world|quote of the day|good news in history"
 
-UA = {"User-Agent": "PauseDailyBot/2.0 (+https://pause-diary.pages.dev/)"}
+UA = {"User-Agent": "PauseDailyBot/2.0 (+https://planning-scout-hub.github.io/Pause/)"}
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "news.json")
 

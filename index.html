@@ -2,10 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script>
-    // The old GitHub address forwards to the main one (keeps invite links working)
-    if (location.hostname.endsWith("github.io")) location.replace("https://pause-diary.pages.dev/" + location.search + location.hash);
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>PausKIT — a daily diary for your mind</title>
   <meta name="description" content="One diary page a day: one good news story, a word of the day, food for thought, a wild fact and a journal prompt that helps you reconnect with your thoughts.">
@@ -15,8 +11,8 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="PausKIT — a daily diary for your mind">
   <meta property="og:description" content="One good news story, a word of the day, food for thought and a journal prompt. A new page every day.">
-  <meta property="og:url" content="https://pause-diary.pages.dev/">
-  <meta property="og:image" content="https://pause-diary.pages.dev/og-image.png">
+  <meta property="og:url" content="https://planning-scout-hub.github.io/Pause/">
+  <meta property="og:image" content="https://planning-scout-hub.github.io/Pause/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Installable web app -->
@@ -35,7 +31,7 @@
   <script defer src="vendor/astronomy.min.js"></script>
 </head>
 <body>
-  <div class="netbar" id="netbar" hidden role="status">Your connection can't reach PausKIT right now, so you're seeing the last saved page. Your drafts are safe on this device. <button class="link" type="button" id="netRetry">Try again</button></div>
+  <div class="netbar" id="netbar" hidden role="status">Your connection can't reach PausKIT right now, so you're seeing the last saved page. Your drafts are safe on this device. <button class="link" type="button" id="netRetry">Try again</button> · <a class="link" id="netAlt" href="https://planning-scout-hub.github.io/Pause/">Open the backup address</a></div>
   <div id="demoBanner" class="banner" hidden>Preview mode: entries are kept in this browser only.</div>
   <div id="draftBanner" class="banner soft" hidden></div>
 
