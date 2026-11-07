@@ -274,7 +274,7 @@ def word_of_day(st, recent):
     prompt = f"""Choose the Word of the Day for PausKIT, a calm daily diary app. It must be inspired by today's good news story below.
 
 Rules:
-- One single, simple, gentle and uplifting English word anyone understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing, Belonging, Hope, Care). Never words about power, control, winning or money.
+- One single, short (max 10 letters), simple, gentle and uplifting English word a 10-year-old understands (for example: Renewal, Patience, Together, Wonder, Courage, Healing, Belonging, Hope, Care). Never words about power, control, winning or money.
 - Avoid repeating these recent words: {", ".join(recent) or "none"}.
 - "meaning": one warm sentence (max 22 words) speaking to the reader: link the word to the story, then to their own day (for example "Like enamel that can grow back, small repairs add up. What could you mend today?"). Use only facts from the story; no numbers.
 - "theme": the closest match from this exact list: {", ".join(THEMES)}.
@@ -291,7 +291,7 @@ Today's good news:
     w = str(d.get("word", "")).strip().strip(".").split()[0].capitalize() if d.get("word") else ""
     mean = str(d.get("meaning", "")).strip()
     th = d.get("theme") if d.get("theme") in THEMES else None
-    if not w or not w.isalpha() or not mean or numbers(mean):
+    if not w or not w.isalpha() or len(w) > 10 or w.lower() in {"control", "power", "stewardship"} or not mean or numbers(mean):
         return None
     return {"word": w, "meaning": mean, "theme": th or FALLBACK_WORD.get(st.get("topic"), ("", "Small Wonders"))[1], "by": "ai"}
 
