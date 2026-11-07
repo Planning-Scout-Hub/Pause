@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T12:34+00:00",
+ "updated": "2026-11-07T12:35+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -66,14 +66,20 @@
    }
   },
   "2026-11-07": {
-   "headline": "Community Land Trusts Keep Housing Affordable",
-   "story": "In a neighborhood where investors were buying up properties, residents took action to keep housing affordable. They formed a community organization and reached out to local nonprofits to explore options. A community land trust was considered as a way to provide long-term affordable housing. This model allows the community to retain ownership of the land, keeping homes cheaper and preserving affordability.",
-   "why": "This approach could mean that communities have more control over their own housing, allowing long-term residents to stay in their neighborhoods. It's a way for communities to protect their land and create affordable housing options, which can help preserve the character of a neighborhood.",
+   "headline": "Community Land Trusts Help Keep Housing Affordable",
+   "story": "In a neighborhood where investors were buying up land, a community came together to find a solution. They explored the idea of a community land trust, which buys and develops land on behalf of the community. This approach keeps housing affordable by retaining ownership of the land and requiring sellers to sell at an affordable price. The community worked with local organizations to make this vision a reality.",
+   "why": "This approach could mean that communities have more control over their own housing and land, helping to keep prices affordable for long-term residents. It's a way for communities to preserve their character and ensure that housing remains affordable for future generations.",
    "topic": "Community",
    "source": "Reasons to be Cheerful",
    "link": "https://reasonstobecheerful.world/the-spark-community-land-trusts/",
    "published": "2026-11-06",
-   "written_by": "ai"
+   "written_by": "ai",
+   "word": {
+    "word": "Care",
+    "meaning": "Like a community caring for its land, what can you nurture today?",
+    "theme": "Home",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
