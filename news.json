@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T12:35+00:00",
+ "updated": "2026-11-08T11:17+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -80,63 +80,64 @@
     "theme": "Home",
     "by": "ai"
    }
+  },
+  "2026-11-08": {
+   "headline": "New Treatment May Cure High Blood Pressure",
+   "story": "Researchers found a new treatment that could offer a lasting cure for some people with a common hormonal cause of high blood pressure. This treatment, called extended aldosterone synthase inhibition, involves taking a new class of drugs for a period of time. In a study, people who received this treatment had sustained reversal of excess hormone production and improved blood pressure for up to two years after treatment ended. The treatment appears to reverse the underlying cause of high blood pressure, rather than just controlling it.",
+   "why": "This could mean that some people with high blood pressure might not need to take medication for the rest of their lives. It raises the possibility that high blood pressure could be cured, rather than just managed, for some individuals.",
+   "topic": "Health",
+   "source": "Medical Xpress",
+   "link": "https://medicalxpress.com/news/2026-11-treatment-common-hormonal-high-blood.html",
+   "published": "2026-11-07",
+   "written_by": "ai",
+   "word": {
+    "word": "Healing",
+    "meaning": "Like a cure, the body can mend itself. What healing can you nurture today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-07",
+  "date": "11-08",
   "events": [
    {
-    "year": 2000,
-    "text": "Hillary Clinton was elected as a US senator from New York, the first time a first lady had been elected to public office.",
-    "link": "https://en.wikipedia.org/wiki/Hillary_Clinton"
+    "year": 2017,
+    "text": "The Louvre Abu Dhabi was inaugurated by the French president Emmanuel Macron and then-crown prince of Abu Dhabi Mohamed bin Zayed Al Nahyan.",
+    "link": "https://en.wikipedia.org/wiki/Louvre_Abu_Dhabi"
    },
    {
-    "year": 1996,
-    "text": "NASA launched Mars Global Surveyor from the Kennedy Space Center at Cape Canaveral, Florida.",
-    "link": "https://en.wikipedia.org/wiki/NASA"
+    "year": 1999,
+    "text": "German newspaper Der Spiegel publishes a report by the Federal Intelligence Service accusing figures in Liechtenstein of cooperating with organized crime.",
+    "link": "https://en.wikipedia.org/wiki/Der_Spiegel"
    },
    {
-    "year": 1991,
-    "text": "Magic Johnson announced his retirement from professional basketball due to HIV infection.",
-    "link": "https://en.wikipedia.org/wiki/Magic_Johnson"
+    "year": 1971,
+    "text": "The English rock group Led Zeppelin released their fourth album, which became one of the best-selling albums worldwide.",
+    "link": "https://en.wikipedia.org/wiki/Led_Zeppelin"
    },
    {
-    "year": 1987,
-    "text": "Tunisian prime minister Zine El Abidine Ben Ali deposed and replaced President Habib Bourguiba by declaring him medically unfit for the duties of the office.",
-    "link": "https://en.wikipedia.org/wiki/Zine_El_Abidine_Ben_Ali"
+    "year": 1966,
+    "text": "Massachusetts Attorney General Edward Brooke (pictured) became the first African American to be elected to the United States Senate since Reconstruction.",
+    "link": "https://en.wikipedia.org/wiki/Massachusetts_Attorney_General"
    },
    {
-    "year": 1987,
-    "text": "Singapore's first Mass Rapid Transit line opened, with train services running between Yio Chu Kang and Toa Payoh.",
-    "link": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)"
+    "year": 1644,
+    "text": "The Shunzhi Emperor (portrait shown), the third emperor of the Qing dynasty, was enthroned in Beijing after the collapse of the Ming dynasty as the first Qing emperor to rule over China.",
+    "link": "https://en.wikipedia.org/wiki/Shunzhi_Emperor"
    },
    {
-    "year": 1949,
-    "text": "Oil was discovered in the Caspian Sea off the coast of Azerbaijan, leading to the construction of Neft Daşları, the world's first offshore oil platform.",
-    "link": "https://en.wikipedia.org/wiki/Caspian_Sea"
+    "year": 1291,
+    "text": "A law was passed that confined most of Venice's glassmaking industry to nearby Murano.",
+    "link": "https://en.wikipedia.org/wiki/Venetian_glass"
    },
    {
-    "year": 1934,
-    "text": "The first specimens of the tufted jay (pictured) to be scientifically described were collected in Mexico.",
-    "link": "https://en.wikipedia.org/wiki/Tufted_jay"
-   },
-   {
-    "year": 1916,
-    "text": "Jeannette Rankin (pictured) became the first woman to be elected to the United States House of Representatives.",
-    "link": "https://en.wikipedia.org/wiki/Jeannette_Rankin"
-   },
-   {
-    "year": 1723,
-    "text": "O Ewigkeit, du Donnerwort, BWV 60, a dialogue cantata by Johann Sebastian Bach for Leipzig, was first performed.",
-    "link": "https://en.wikipedia.org/wiki/O_Ewigkeit%2C_du_Donnerwort%2C_BWV_60"
-   },
-   {
-    "year": 680,
-    "text": "The Third Council of Constantinople convened to settle the Christological controversies of monoenergism and monothelitism.",
-    "link": "https://en.wikipedia.org/wiki/Third_Council_of_Constantinople"
+    "year": 1278,
+    "text": "Trần Thánh Tông, the second emperor of Vietnam's Trần dynasty, took up the title of retired emperor, but continued to co-rule with his son Nhân Tông for eleven more years.",
+    "link": "https://en.wikipedia.org/wiki/Tr%E1%BA%A7n_Th%C3%A1nh_T%C3%B4ng"
    }
   ]
  },
- "candidates_today": 93,
+ "candidates_today": 89,
  "errors": []
 }
