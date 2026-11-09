@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T11:17+00:00",
+ "updated": "2026-11-09T12:54+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -96,48 +96,74 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-09": {
+   "headline": "Smartwatch detects high blood pressure",
+   "story": "Researchers have found that a smartwatch can detect high blood pressure using an artificial intelligence system. This system interprets sensor readings from the watch and can detect hypertension with similar accuracy to traditional office-based screening methods. The smartwatch uses optical and motion sensors to measure changes in blood volume and wrist motion. In tests, the system showed promising results, but it's still early research.",
+   "why": "This could mean that people may be able to monitor their blood pressure more easily and conveniently, which is important because high blood pressure is a major risk factor for cardiovascular disease. If developed further, this technology could help people detect hypertension earlier and take steps to manage it.",
+   "topic": "Health",
+   "source": "Medical Xpress",
+   "link": "https://medicalxpress.com/news/2026-11-ai-powered-smartwatch-high-blood.html",
+   "published": "2026-11-06",
+   "written_by": "ai",
+   "word": {
+    "word": "Balance",
+    "meaning": "Like balanced blood pressure, harmony brings well-being. What balance can you find today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-08",
+  "date": "11-09",
   "events": [
    {
-    "year": 2017,
-    "text": "The Louvre Abu Dhabi was inaugurated by the French president Emmanuel Macron and then-crown prince of Abu Dhabi Mohamed bin Zayed Al Nahyan.",
-    "link": "https://en.wikipedia.org/wiki/Louvre_Abu_Dhabi"
+    "year": 2019,
+    "text": "The Alabama Crimson Tide and LSU Tigers football teams, both with undefeated records thus far that season, played in a \"Game of the Century\".",
+    "link": "https://en.wikipedia.org/wiki/Alabama_Crimson_Tide_football"
    },
    {
-    "year": 1999,
-    "text": "German newspaper Der Spiegel publishes a report by the Federal Intelligence Service accusing figures in Liechtenstein of cooperating with organized crime.",
-    "link": "https://en.wikipedia.org/wiki/Der_Spiegel"
+    "year": 2019,
+    "text": "Pakistani prime minister Imran Khan inaugurated the Kartarpur Corridor, a visa-free border crossing connecting the Gurdwara Darbar Sahib to the India–Pakistan border.",
+    "link": "https://en.wikipedia.org/wiki/Imran_Khan"
    },
    {
-    "year": 1971,
-    "text": "The English rock group Led Zeppelin released their fourth album, which became one of the best-selling albums worldwide.",
-    "link": "https://en.wikipedia.org/wiki/Led_Zeppelin"
+    "year": 1989,
+    "text": "East German official Günter Schabowski mistakenly announced the immediate opening of the inner German border, resulting in the fall of the Berlin Wall that night (border crossing pictured).",
+    "link": "https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski"
    },
    {
-    "year": 1966,
-    "text": "Massachusetts Attorney General Edward Brooke (pictured) became the first African American to be elected to the United States Senate since Reconstruction.",
-    "link": "https://en.wikipedia.org/wiki/Massachusetts_Attorney_General"
+    "year": 1985,
+    "text": "At age 22, Garry Kasparov became the then-youngest World Chess Champion by defeating then-champion Anatoly Karpov.",
+    "link": "https://en.wikipedia.org/wiki/Garry_Kasparov"
    },
    {
-    "year": 1644,
-    "text": "The Shunzhi Emperor (portrait shown), the third emperor of the Qing dynasty, was enthroned in Beijing after the collapse of the Ming dynasty as the first Qing emperor to rule over China.",
-    "link": "https://en.wikipedia.org/wiki/Shunzhi_Emperor"
+    "year": 1967,
+    "text": "The first issue of Rolling Stone, an American magazine focusing on music, politics and popular culture, was published.",
+    "link": "https://en.wikipedia.org/wiki/Rolling_Stone"
    },
    {
-    "year": 1291,
-    "text": "A law was passed that confined most of Venice's glassmaking industry to nearby Murano.",
-    "link": "https://en.wikipedia.org/wiki/Venetian_glass"
+    "year": 1928,
+    "text": "The Great Mecca Feast, the first documentary film on the Hajj, premiered in the Netherlands.",
+    "link": "https://en.wikipedia.org/wiki/The_Great_Mecca_Feast"
    },
    {
-    "year": 1278,
-    "text": "Trần Thánh Tông, the second emperor of Vietnam's Trần dynasty, took up the title of retired emperor, but continued to co-rule with his son Nhân Tông for eleven more years.",
-    "link": "https://en.wikipedia.org/wiki/Tr%E1%BA%A7n_Th%C3%A1nh_T%C3%B4ng"
+    "year": 1926,
+    "text": "Paul Hindemith's opera Cardillac (scene pictured) premiered at the Dresden State Opera, conducted by Fritz Busch.",
+    "link": "https://en.wikipedia.org/wiki/Paul_Hindemith"
+   },
+   {
+    "year": 1918,
+    "text": "The government of the Azerbaijan Democratic Republic adopted a tricolour national flag (pictured), which is again in use today, with slight modifications, by the present-day Republic of Azerbaijan.",
+    "link": "https://en.wikipedia.org/wiki/Azerbaijan_Democratic_Republic"
+   },
+   {
+    "year": 1822,
+    "text": "USS Alligator engaged three pirate schooners off the coast of Cuba in one of the West Indies anti-piracy operations of the United States.",
+    "link": "https://en.wikipedia.org/wiki/USS_Alligator_(1820)"
    }
   ]
  },
- "candidates_today": 89,
+ "candidates_today": 93,
  "errors": []
 }
