@@ -1,6 +1,6 @@
 // PausKIT service worker: makes the app installable and lets the page open even on a bad connection.
 // Journal data is NOT stored here; it lives in your account (Supabase) and in drafts on the device.
-const CACHE = "pauskit-v13";
+const CACHE = "pauskit-v14";
 const SHELL = ["./", "index.html", "styles.css", "fonts.css", "app.js", "astro.js", "content.js", "config.js", "manifest.webmanifest", "news.json",
   "vendor/supabase.js", "vendor/astronomy.min.js", "fonts/shadows.woff2", "fonts/kalam-400.woff2", "fonts/kalam-700.woff2",
   "fonts/nunito-400.woff2", "fonts/nunito-600.woff2", "fonts/nunito-800.woff2", "icons/icon-192.png", "icons/icon-512.png"];

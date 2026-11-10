@@ -321,6 +321,18 @@
     </div>
   </div>
 
+  <!-- Daily reminder -->
+  <div class="modal" id="reminderModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="remTitle">
+      <button class="x" data-close aria-label="Close">×</button>
+      <h2 class="hand big" id="remTitle">Make it a daily habit</h2>
+      <p class="muted">We'll add a 15-minute "PausKIT pause" to your own calendar, every day at the time you choose. No emails, no spam.</p>
+      <label>Remind me at<input type="time" id="remTime" value="08:30"></label>
+      <button type="button" class="save wide" id="remAdd">Add to my calendar</button>
+      <p class="fine">Works with iPhone, Google and Outlook calendars. You can delete it anytime.</p>
+    </div>
+  </div>
+
   <!-- Settings -->
   <div class="modal" id="settingsModal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
@@ -332,6 +344,7 @@
         <button type="button" id="setChart" data-astro>✦ My birth chart</button>
         <button type="button" id="setJournal">✎ My journal</button>
         <button type="button" id="setInstall">📱 Get PausKIT on your phone or computer</button>
+        <button type="button" id="setReminder">⏰ Remind me every day</button>
         <button type="button" id="setShare">💌 Share PausKIT with a friend</button>
         <button type="button" id="setContact">✉ Contact the PausKIT team</button>
         <button type="button" id="setAuth">Log in</button>

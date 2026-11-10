@@ -150,3 +150,22 @@ alter table public.feedback enable row level security;
 drop policy if exists "anyone can send feedback" on public.feedback;
 -- Anyone can send a message; nobody can read them through the app (only you, in the dashboard)
 create policy "anyone can send feedback" on public.feedback for insert to anon, authenticated with check (true);
+
+-- 7. Anonymous usage counts (no personal data): lets the PausKIT team see visits, installs, sign-ups and shares
+create table if not exists public.events (
+  id bigint generated always as identity primary key,
+  created_at timestamptz not null default now(),
+  name text not null check (char_length(name) <= 40),
+  detail text check (char_length(detail) <= 60),
+  src text check (char_length(src) <= 60),
+  device text check (char_length(device) <= 12),
+  installed boolean default false
+);
+alter table public.events enable row level security;
+drop policy if exists "anyone can add an event" on public.events;
+create policy "anyone can add an event" on public.events for insert to anon, authenticated with check (true);
+-- nobody can read events through the app; only the project owner, in the Supabase dashboard
+create or replace view public.daily_stats as
+  select date_trunc('day', created_at)::date as day, name, src, device, count(*) as n
+  from public.events group by 1,2,3,4 order by 1 desc, 5 desc;
+revoke all on public.daily_stats from anon, authenticated;

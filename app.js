@@ -5,6 +5,26 @@ import * as Astro from "./astro.js";
 const $ = (s) => document.querySelector(s);
 const el = (tag, props = {}, ...kids) => { const n = Object.assign(document.createElement(tag), props); n.append(...kids); return n; };
 const SITE_URL = location.origin + location.pathname;
+const MAIN_URL = "https://planning-scout-hub.github.io/Pause/"; // the address we share (not blocked by Cloudflare outages in Spain)
+
+// ── Anonymous usage counts (no names, emails or journal text; just "a visit happened", "an entry was saved") ──
+const SRC = (() => {
+  const q = new URLSearchParams(location.search).get("src");
+  const ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "";
+  const now = q || (/instagram/.test(ref) ? "instagram" : ref && !ref.includes(location.hostname) ? ref : "");
+  try { if (now && !localStorage.getItem("pk_src")) localStorage.setItem("pk_src", now); return localStorage.getItem("pk_src") || now || "direct"; } catch { return now || "direct"; }
+})();
+const DEVICE = /iphone|ipad|ipod/i.test(navigator.userAgent) ? "ios" : /android/i.test(navigator.userAgent) ? "android" : "desktop";
+function track(name, detail = "") {
+  try {
+    if (!CONFIG.SUPABASE_URL) return;
+    const standaloneNow = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+    fetch(`${CONFIG.SUPABASE_URL}/rest/v1/events`, { method: "POST", keepalive: true,
+      headers: { apikey: CONFIG.SUPABASE_ANON_KEY, Authorization: `Bearer ${CONFIG.SUPABASE_ANON_KEY}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ name, detail: String(detail).slice(0, 60), src: SRC.slice(0, 60), device: DEVICE, installed: !!standaloneNow }) }).catch(() => {});
+  } catch {}
+}
+(() => { try { const d = new Date().toISOString().slice(0, 10); if (localStorage.getItem("pk_visit") !== d) { const first = !localStorage.getItem("pk_visit"); localStorage.setItem("pk_visit", d); track(first ? "first_visit" : "visit"); } } catch {} })();
 
 // ── Safe localStorage helpers ────────────────────────────────
 const store = {
@@ -252,6 +272,7 @@ function renderNews() {
   $("#newsWhy").textContent = n.why || "";
   $("#newsWhyWrap").hidden = !n.why;
   const link = $("#newsLink");
+  link.onclick = () => track("news_click");
   link.href = n.link;
   link.textContent = `Read the full story at ${n.source} →`;
 }
@@ -395,7 +416,8 @@ async function persist(entry) {
     await api.deleteDraft(entry.entry_date).catch(() => {});
     if (entry.entry_date === viewISO) { ta.value = ""; autosize(); }
     $("#draftNote").textContent = "Saved to your journal.";
-    toast("Saved to your journal ✎");
+    toast("Saved to your journal ✎"); track("entry_saved");
+    maybeOfferReminder();
     showOldDrafts();
   } catch (err) {
     toast("Couldn't save: " + (err.message || "please try again. Your draft is still here."));
@@ -477,7 +499,7 @@ $("#authForm").addEventListener("submit", async (e) => {
   $("#authSubmit").disabled = true;
   try {
     if (authMode === "signup") {
-      const { needsConfirm } = await api.signUp(email, password, $("#astroOpt").checked);
+      const { needsConfirm } = await api.signUp(email, password, $("#astroOpt").checked); track("signup", $("#astroOpt").checked ? "astro" : "no-astro");
       if (needsConfirm) {
         $("#authTitle").textContent = "Check your inbox";
         $("#authMsg").textContent = `We've sent a confirmation link to ${email}. Click it and you'll come back here${store.get(K.pending) ? ", and your entry will be saved automatically" : ""}${store.get(K.invite) ? ", and you can finish accepting the invite" : ""}.`;
@@ -511,6 +533,30 @@ async function onAuthChanged() {
 }
 $("#authBtn").onclick = async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("login"); };
 
+// ── Daily reminder: adds a repeating event to the person's own calendar (works on iPhone, Android and computers) ──
+function reminderICS(hh, mm) {
+  const pad = (n) => String(n).padStart(2, "0");
+  const d = new Date(); d.setDate(d.getDate() + 1);
+  const start = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(hh)}${pad(mm)}00`;
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//PausKIT//Daily pause//EN", "BEGIN:VEVENT", `UID:pauskit-daily-${Date.now()}@pauskit`, `DTSTAMP:${stamp}`,
+    `DTSTART:${start}`, "DURATION:PT15M", "RRULE:FREQ=DAILY", "SUMMARY:☕ Your PausKIT pause", `DESCRIPTION:15 minutes for you: today's word\\, one good news story and a journal prompt. ${MAIN_URL}?src=reminder`,
+    `URL:${MAIN_URL}?src=reminder`, "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Time for your PausKIT pause ☕", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+}
+function addReminder() {
+  const t = ($("#remTime")?.value || "08:30").split(":");
+  const blob = new Blob([reminderICS(+t[0], +t[1])], { type: "text/calendar" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "PausKIT-daily-pause.ics"; document.body.appendChild(a); a.click(); a.remove();
+  try { localStorage.setItem("pk_reminder", "1"); } catch {}
+  track("reminder_added", t.join(":")); close("#reminderModal");
+  toast("Open the downloaded file to add your daily pause to your calendar ☕");
+}
+function maybeOfferReminder() {
+  try { if (localStorage.getItem("pk_reminder") || localStorage.getItem("pk_rem_asked")) return; localStorage.setItem("pk_rem_asked", "1"); } catch { return; }
+  setTimeout(() => open("#reminderModal"), 1200);
+}
+document.getElementById("remAdd")?.addEventListener("click", addReminder);
+
 // ── Settings ─────────────────────────────────────────────────
 function openSettings() {
   $("#setWho").textContent = user ? `Signed in as ${user.email}` : "You're using PausKIT as a guest. Create a free account to keep your journal.";
@@ -533,6 +579,7 @@ $("#setChart").onclick = closeSettingsThen(() => $("#chartBtn").click());
 $("#setJournal").onclick = closeSettingsThen(() => $("#journalBtn").click());
 $("#setInstall").onclick = closeSettingsThen(() => openGet());
 $("#setShare").onclick = closeSettingsThen(() => openShare("app"));
+$("#setReminder").onclick = closeSettingsThen(() => open("#reminderModal"));
 $("#setContact").onclick = closeSettingsThen(() => $("#contactBtn").click());
 $("#setAuth").onclick = closeSettingsThen(async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("signup"); });
 $("#wordToNews").onclick = () => { const d = document.querySelector('[data-sec="news"]'); d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); };
@@ -857,7 +904,8 @@ function wrap(x, text, left, top, maxW, lh) {
 }
 async function openShare(kind, extra) {
   const c = shareContent(kind, extra);
-  const text = c.text, url = c.url || SITE_URL, full = `${text}\n${url}`;
+  const text = c.text, url = (c.url && c.url !== SITE_URL ? c.url : MAIN_URL + "?src=share-" + kind), full = `${text}\n${url}`;
+  track("share_opened", kind);
   $("#shareTitle").textContent = c.title || "Share";
   const grid = $("#shareGrid");
   grid.innerHTML = "";
@@ -899,10 +947,11 @@ function showGetTab(name) {
 document.querySelectorAll(".get-tabs button").forEach((b) => (b.onclick = () => showGetTab(b.dataset.get)));
 document.querySelectorAll("[data-install-now]").forEach((b) => (b.onclick = async () => {
   if (!installEvent) return; installEvent.prompt(); const r = await installEvent.userChoice.catch(() => ({})); installEvent = null; syncInstall();
-  if (r.outcome === "accepted") { close("#installModal"); toast("PausKIT is installed ✦"); }
+  if (r.outcome === "accepted") { close("#installModal"); toast("PausKIT is installed ✦"); track("install_accepted"); }
 }));
-window.addEventListener("appinstalled", () => { $("#installBtn").hidden = true; });
-function openGet() { showGetTab(device); syncInstall(); open("#installModal"); }
+window.addEventListener("appinstalled", () => { $("#installBtn").hidden = true; track("app_installed"); });
+function openGet() { showGetTab(device); syncInstall(); open("#installModal"); track("get_opened"); }
+document.querySelector('a[download]')?.addEventListener("click", () => track("chrome_addon_download"));
 $("#installBtn").onclick = openGet;
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
 
