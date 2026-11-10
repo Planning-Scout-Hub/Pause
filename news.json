@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T12:54+00:00",
+ "updated": "2026-11-10T12:40+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -112,58 +112,44 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-10": {
+   "headline": "Broccoli compound may help genetic disease",
+   "story": "Scientists found a compound in broccoli that could help fight a genetic disease that damages the nervous system. This compound, called sulforaphane, can boost a vital protein and protect nerve cells. Researchers think it could lead to an affordable treatment, but more tests are needed. The disease, called Friedreich ataxia, currently has no cure and progressively damages the nervous system.",
+   "why": "This discovery could mean a new approach to treating Friedreich ataxia, a disease with limited options. If the compound works, it might offer a more affordable treatment for patients, including children, who are often affected by the disease.",
+   "topic": "Health",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261104012259.htm",
+   "published": "2026-11-06",
+   "written_by": "ai",
+   "word": {
+    "word": "Growth",
+    "meaning": "Like nerve cells, we can grow stronger with help. What support can you find today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-09",
+  "date": "11-10",
   "events": [
    {
-    "year": 2019,
-    "text": "The Alabama Crimson Tide and LSU Tigers football teams, both with undefeated records thus far that season, played in a \"Game of the Century\".",
-    "link": "https://en.wikipedia.org/wiki/Alabama_Crimson_Tide_football"
+    "year": 2009,
+    "text": "A skirmish occurred between South Korean and North Korean naval ships off Daecheong Island in the Yellow Sea.",
+    "link": "https://en.wikipedia.org/wiki/Daecheong_incident"
    },
    {
-    "year": 2019,
-    "text": "Pakistani prime minister Imran Khan inaugurated the Kartarpur Corridor, a visa-free border crossing connecting the Gurdwara Darbar Sahib to the India–Pakistan border.",
-    "link": "https://en.wikipedia.org/wiki/Imran_Khan"
+    "year": 2007,
+    "text": "At the Ibero-American Summit in Santiago, Chile, King Juan Carlos I of Spain asked Venezuelan president Hugo Chávez \"Why don't you shut up?\" after Chávez repeatedly interrupted a speech by Spanish prime minister José…",
+    "link": "https://en.wikipedia.org/wiki/Ibero-American_Summit"
    },
    {
-    "year": 1989,
-    "text": "East German official Günter Schabowski mistakenly announced the immediate opening of the inner German border, resulting in the fall of the Berlin Wall that night (border crossing pictured).",
-    "link": "https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski"
-   },
-   {
-    "year": 1985,
-    "text": "At age 22, Garry Kasparov became the then-youngest World Chess Champion by defeating then-champion Anatoly Karpov.",
-    "link": "https://en.wikipedia.org/wiki/Garry_Kasparov"
-   },
-   {
-    "year": 1967,
-    "text": "The first issue of Rolling Stone, an American magazine focusing on music, politics and popular culture, was published.",
-    "link": "https://en.wikipedia.org/wiki/Rolling_Stone"
-   },
-   {
-    "year": 1928,
-    "text": "The Great Mecca Feast, the first documentary film on the Hajj, premiered in the Netherlands.",
-    "link": "https://en.wikipedia.org/wiki/The_Great_Mecca_Feast"
-   },
-   {
-    "year": 1926,
-    "text": "Paul Hindemith's opera Cardillac (scene pictured) premiered at the Dresden State Opera, conducted by Fritz Busch.",
-    "link": "https://en.wikipedia.org/wiki/Paul_Hindemith"
-   },
-   {
-    "year": 1918,
-    "text": "The government of the Azerbaijan Democratic Republic adopted a tricolour national flag (pictured), which is again in use today, with slight modifications, by the present-day Republic of Azerbaijan.",
-    "link": "https://en.wikipedia.org/wiki/Azerbaijan_Democratic_Republic"
-   },
-   {
-    "year": 1822,
-    "text": "USS Alligator engaged three pirate schooners off the coast of Cuba in one of the West Indies anti-piracy operations of the United States.",
-    "link": "https://en.wikipedia.org/wiki/USS_Alligator_(1820)"
+    "year": 1969,
+    "text": "The first episode of the children's television series Sesame Street was broadcast in the United States.",
+    "link": "https://en.wikipedia.org/wiki/Sesame_Street"
    }
   ]
  },
- "candidates_today": 93,
+ "candidates_today": 101,
  "errors": []
 }
