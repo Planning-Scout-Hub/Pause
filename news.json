@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T12:40+00:00",
+ "updated": "2026-11-11T11:53+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -128,28 +128,64 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-11": {
+   "headline": "New Laser Method for Solar Panel Recycling",
+   "story": "Researchers have found a new way to recover valuable metals from old solar panels using lasers. This method uses less energy than current processes. It can recover almost all of the silver and silicon from the panels. The goal is to make this method available commercially soon.",
+   "why": "This could help reduce emissions from solar panel recycling and tackle the growing problem of electronic waste from old solar panels. It's a step towards making solar energy more sustainable.",
+   "topic": "Planet",
+   "source": "Tech Xplore",
+   "link": "https://techxplore.com/news/2026-11-laser-technique-slash-emissions-solar.html",
+   "published": "2026-11-10",
+   "written_by": "ai",
+   "word": {
+    "word": "Recover",
+    "meaning": "Like metals from old panels, what can you recover today?",
+    "theme": "Nature",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-10",
+  "date": "11-11",
   "events": [
    {
-    "year": 2009,
-    "text": "A skirmish occurred between South Korean and North Korean naval ships off Daecheong Island in the Yellow Sea.",
-    "link": "https://en.wikipedia.org/wiki/Daecheong_incident"
+    "year": 2008,
+    "text": "After 30 years in power, Maumoon Abdul Gayoom was succeeded by Mohamed Nasheed as the president of the Maldives.",
+    "link": "https://en.wikipedia.org/wiki/Maumoon_Abdul_Gayoom"
    },
    {
-    "year": 2007,
-    "text": "At the Ibero-American Summit in Santiago, Chile, King Juan Carlos I of Spain asked Venezuelan president Hugo Chávez \"Why don't you shut up?\" after Chávez repeatedly interrupted a speech by Spanish prime minister José…",
-    "link": "https://en.wikipedia.org/wiki/Ibero-American_Summit"
+    "year": 1999,
+    "text": "The House of Lords Act was given royal assent, removing most hereditary peers from the British House of Lords.",
+    "link": "https://en.wikipedia.org/wiki/House_of_Lords_Act_1999"
    },
    {
-    "year": 1969,
-    "text": "The first episode of the children's television series Sesame Street was broadcast in the United States.",
-    "link": "https://en.wikipedia.org/wiki/Sesame_Street"
+    "year": 1975,
+    "text": "During a constitutional crisis, Governor-General Sir John Kerr (pictured) dismissed Prime Minister Gough Whitlam's government and dissolved the Parliament of Australia for a double-dissolution election.",
+    "link": "https://en.wikipedia.org/wiki/1975_Australian_constitutional_crisis"
+   },
+   {
+    "year": 1965,
+    "text": "Rhodesia, led by Prime Minister Ian Smith (pictured), unilaterally declared independence from the United Kingdom.",
+    "link": "https://en.wikipedia.org/wiki/Rhodesia"
+   },
+   {
+    "year": 1926,
+    "text": "The plan for the United States Numbered Highway System was approved by the American Association of State Highway Officials.",
+    "link": "https://en.wikipedia.org/wiki/United_States_Numbered_Highway_System"
+   },
+   {
+    "year": 1918,
+    "text": "The armistice between the German Empire and the Allies was signed in a railway carriage in the Forest of Compiègne of France (signatories pictured).",
+    "link": "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
+   },
+   {
+    "year": 1918,
+    "text": "Józef Piłsudski (pictured), appointed the commander-in-chief of Polish forces by the Regency Council, was entrusted with the creation of a national government for the newly independent Poland.",
+    "link": "https://en.wikipedia.org/wiki/J%C3%B3zef_Pi%C5%82sudski"
    }
   ]
  },
- "candidates_today": 101,
+ "candidates_today": 97,
  "errors": []
 }
