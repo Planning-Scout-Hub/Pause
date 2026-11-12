@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T11:53+00:00",
+ "updated": "2026-11-12T12:44+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -144,48 +144,71 @@
     "theme": "Nature",
     "by": "ai"
    }
+  },
+  "2026-11-12": {
+   "headline": "Seaweed Helps Fish Thrive After Dredging Ban",
+   "story": "A ban on industrial scallop dredging has helped protect a special kind of pink seaweed called maerl, which forms a habitat for fish and other marine life. This has allowed fish stocks and other species like whales and dolphins to thrive. The ban has been in place for some time and has had a positive impact on the marine ecosystem. Locals who campaigned for the ban are celebrating the results.",
+   "why": "This could mean that fish stocks will remain healthy and sustainable, which is good news for people who rely on them for food. It also shows that protecting marine habitats can have long-term benefits for the environment and the species that live there.",
+   "topic": "Planet",
+   "source": "Good News Network",
+   "link": "https://www.goodnewsnetwork.org/fish-stocks-thrive-thanks-to-this-strange-seaweed-and-locals-who-protected-it/",
+   "published": "2026-11-09",
+   "written_by": "ai",
+   "word": {
+    "word": "Thrive",
+    "meaning": "Like protected fish, we can thrive in healthy environments, what nurtures you today?",
+    "theme": "Nature",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-11",
+  "date": "11-12",
   "events": [
    {
-    "year": 2008,
-    "text": "After 30 years in power, Maumoon Abdul Gayoom was succeeded by Mohamed Nasheed as the president of the Maldives.",
-    "link": "https://en.wikipedia.org/wiki/Maumoon_Abdul_Gayoom"
+    "year": 2014,
+    "text": "The European Space Agency's lander Philae touched down on 67P/Churyumov–Gerasimenko, becoming the first spacecraft to land on a comet.",
+    "link": "https://en.wikipedia.org/wiki/European_Space_Agency"
    },
    {
-    "year": 1999,
-    "text": "The House of Lords Act was given royal assent, removing most hereditary peers from the British House of Lords.",
-    "link": "https://en.wikipedia.org/wiki/House_of_Lords_Act_1999"
+    "year": 2006,
+    "text": "South Ossetia held a referendum on independence from Georgia; more than 99 percent of voters were in favour of maintaining the region's status as a de facto independent state.",
+    "link": "https://en.wikipedia.org/wiki/South_Ossetia"
    },
    {
-    "year": 1975,
-    "text": "During a constitutional crisis, Governor-General Sir John Kerr (pictured) dismissed Prime Minister Gough Whitlam's government and dissolved the Parliament of Australia for a double-dissolution election.",
-    "link": "https://en.wikipedia.org/wiki/1975_Australian_constitutional_crisis"
+    "year": 1973,
+    "text": "The first episode of Last of the Summer Wine, the longest-running television sitcom in history, premiered on the BBC.",
+    "link": "https://en.wikipedia.org/wiki/Last_of_the_Summer_Wine"
    },
    {
-    "year": 1965,
-    "text": "Rhodesia, led by Prime Minister Ian Smith (pictured), unilaterally declared independence from the United Kingdom.",
-    "link": "https://en.wikipedia.org/wiki/Rhodesia"
+    "year": 1970,
+    "text": "The Oregon Highway Division unsuccessfully attempted to destroy a rotting beached sperm whale near Florence, Oregon, with dynamite.",
+    "link": "https://en.wikipedia.org/wiki/Oregon_Department_of_Transportation"
    },
    {
-    "year": 1926,
-    "text": "The plan for the United States Numbered Highway System was approved by the American Association of State Highway Officials.",
-    "link": "https://en.wikipedia.org/wiki/United_States_Numbered_Highway_System"
+    "year": 1920,
+    "text": "The Kingdom of Italy and the Kingdom of Serbs, Croats and Slovenes signed the Treaty of Rapallo to establish national borders east of the Adriatic Sea.",
+    "link": "https://en.wikipedia.org/wiki/Kingdom_of_Italy"
    },
    {
-    "year": 1918,
-    "text": "The armistice between the German Empire and the Allies was signed in a railway carriage in the Forest of Compiègne of France (signatories pictured).",
-    "link": "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
+    "year": 1912,
+    "text": "Eight months after perishing during the ill-fated Terra Nova Expedition, the bodies of Robert Falcon Scott (pictured) and his companions were discovered on the Ross Ice Shelf in Antarctica.",
+    "link": "https://en.wikipedia.org/wiki/Terra_Nova_Expedition"
    },
    {
-    "year": 1918,
-    "text": "Józef Piłsudski (pictured), appointed the commander-in-chief of Polish forces by the Regency Council, was entrusted with the creation of a national government for the newly independent Poland.",
-    "link": "https://en.wikipedia.org/wiki/J%C3%B3zef_Pi%C5%82sudski"
+    "year": 1911,
+    "text": "The Corozal (pictured), at the time the most powerful dredger ever built, was launched in Renfrew, Scotland, for service in the construction of the Panama Canal.",
+    "link": "https://en.wikipedia.org/wiki/Corozal_(dredger)"
+   },
+   {
+    "year": 1892,
+    "text": "William Heffelfinger was paid $500 by the Allegheny Athletic Association, becoming the first professional American football player.",
+    "link": "https://en.wikipedia.org/wiki/Pudge_Heffelfinger"
    }
   ]
  },
- "candidates_today": 97,
- "errors": []
+ "candidates_today": 99,
+ "errors": [
+  "Positive News: HTTPError: HTTP Error 403: Forbidden"
+ ]
 }
