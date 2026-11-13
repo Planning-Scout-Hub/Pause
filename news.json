@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T12:44+00:00",
+ "updated": "2026-11-13T12:14+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -160,54 +160,60 @@
     "theme": "Nature",
     "by": "ai"
    }
+  },
+  "2026-11-13": {
+   "headline": "Bionic Eye Tech Improves with AI",
+   "story": "Scientists have made a breakthrough in bionic vision technology using AI. This approach helps predict the flashes and shapes of light seen by someone with a brain implant. By learning how a person's brain responds to electrical stimulation, the tech can stimulate the brain more precisely. This is still early research, but it could lead to more advanced visual prostheses.",
+   "why": "This could mean that people with blindness might one day have some of their sight restored. It's about creating technology that can learn and adapt to each person's brain, rather than relying on one-size-fits-all settings.",
+   "topic": "AI & Tech",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261110042553.htm",
+   "published": "2026-11-12",
+   "written_by": "ai",
+   "word": {
+    "word": "Sight",
+    "meaning": "Like restored vision, new tech can bring clarity. What insights await you today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-12",
+  "date": "11-13",
   "events": [
    {
-    "year": 2014,
-    "text": "The European Space Agency's lander Philae touched down on 67P/Churyumov–Gerasimenko, becoming the first spacecraft to land on a comet.",
-    "link": "https://en.wikipedia.org/wiki/European_Space_Agency"
+    "year": 1992,
+    "text": "In Dietrich v The Queen, the High Court of Australia ruled that, although there is no absolute right to have publicly funded counsel, a judge should grant any request for an adjournment or stay in most circumstances in…",
+    "link": "https://en.wikipedia.org/wiki/Dietrich_v_The_Queen"
    },
    {
-    "year": 2006,
-    "text": "South Ossetia held a referendum on independence from Georgia; more than 99 percent of voters were in favour of maintaining the region's status as a de facto independent state.",
-    "link": "https://en.wikipedia.org/wiki/South_Ossetia"
+    "year": 1982,
+    "text": "South Korean boxer Kim Duk-koo suffered fatal brain injuries during a match with American Ray Mancini in Las Vegas, leading to significant rule changes in the sport.",
+    "link": "https://en.wikipedia.org/wiki/Kim_Duk-koo"
    },
    {
-    "year": 1973,
-    "text": "The first episode of Last of the Summer Wine, the longest-running television sitcom in history, premiered on the BBC.",
-    "link": "https://en.wikipedia.org/wiki/Last_of_the_Summer_Wine"
+    "year": 1945,
+    "text": "FC Dynamo Moscow opened their exhibition tour of the United Kingdom with a 3–3 draw against Chelsea, breaking the attendance record for a British club football match.",
+    "link": "https://en.wikipedia.org/wiki/FC_Dynamo_Moscow"
    },
    {
-    "year": 1970,
-    "text": "The Oregon Highway Division unsuccessfully attempted to destroy a rotting beached sperm whale near Florence, Oregon, with dynamite.",
-    "link": "https://en.wikipedia.org/wiki/Oregon_Department_of_Transportation"
+    "year": 1940,
+    "text": "Walt Disney's Fantasia, the first commercial film shown with stereophonic sound, premiered at the Broadway Theatre in New York City.",
+    "link": "https://en.wikipedia.org/wiki/Walt_Disney"
    },
    {
-    "year": 1920,
-    "text": "The Kingdom of Italy and the Kingdom of Serbs, Croats and Slovenes signed the Treaty of Rapallo to establish national borders east of the Adriatic Sea.",
-    "link": "https://en.wikipedia.org/wiki/Kingdom_of_Italy"
+    "year": 1927,
+    "text": "The Holland Tunnel opened, connecting Manhattan with Jersey City under the Hudson River.",
+    "link": "https://en.wikipedia.org/wiki/Holland_Tunnel"
    },
    {
-    "year": 1912,
-    "text": "Eight months after perishing during the ill-fated Terra Nova Expedition, the bodies of Robert Falcon Scott (pictured) and his companions were discovered on the Ross Ice Shelf in Antarctica.",
-    "link": "https://en.wikipedia.org/wiki/Terra_Nova_Expedition"
-   },
-   {
-    "year": 1911,
-    "text": "The Corozal (pictured), at the time the most powerful dredger ever built, was launched in Renfrew, Scotland, for service in the construction of the Panama Canal.",
-    "link": "https://en.wikipedia.org/wiki/Corozal_(dredger)"
-   },
-   {
-    "year": 1892,
-    "text": "William Heffelfinger was paid $500 by the Allegheny Athletic Association, becoming the first professional American football player.",
-    "link": "https://en.wikipedia.org/wiki/Pudge_Heffelfinger"
+    "year": 1809,
+    "text": "As part of the Persian Gulf campaign, a British flotilla arrived at and launched an amphibious assault on Ras Al Khaimah.",
+    "link": "https://en.wikipedia.org/wiki/Persian_Gulf_campaign_of_1809"
    }
   ]
  },
- "candidates_today": 99,
+ "candidates_today": 101,
  "errors": [
   "Positive News: HTTPError: HTTP Error 403: Forbidden"
  ]
