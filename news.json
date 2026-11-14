@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T12:14+00:00",
+ "updated": "2026-11-14T11:29+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -176,40 +176,76 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-14": {
+   "headline": "Gut Healing Molecule Found",
+   "story": "Scientists have discovered a molecule made by good gut bacteria that can heal the intestinal lining. This molecule, called N-MNA, has been shown to work in tests on mice, flies, and human cells. It helps to repair damaged guts by stimulating stem cell regeneration. The molecule also increases production of a coenzyme that decreases with age.",
+   "why": "This discovery could lead to new treatments for inflammatory bowel disease and other chronic gut disorders. It may also have implications for understanding how to slow down aging, as the coenzyme it increases is thought to be a key factor in the aging process.",
+   "topic": "Health",
+   "source": "Medical Xpress",
+   "link": "https://medicalxpress.com/news/2026-11-microbe-molecule-reverse-gut-boosting.html",
+   "published": "2026-11-13",
+   "written_by": "ai",
+   "word": {
+    "word": "Repair",
+    "meaning": "Like gut lining, damaged things can mend. What could you fix today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-13",
+  "date": "11-14",
   "events": [
    {
-    "year": 1992,
-    "text": "In Dietrich v The Queen, the High Court of Australia ruled that, although there is no absolute right to have publicly funded counsel, a judge should grant any request for an adjournment or stay in most circumstances in…",
-    "link": "https://en.wikipedia.org/wiki/Dietrich_v_The_Queen"
+    "year": 2010,
+    "text": "Red Bull Racing's Sebastian Vettel won the Drivers' Championship after winning the final race of the season, becoming the youngest Formula One champion.",
+    "link": "https://en.wikipedia.org/wiki/Red_Bull_Racing"
    },
    {
-    "year": 1982,
-    "text": "South Korean boxer Kim Duk-koo suffered fatal brain injuries during a match with American Ray Mancini in Las Vegas, leading to significant rule changes in the sport.",
-    "link": "https://en.wikipedia.org/wiki/Kim_Duk-koo"
+    "year": 2003,
+    "text": "Astronomers Michael E. Brown, Chad Trujillo, and David L. Rabinowitz discovered the trans-Neptunian object Sedna.",
+    "link": "https://en.wikipedia.org/wiki/Michael_E._Brown"
    },
    {
-    "year": 1945,
-    "text": "FC Dynamo Moscow opened their exhibition tour of the United Kingdom with a 3–3 draw against Chelsea, breaking the attendance record for a British club football match.",
-    "link": "https://en.wikipedia.org/wiki/FC_Dynamo_Moscow"
+    "year": 1995,
+    "text": "As a result of budget conflicts between President Bill Clinton and the United States Congress led by Newt Gingrich, the federal government was forced to shut down non-essential services.",
+    "link": "https://en.wikipedia.org/wiki/Bill_Clinton"
    },
    {
-    "year": 1940,
-    "text": "Walt Disney's Fantasia, the first commercial film shown with stereophonic sound, premiered at the Broadway Theatre in New York City.",
-    "link": "https://en.wikipedia.org/wiki/Walt_Disney"
+    "year": 1990,
+    "text": "Music producer Frank Farian admitted that the German R&B duo Milli Vanilli did not sing the vocals on their album Girl You Know It's True.",
+    "link": "https://en.wikipedia.org/wiki/Frank_Farian"
    },
    {
-    "year": 1927,
-    "text": "The Holland Tunnel opened, connecting Manhattan with Jersey City under the Hudson River.",
-    "link": "https://en.wikipedia.org/wiki/Holland_Tunnel"
+    "year": 1969,
+    "text": "Apollo 12 launched from the Kennedy Space Center, later becoming the second crewed flight to land on the Moon.",
+    "link": "https://en.wikipedia.org/wiki/Apollo_12"
    },
    {
-    "year": 1809,
-    "text": "As part of the Persian Gulf campaign, a British flotilla arrived at and launched an amphibious assault on Ras Al Khaimah.",
-    "link": "https://en.wikipedia.org/wiki/Persian_Gulf_campaign_of_1809"
+    "year": 1967,
+    "text": "American physicist Theodore Maiman was given a patent for his ruby laser systems, the world's first laser.",
+    "link": "https://en.wikipedia.org/wiki/Theodore_Maiman"
+   },
+   {
+    "year": 1960,
+    "text": "Ruby Bridges and the McDonogh Three became the first black children to attend an all-white elementary school in Louisiana as part of the New Orleans school desegregation crisis.",
+    "link": "https://en.wikipedia.org/wiki/Ruby_Bridges"
+   },
+   {
+    "year": 1910,
+    "text": "Aviator Eugene Burton Ely performed the first takeoff from a ship (pictured), flying from a makeshift deck on USS Birmingham in Hampton Roads, Virginia.",
+    "link": "https://en.wikipedia.org/wiki/Eugene_Burton_Ely"
+   },
+   {
+    "year": 1851,
+    "text": "Moby-Dick, a novel by American writer Herman Melville (pictured), was first published in the United States.",
+    "link": "https://en.wikipedia.org/wiki/Moby-Dick"
+   },
+   {
+    "year": 1680,
+    "text": "German astronomer Gottfried Kirch discovered the Great Comet of 1680, the first comet to be discovered by telescope.",
+    "link": "https://en.wikipedia.org/wiki/Gottfried_Kirch"
    }
   ]
  },
