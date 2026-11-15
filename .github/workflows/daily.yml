@@ -1,8 +1,18 @@
 name: Daily content
 on:
   schedule:
-    - cron: "17 4 * * *"   # every day at 04:17 UTC (05:17 in Barcelona in winter)
-  workflow_dispatch:        # lets you run it by hand from the Actions tab
+    # GitHub's clock is UTC and ignores summer time, so we run twice before midnight Spain time.
+    # 21:37 and 22:37 UTC = 22:37/23:37 in winter, 23:37/00:37 in summer. The script prepares
+    # tomorrow's page when it's after 20:00 in Spain, and skips if the day already has its story.
+    - cron: "37 21,22 * * *"
+    - cron: "17 4 * * *"    # morning safety net: only fills the day if the night runs failed
+  workflow_dispatch:         # lets you run it by hand from the Actions tab
+  push:
+    branches: [main]
+    paths: ["scripts/fetch_news.py", ".github/workflows/daily.yml"]
+concurrency:
+  group: daily-content
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -27,4 +37,4 @@ jobs:
           git config user.name "pause-bot"
           git config user.email "pause-bot@users.noreply.github.com"
           git add news.json
-          git diff --staged --quiet || (git commit -m "Daily good news $(date -u +%F)" && git push)
+          git diff --staged --quiet || (git commit -m "Daily good news for $(python -c "import json;print(json.load(open('news.json')).get('prepared_for',''))")" && git pull --rebase -q && git push)

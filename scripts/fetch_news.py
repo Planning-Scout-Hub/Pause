@@ -1,12 +1,20 @@
 """
-PausKIT daily content job (runs every morning on GitHub Actions, see .github/workflows/daily.yml)
+PausKIT daily content job (runs on GitHub Actions just before midnight Spain time, see .github/workflows/daily.yml)
+
+Each day gets ONE new story, never repeated:
+  - the day is the calendar day in Spain (Europe/Madrid); a run after 20:00 prepares tomorrow,
+    so the new story is live at 00:00 Spain time
+  - topics rotate (Longevity, Climate, AI & Tech, Demographics, Mind & Brain, Space, Health, Science)
+    so the same kind of story doesn't come back for several days
+  - a story is skipped if its link OR its subject (similar headline) was used in the last 60 days,
+    so the same research reported by two outlets can't appear twice
 
 1. Collects recent stories from good-news outlets AND science / health / tech news sources.
 2. Filters for the kind of news PausKIT wants first thing in the morning:
    discoveries, research breakthroughs, AI for good, health, helpful technology,
    and people improving life for their communities. Skips personal feats, celebrities,
    cute-animal stories, politics and anything negative.
-3. Asks a free AI model (GitHub Models, via the workflow's own token) to pick ONE story
+3. Asks a free AI model (Cloudflare Workers AI) to pick ONE story
    and retell it in warm, plain language, plus what it means for us.
    Accuracy guard: the model only sees the article's own text, and any number in its
    answer that doesn't appear in that text gets the answer rejected.
@@ -34,7 +42,43 @@ FEEDS = [
     ("Tech Xplore", "https://techxplore.com/rss-feed/breaking/"),
     ("MIT News", "https://news.mit.edu/rss/research"),
     ("NASA", "https://www.nasa.gov/news-release/feed/"),
+    # Longevity and ageing
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml"),
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/mind_brain/memory.xml"),
+    ("Medical Xpress", "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/"),
+    # Climate and energy
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/earth_climate/climate.xml"),
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/matter_energy/renewable_energy.xml"),
+    ("Phys.org", "https://phys.org/rss-feed/earth-news/"),
+    ("Carbon Brief", "https://www.carbonbrief.org/feed"),
+    # Demographics and how we live
+    ("Our World in Data", "https://ourworldindata.org/atom.xml"),
+    ("Pew Research Center", "https://www.pewresearch.org/feed/"),
+    ("Phys.org", "https://phys.org/rss-feed/science-news/social-sciences/"),
+    # Mind, brain and consciousness
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/mind_brain.xml"),
+    ("Medical Xpress", "https://medicalxpress.com/rss-feed/neuroscience-news/"),
+    # Space
+    ("ScienceDaily", "https://www.sciencedaily.com/rss/space_time.xml"),
+    ("Phys.org", "https://phys.org/rss-feed/space-news/"),
+    # Technology
+    ("MIT Technology Review", "https://www.technologyreview.com/feed/"),
 ]
+
+# Topics, in the order they are checked (first match wins), and the daily rotation
+CATEGORIES = [
+    ("Longevity", r"longevity|ageing|aging|lifespan|healthspan|senescen|rejuvenat|older adults|elderly|age-related|centenarian|telomer|live longer|biological age|dementia|alzheimer"),
+    ("Mind & Brain", r"\bbrain|neuro|conscious|memory|memories|\bsleep|meditat|mental health|cognit|dream|emotion|mindful"),
+    ("Space", r"nasa|\besa\b|telescope|galax|planet|asteroid|comet|\bmoon|\bmars\b|\bstars?\b|cosmic|universe|astronom|black hole|spacecraft|orbit"),
+    ("Climate", r"climate|carbon|emission|renewable|solar|wind (power|farm|energy|turbine)|heat ?wave|warming|decarbon|net zero|electric (car|vehicle)|heat pump|reforest|coral|ocean|glacier|biodiversity|clean energy"),
+    ("Demographics", r"population|demograph|birth ?rate|fertility rate|life expectancy|migra|census|generation|urbani[sz]|households?|literacy|poverty|inequalit|workforce|young people|survey of|americans|europeans|countries"),
+    ("AI & Tech", r"\bai\b|artificial intelligence|machine learning|robot|quantum|\bchips?\b|computer|software|algorithm|engineer|device|sensor|3d[- ]print|technolog"),
+    ("Health", r"health|patient|disease|cancer|vaccine|drug|therapy|treatment|medic|hospital|clinical|gut\b|heart"),
+    ("Science", r"."),
+]
+ROTATION = ["Longevity", "Climate", "AI & Tech", "Demographics", "Mind & Brain", "Space", "Health", "Science"]
+SPECIALIST = {"Carbon Brief", "Our World in Data", "Pew Research Center", "MIT Technology Review"}
+STOP = set("about after again against among because before being between could during every first from have into just more most much other over said says some such than that their them there these they this those through under very what when where which while with would your study studies research researchers scientists found finds shows show reveals reveal suggests suggest helps help could might people world years year".split())
 
 POSITIVE = r"breakthrough|discover|first[- ]ever|for the first time|new (treatment|therapy|drug|vaccine|test|method|material|way)|vaccine|cure|approved|restor|regrow|repair|reverse|detect(s|ed)? early|early detection|clean energy|renewable|solar|battery|recycl|carbon capture|desalinat|ai\b|artificial intelligence|machine learning|robot|telescope|nasa|species (found|discovered)|protect|recover|rebound|record low|fall(s|en)? to|drops? to|cuts?\b|reduc|improv|boost|help(s|ed|ing)?\b|community|villag|neighbo|cooperative|free (school|meals|care|housing)|access|affordable"
 NEGATIVE = r"\b(death|deaths|dies|died|dead|kill|killed|war|attack|crisis|threat|warn|danger|decline|worse|worst|fear|collapse|toxic|poison|shooting|linked to (higher|increased)|fails?|failure|lawsuit|scandal|layoff|shortage|outbreak|pandemic|disaster|fraud|hack|breach)\b"
@@ -96,17 +140,52 @@ def article_text(url, limit=2500):
     return text[:limit]
 
 
+from zoneinfo import ZoneInfo
 now = dt.datetime.now(dt.timezone.utc)
-today = now.date().isoformat()
-errors, candidates, seen = [], [], set()
+madrid = now.astimezone(ZoneInfo("Europe/Madrid"))
+# After 20:00 in Spain we prepare TOMORROW's page, so it's ready at midnight.
+target = (madrid + dt.timedelta(days=1)).date() if madrid.hour >= 20 else madrid.date()
+today = target.isoformat()
+FORCE = os.environ.get("FORCE", "") == "1"
+print(f"Spain time {madrid:%Y-%m-%d %H:%M} -> preparing {today}")
+
+try:
+    old = json.load(open(OUT))
+except Exception:
+    old = {}
+days = old.get("days", {}) if isinstance(old.get("days"), dict) else {}
+if days.get(today, {}).get("written_by") == "ai" and not FORCE:
+    print(f"{today} already has its story; nothing to do.")
+    sys.exit(0)
+
+errors, candidates, seen, feed_counts = [], [], set(), {}
+
+
+def words(t):
+    return {w for w in re.findall(r"[a-z]{4,}", (t or "").lower()) if w not in STOP}
+
+
+def similar(a, b):
+    A, B = words(a), words(b)
+    if not A or not B:
+        return False
+    common = len(A & B)
+    return common >= 3 and common / min(len(A), len(B)) >= 0.5
+
+
+def category(blob):
+    return next(c for c, p in CATEGORIES if re.search(p, blob, re.I))
 
 for source, url in FEEDS:
     try:
+        n_feed = 0
         for title, link, date_s, desc, cats in items_from(get(url)):
             title, link = clean(title, 200), (link or "").strip()
             date = parse_date(date_s or "")
-            if not title or not link.startswith("http") or not date or (now - date).days > 4:
+            max_age = 10 if source in SPECIALIST else 4
+            if not title or not link.startswith("http") or not date or (now - date).days > max_age:
                 continue
+            n_feed += 1
             key = re.sub(r"\W+", "", title.lower())[:60]
             if key in seen:
                 continue
@@ -116,21 +195,41 @@ for source, url in FEEDS:
             if re.search(NEGATIVE, title, re.I) or re.search(PERSONAL_FEAT, blob, re.I):
                 continue
             score = len(re.findall(POSITIVE, blob, re.I)) + (1 if source in ("Positive News", "Reasons to be Cheerful", "The Guardian · The Upside", "Good Good Good") else 0)
-            if score == 0:
+            cat = category(f"{title} {summary}")
+            if score == 0 and source not in SPECIALIST and cat not in ("Longevity", "Mind & Brain", "Space", "Demographics"):
                 continue
-            candidates.append({"title": title, "summary": summary, "link": link, "source": source, "date": date.date().isoformat(), "score": score})
+            candidates.append({"title": title, "summary": summary, "link": link, "source": source, "date": date.date().isoformat(), "score": score, "cat": cat})
+        feed_counts[url] = n_feed
     except Exception as e:
+        feed_counts[url] = f"failed: {type(e).__name__}"
         errors.append(f"{source}: {type(e).__name__}: {e}"[:200])
 
-try:
-    old = json.load(open(OUT))
-except Exception:
-    old = {}
-days = old.get("days", {}) if isinstance(old.get("days"), dict) else {}
-used_links = {d.get("link") for k, d in days.items() if k != today}
-candidates = [c for c in candidates if c["link"] not in used_links]
+# Never repeat: drop anything whose link or subject was used in the last 60 days...
+past = [d for k, d in days.items() if k != today]
+used_links = {d.get("link") for d in past}
+used_titles = [t for d in past for t in (d.get("src_title"), d.get("headline")) if t]
+candidates = [c for c in candidates if c["link"] not in used_links and not any(similar(c["title"], t) for t in used_titles)]
+# ...and keep only one version of a story covered by several outlets today
 candidates.sort(key=lambda c: (c["score"], c["date"]), reverse=True)
-shortlist = candidates[:25]
+unique = []
+for c in candidates:
+    if not any(similar(c["title"], u["title"]) for u in unique):
+        unique.append(c)
+candidates = unique
+
+# Topic rotation: start from today's place in the rotation and skip topics used in the last 4 days
+recent_topics = [days[k].get("topic") for k in sorted(k for k in days if k < today)[-4:]]
+n_day = target.toordinal()
+rotation = ROTATION[n_day % len(ROTATION):] + ROTATION[:n_day % len(ROTATION)]
+preferred = [t for t in rotation if t not in recent_topics] + [t for t in rotation if t in recent_topics]
+by_cat = {t: [c for c in candidates if c["cat"] == t] for t in ROTATION}
+chosen_cat = next((t for t in preferred if by_cat[t]), None)
+shortlist = (by_cat[chosen_cat][:12] if chosen_cat else [])
+# backups from the next topics, in case the writer can't use any story in the chosen one
+for t in preferred:
+    if t != chosen_cat and len(shortlist) < 18:
+        shortlist += by_cat[t][:2]
+print(f"recent topics {recent_topics} -> today's topic: {chosen_cat}")
 
 
 def numbers(s):
@@ -141,13 +240,14 @@ def ask_model(shortlist):
     listing = "\n".join(f"[{i}] ({c['source']}) {c['title']} — {c['summary'][:300]}" for i, c in enumerate(shortlist))
     prompt = f"""You choose the single best "good news" story for PausKIT, a calm daily diary app people read with their morning coffee.
 
-Pick ONE story that is about: a scientific discovery or research breakthrough, AI or technology helping people, a health or medical advance, a clean-energy or environmental solution that works, or people/communities finding ways to live better together.
+Today's topic is "{chosen_cat}". Prefer stories from that topic (they are listed first).
+Pick the ONE story that is the most fascinating, hopeful and surprising to a curious adult: a real discovery or research result, longevity and healthy-ageing science, technology or AI helping people, climate and energy progress that works, how populations and ways of living are changing, the brain and consciousness, or space.
 Do NOT pick: personal feats or human-interest stories about one individual, celebrities, cute animals, sport, politics, anything sad, scary or uncertain.
 
 Stories:
 {listing}
 
-Reply with JSON only: {{"pick": <number>, "backup": <number>, "topic": "Science|Health|AI & Tech|Planet|Community"}}"""
+Reply with JSON only: {{"pick": <number>, "backup": <number>}}"""
     choice = call_model(prompt, max_tokens=60)
     m = re.search(r"\{.*\}", choice or "", re.S)
     return json.loads(m.group(0)) if m else None
@@ -242,21 +342,19 @@ if shortlist:
             topic = choice.get("topic")
     except Exception as e:
         errors.append(f"model pick: {e}"[:200])
-    for i in order[:4]:
+    for i in order[:6]:
         c = shortlist[i]
         try:
             written = write_story(c, article_text(c["link"])) if CF_TOKEN else None
         except Exception as e:
             errors.append(f"model write: {e}"[:200]); written = None
         if written:
-            guess = next(t for t, p in TOPIC_GUESS if re.search(p, c["title"] + " " + c["summary"], re.I))
-            story = {**written, "topic": topic if (topic and i == order[0]) else guess,
+            story = {**written, "topic": c["cat"], "src_title": c["title"],
                      "source": c["source"], "link": c["link"], "published": c["date"], "written_by": "ai"}
             break
     if not story:  # no AI available: use the outlet's own headline and summary
         c = shortlist[order[0]]
-        guess = next(t for t, p in TOPIC_GUESS if re.search(p, c["title"] + " " + c["summary"], re.I))
-        story = {"headline": c["title"], "story": clean(c["summary"], 400), "why": "", "topic": guess,
+        story = {"headline": c["title"], "story": clean(c["summary"], 400), "why": "", "topic": c["cat"], "src_title": c["title"],
                  "source": c["source"], "link": c["link"], "published": c["date"], "written_by": "source"}
 
 if story:
@@ -267,7 +365,9 @@ days = dict(sorted(days.items())[-60:])
 THEMES = ["Time", "The Body", "Home", "Laughter", "Calm", "Change", "Small Wonders", "Stories", "Fear", "Kindness",
           "Curiosity", "Nature", "The Self", "Rest", "Beginnings"]
 FALLBACK_WORD = {"Health": ("Healing", "The Body"), "AI & Tech": ("Ingenuity", "Curiosity"), "Planet": ("Renewal", "Nature"),
-                 "Community": ("Together", "Kindness"), "Science": ("Wonder", "Small Wonders")}
+                 "Community": ("Together", "Kindness"), "Science": ("Wonder", "Small Wonders"),
+                 "Longevity": ("Vitality", "Time"), "Climate": ("Renewal", "Nature"), "Demographics": ("Belonging", "Home"),
+                 "Mind & Brain": ("Awareness", "The Self"), "Space": ("Wonder", "Curiosity")}
 
 
 def word_of_day(st, recent):
@@ -297,7 +397,7 @@ Today's good news:
 
 
 recent_words = []
-for d in sorted(days)[-8:]:
+for d in [k for k in sorted(days) if k <= today][-8:]:
     st = days[d]
     if st.get("word") and not (d == today and st["word"].get("by") != "ai"):
         recent_words.append(st["word"]["word"]); continue
@@ -316,14 +416,14 @@ for d in sorted(days)[-8:]:
 # On this day in history (Wikipedia), keeping only uplifting events
 on_this_day = None
 try:
-    data = json.loads(get(f"https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/{now:%m}/{now:%d}"))
+    data = json.loads(get(f"https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/{target:%m}/{target:%d}"))
     DARK = r"kill|war\b|wars\b|attack|bomb|murder|massacre|assassin|terror|strike|died|death|dead|shoot|crash|disaster|genocide|execut|invasion|invade|riot|explosion|hostage|militant|coup|nazi|holocaust|earthquake|famine|sank|sinking|guillotin|uprising|occupation|military|battle|slave|plague|epidemic|hanged|prison"
     events = []
     for ev in [e for e in data.get("selected", []) if not re.search(DARK, e.get("text", ""), re.I)][:12]:
         page = (ev.get("pages") or [{}])[0]
         events.append({"year": ev.get("year"), "text": clean(ev.get("text"), 220), "link": page.get("content_urls", {}).get("desktop", {}).get("page", "")})
     if events:
-        on_this_day = {"date": now.strftime("%m-%d"), "events": events}
+        on_this_day = {"date": target.strftime("%m-%d"), "events": events}
 except Exception as e:
     errors.append(f"Wikipedia: {e}"[:200])
 
@@ -331,7 +431,9 @@ out = {
     "updated": now.isoformat(timespec="minutes"),
     "days": days,
     "onThisDay": on_this_day or old.get("onThisDay"),
+    "prepared_for": today,
     "candidates_today": len(candidates),
+    "feeds": feed_counts,
     "errors": errors,
 }
 json.dump(out, open(OUT, "w"), ensure_ascii=False, indent=1)

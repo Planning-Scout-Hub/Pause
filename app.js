@@ -252,21 +252,15 @@ async function loadNews() {
 function newsFor(iso) {
   if (!news) return null;
   const days = news.days || {};
-  if (days[iso]) return days[iso];
-  if (iso === TODAY) { // before the morning job runs, show the most recent story
-    const last = Object.keys(days).sort().pop();
-    if (last) return days[last];
-    const s = (news.stories || [])[0];
-    if (s) return { headline: s.title, story: s.summary, why: "", topic: s.topic, source: s.source, link: s.link, published: s.date };
-  }
-  return null;
+  // Each day shows only its own story: never yesterday's again (new stories arrive at 00:00 Spain time)
+  return days[iso] || null;
 }
 function renderNews() {
   const n = newsFor(viewISO);
   const show = (on) => { $("#newsBody").hidden = !on; $("#newsMore").hidden = !on; };
   if (!n) {
     $("#newsTopic").textContent = "";
-    $("#newsLead").textContent = !news ? "Loading today's good news…" : viewISO > TODAY ? "This day's good news arrives that morning." : "No good news was saved for this day.";
+    $("#newsLead").textContent = !news ? "Loading today's good news…" : viewISO > TODAY ? "This day's good news arrives at midnight (Spain time)." : viewISO === TODAY ? "Today's good news is on its way: check back in a little while." : "No good news was saved for this day.";
     show(false);
     return;
   }
