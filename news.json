@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T01:06+00:00",
+ "updated": "2026-11-15T01:07+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -192,6 +192,23 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-15": {
+   "headline": "Ancient Fossil Reveals Soft Tissue",
+   "story": "Scientists found a very rare 450-million-year-old fossil with soft tissue from an ancient starfish relative. This fossil was discovered in a museum collection and provides new clues about early marine life. The soft tissue found is a big deal because it usually decays before fossilization can occur. This discovery is helping researchers learn more about how these ancient creatures lived and evolved.",
+   "why": "This finding could help us better understand how early marine animals survived and thrived in Earth's oceans. It's also giving us a glimpse into life on our planet hundreds of millions of years before dinosaurs existed.",
+   "topic": "Science",
+   "src_title": "Paleontologists discover “one-in-a-million” fossil with 450-million-year-old soft tissue",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261105085201.htm",
+   "published": "2026-11-10",
+   "written_by": "ai",
+   "word": {
+    "word": "Clues",
+    "meaning": "Like ancient fossils, small discoveries reveal more. What clues will you uncover today?",
+    "theme": "Small Wonders",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
@@ -232,7 +249,6 @@
  "prepared_for": "2026-11-15",
  "candidates_today": 195,
  "feeds": {
-  "https://www.positive.news/feed/": "failed: HTTPError",
   "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
   "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
@@ -251,22 +267,15 @@
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
   "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 6,
   "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
-  "https://www.sciencedaily.com/rss/matter_energy/renewable_energy.xml": "failed: HTTPError",
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 11,
   "https://ourworldindata.org/atom.xml": 0,
   "https://www.pewresearch.org/feed/": 22,
   "https://phys.org/rss-feed/science-news/social-sciences/": 28,
   "https://www.sciencedaily.com/rss/mind_brain.xml": 8,
-  "https://medicalxpress.com/rss-feed/neuroscience-news/": "failed: HTTPError",
   "https://www.sciencedaily.com/rss/space_time.xml": 13,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
- "errors": [
-  "Positive News: HTTPError: HTTP Error 403: Forbidden",
-  "ScienceDaily: HTTPError: HTTP Error 404: Not Found",
-  "Medical Xpress: HTTPError: HTTP Error 404: Not Found",
-  "model write: number '2' not in source"
- ]
+ "errors": []
 }
