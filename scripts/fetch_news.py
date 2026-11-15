@@ -73,7 +73,7 @@ CATEGORIES = [
     ("Health", r"health|patient|disease|cancer|vaccine|drug|therapy|treatment|medic|hospital|clinical|gut\b|heart"),
     ("Science", r"."),
 ]
-ROTATION = ["Longevity", "Climate", "AI & Tech", "Demographics", "Mind & Brain", "Space", "Health", "Science"]
+ROTATION = ["Longevity", "Climate", "AI & Tech", "Demographics", "Mind & Brain", "Space", "Health"]  # "Science" = last resort only
 SPECIALIST = {"Carbon Brief", "Our World in Data", "Pew Research Center", "MIT Technology Review"}
 STOP = set("about after again against among because before being between could during every first from have into just more most much other over said says some such than that their them there these they this those through under very what when where which while with would your study studies research researchers scientists found finds shows show reveals reveal suggests suggest helps help could might people world years year".split())
 
@@ -219,8 +219,8 @@ candidates = unique
 recent_topics = [days[k].get("topic") for k in sorted(k for k in days if k < today)[-4:]]
 n_day = target.toordinal()
 rotation = ROTATION[n_day % len(ROTATION):] + ROTATION[:n_day % len(ROTATION)]
-preferred = [t for t in rotation if t not in recent_topics] + [t for t in rotation if t in recent_topics]
-by_cat = {t: [c for c in candidates if c["cat"] == t] for t in ROTATION}
+preferred = [t for t in rotation if t not in recent_topics] + [t for t in rotation if t in recent_topics] + ["Science"]
+by_cat = {t: [c for c in candidates if c["cat"] == t] for t in preferred}
 chosen_cat = next((t for t in preferred if by_cat[t]), None)
 shortlist = (by_cat[chosen_cat][:12] if chosen_cat else [])
 n_main = len(shortlist)  # the AI chooses only among these; the rest are backups
