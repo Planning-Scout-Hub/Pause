@@ -2,7 +2,7 @@
 PausKIT daily content job (runs on GitHub Actions just before midnight Spain time, see .github/workflows/daily.yml)
 
 Each day gets ONE new story, never repeated:
-  - the day is the calendar day in Spain (Europe/Madrid); a run after 20:00 prepares tomorrow,
+  - the day is the calendar day in Spain (Europe/Madrid); a run after 14:00 prepares tomorrow,
     so the new story is live at 00:00 Spain time
   - topics rotate (Longevity, Climate, AI & Tech, Demographics, Mind & Brain, Space, Health, Science)
     so the same kind of story doesn't come back for several days
@@ -26,7 +26,6 @@ import xml.etree.ElementTree as ET
 
 FEEDS = [
     # Good-news outlets
-    ("Positive News", "https://www.positive.news/feed/"),
     ("Reasons to be Cheerful", "https://reasonstobecheerful.world/feed/"),
     ("The Guardian · The Upside", "https://www.theguardian.com/world/series/the-upside/rss"),
     ("Good News Network", "https://www.goodnewsnetwork.org/category/news/science/feed/"),
@@ -48,7 +47,6 @@ FEEDS = [
     ("Medical Xpress", "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/"),
     # Climate and energy
     ("ScienceDaily", "https://www.sciencedaily.com/rss/earth_climate/climate.xml"),
-    ("ScienceDaily", "https://www.sciencedaily.com/rss/matter_energy/renewable_energy.xml"),
     ("Phys.org", "https://phys.org/rss-feed/earth-news/"),
     ("Carbon Brief", "https://www.carbonbrief.org/feed"),
     # Demographics and how we live
@@ -57,7 +55,6 @@ FEEDS = [
     ("Phys.org", "https://phys.org/rss-feed/science-news/social-sciences/"),
     # Mind, brain and consciousness
     ("ScienceDaily", "https://www.sciencedaily.com/rss/mind_brain.xml"),
-    ("Medical Xpress", "https://medicalxpress.com/rss-feed/neuroscience-news/"),
     # Space
     ("ScienceDaily", "https://www.sciencedaily.com/rss/space_time.xml"),
     ("Phys.org", "https://phys.org/rss-feed/space-news/"),
@@ -143,8 +140,9 @@ def article_text(url, limit=2500):
 from zoneinfo import ZoneInfo
 now = dt.datetime.now(dt.timezone.utc)
 madrid = now.astimezone(ZoneInfo("Europe/Madrid"))
-# After 20:00 in Spain we prepare TOMORROW's page, so it's ready at midnight.
-target = (madrid + dt.timedelta(days=1)).date() if madrid.hour >= 20 else madrid.date()
+# From 14:00 in Spain we prepare TOMORROW's page, so it's ready at midnight even when GitHub
+# starts the run late. Before 14:00 we only fill in today if it's still missing.
+target = (madrid + dt.timedelta(days=1)).date() if madrid.hour >= 14 else madrid.date()
 today = target.isoformat()
 FORCE = os.environ.get("FORCE", "") == "1"
 print(f"Spain time {madrid:%Y-%m-%d %H:%M} -> preparing {today}")
@@ -225,6 +223,7 @@ preferred = [t for t in rotation if t not in recent_topics] + [t for t in rotati
 by_cat = {t: [c for c in candidates if c["cat"] == t] for t in ROTATION}
 chosen_cat = next((t for t in preferred if by_cat[t]), None)
 shortlist = (by_cat[chosen_cat][:12] if chosen_cat else [])
+n_main = len(shortlist)  # the AI chooses only among these; the rest are backups
 # backups from the next topics, in case the writer can't use any story in the chosen one
 for t in preferred:
     if t != chosen_cat and len(shortlist) < 18:
@@ -240,7 +239,7 @@ def ask_model(shortlist):
     listing = "\n".join(f"[{i}] ({c['source']}) {c['title']} — {c['summary'][:300]}" for i, c in enumerate(shortlist))
     prompt = f"""You choose the single best "good news" story for PausKIT, a calm daily diary app people read with their morning coffee.
 
-Today's topic is "{chosen_cat}". Prefer stories from that topic (they are listed first).
+Today's topic is "{chosen_cat}".
 Pick the ONE story that is the most fascinating, hopeful and surprising to a curious adult: a real discovery or research result, longevity and healthy-ageing science, technology or AI helping people, climate and energy progress that works, how populations and ways of living are changing, the brain and consciousness, or space.
 Do NOT pick: personal feats or human-interest stories about one individual, celebrities, cute animals, sport, politics, anything sad, scary or uncertain.
 
@@ -335,14 +334,13 @@ if shortlist:
     order = list(range(len(shortlist)))
     topic = None
     try:
-        choice = ask_model(shortlist)
+        choice = ask_model(shortlist[:n_main] or shortlist)
         if choice and isinstance(choice.get("pick"), int):
             first = [choice["pick"]] + ([choice["backup"]] if isinstance(choice.get("backup"), int) else [])
-            order = [i for i in first if 0 <= i < len(shortlist)] + [i for i in order if i not in first]
-            topic = choice.get("topic")
+            order = [i for i in first if 0 <= i < (n_main or len(shortlist))] + [i for i in order if i not in first]
     except Exception as e:
         errors.append(f"model pick: {e}"[:200])
-    for i in order[:6]:
+    for i in order[:8]:
         c = shortlist[i]
         try:
             written = write_story(c, article_text(c["link"])) if CF_TOKEN else None
