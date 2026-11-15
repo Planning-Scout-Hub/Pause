@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T01:07+00:00",
+ "updated": "2026-11-15T01:09+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -189,6 +189,23 @@
    "word": {
     "word": "Repair",
     "meaning": "Like gut lining, damaged things can mend. What could you fix today?",
+    "theme": "The Body",
+    "by": "ai"
+   }
+  },
+  "2026-11-15": {
+   "headline": "Brain Signals May Predict Alzheimer's",
+   "story": "Researchers have found hidden patterns of brain activity that can predict Alzheimer's risk years before symptoms appear. These patterns can also identify brains that are resistant to aging. In early tests, a new scoring system was able to predict cognitive decline more effectively than existing indicators. This system evaluates how different brain regions communicate with each other.",
+   "why": "This could mean an earlier warning for Alzheimer's, potentially allowing for interventions to protect memory. It may also help us understand what makes some brains more resistant to aging and cognitive decline.",
+   "topic": "Longevity",
+   "src_title": "Stanford scientists discover hidden brain signals that predict Alzheimer’s years before symptoms",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261112230444.htm",
+   "published": "2026-11-14",
+   "written_by": "ai",
+   "word": {
+    "word": "Care",
+    "meaning": "Like protecting memory, care for your mind today.",
     "theme": "The Body",
     "by": "ai"
    }
