@@ -1,5 +1,6 @@
 import { CONFIG } from "./config.js";
 import { THOUGHTS, PROMPTS, FACTS } from "./content.js";
+import { MYSTERIES, MYSTERIES_START } from "./mysteries.js";
 import * as Astro from "./astro.js";
 
 const $ = (s) => document.querySelector(s);
@@ -201,7 +202,11 @@ function buildDay(iso) {
   const themes = Object.keys(THOUGHTS);
   const theme = THOUGHTS[word?.theme] ? word.theme : themes[n % themes.length];
   const pick = (arr, o = 0) => arr[(n + o) % arr.length];
-  return { iso, sky, theme, word, personal, thought: pick(THOUGHTS[theme]), prompt: pick(PROMPTS[theme]), fact: pick(FACTS, 6) };
+  // From 15 Nov 2026, Food for Thought is "the mysteries": one per day, never repeated.
+  // Earlier days keep their original thought so saved journals still match.
+  const mi = dayNum(iso) - dayNum(MYSTERIES_START);
+  const thought = mi >= 0 && mi < MYSTERIES.length ? MYSTERIES[mi] : pick(THOUGHTS[theme]);
+  return { iso, sky, theme, word, personal, thought, prompt: pick(PROMPTS[theme]), fact: pick(FACTS, 6) };
 }
 
 let viewISO = TODAY;
