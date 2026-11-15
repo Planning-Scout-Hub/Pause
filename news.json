@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T01:09+00:00",
+ "updated": "2026-11-15T19:24+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -209,71 +209,93 @@
     "theme": "The Body",
     "by": "ai"
    }
+  },
+  "2026-11-16": {
+   "headline": "Nature Helps Protect Us",
+   "story": "Instead of using concrete and steel to protect against climate change, natural solutions like mangroves and forests can be used. These living systems can adapt to changing climate conditions. They can help protect against floods, droughts, and rising seas. This approach has been shown to be cost-effective in some countries.",
+   "why": "Using nature as a form of protection could be beneficial because it's cheaper and can adapt to changing conditions. This approach could help protect homes, farms, and cities from the effects of climate change.",
+   "topic": "Climate",
+   "src_title": "Concrete and steel—or mangroves and forests? When it comes to climate adaptation, nature is much cheaper",
+   "source": "Phys.org",
+   "link": "https://phys.org/news/2026-11-concrete-steel-mangroves-forests-climate.html",
+   "published": "2026-11-13",
+   "written_by": "ai",
+   "word": {
+    "word": "Shelter",
+    "meaning": "Like mangroves, find your own shelter today.",
+    "theme": "Nature",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-15",
+  "date": "11-16",
   "events": [
    {
-    "year": 2012,
-    "text": "Xi Jinping replaced Hu Jintao as General Secretary of the Chinese Communist Party, succeeding as the paramount leader of China.",
-    "link": "https://en.wikipedia.org/wiki/Xi_Jinping"
+    "year": 2002,
+    "text": "The first case of SARS, a zoonotic respiratory coronavirus disease, was recorded in Guangdong, China.",
+    "link": "https://en.wikipedia.org/wiki/2002%E2%80%932004_SARS_outbreak"
    },
    {
-    "year": 1988,
-    "text": "The Soviet spacecraft Buran (pictured), a reusable vehicle built in response to NASA's Space Shuttle program, was launched, uncrewed, on its only flight.",
-    "link": "https://en.wikipedia.org/wiki/Buran_(spacecraft)"
+    "year": 1992,
+    "text": "The largest hoard of Roman silver and gold in Britain was found in the village of Hoxne in Suffolk.",
+    "link": "https://en.wikipedia.org/wiki/Hoxne_Hoard"
    },
    {
-    "year": 1922,
-    "text": "Fountain of Time, in Chicago's Washington Park, was dedicated as a tribute to 100 years of peace between the United States and Great Britain following the Treaty of Ghent.",
-    "link": "https://en.wikipedia.org/wiki/Fountain_of_Time"
+    "year": 1973,
+    "text": "U.S. president Richard Nixon signed an act authorizing the construction of the Trans-Alaska Pipeline to transport oil from the Beaufort Sea to the Gulf of Alaska.",
+    "link": "https://en.wikipedia.org/wiki/Richard_Nixon"
    },
    {
-    "year": 1908,
-    "text": "After numerous atrocities in the territory, the Congo Free State was annexed to Belgium to form the Belgian Congo.",
-    "link": "https://en.wikipedia.org/wiki/Atrocities_in_the_Congo_Free_State"
+    "year": 1959,
+    "text": "The Sound of Music, a musical by Rodgers and Hammerstein based on The Story of the Trapp Family Singers, opened on Broadway at the Lunt-Fontanne Theatre.",
+    "link": "https://en.wikipedia.org/wiki/The_Sound_of_Music"
    },
    {
-    "year": 1859,
-    "text": "Sponsored by Greek businessman Evangelos Zappas, the first modern revival of the Olympic Games took place in Athens.",
-    "link": "https://en.wikipedia.org/wiki/Evangelos_Zappas"
+    "year": 1938,
+    "text": "Swiss chemist Albert Hofmann first synthesized the psychedelic drug LSD in Basel, Switzerland.",
+    "link": "https://en.wikipedia.org/wiki/Albert_Hofmann"
    },
    {
-    "year": 1760,
-    "text": "The chapel of the newly constructed Castellania in Valletta, Malta, was consecrated.",
-    "link": "https://en.wikipedia.org/wiki/Castellania_(Valletta)"
+    "year": 1476,
+    "text": "With the help of Stephen III and Stephen Báthory, Vlad the Impaler (pictured) ousted Basarab the Old and became the ruler of Wallachia for the third time.",
+    "link": "https://en.wikipedia.org/wiki/Stephen_the_Great"
+   },
+   {
+    "year": 534,
+    "text": "The second edition of the Code of Justinian, a codification of Roman law by Byzantine emperor Justinian I (pictured), was published.",
+    "link": "https://en.wikipedia.org/wiki/Code_of_Justinian"
    }
   ]
  },
- "prepared_for": "2026-11-15",
- "candidates_today": 195,
+ "prepared_for": "2026-11-16",
+ "candidates_today": 182,
  "feeds": {
   "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
-  "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
+  "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
   "https://www.goodnewsnetwork.org/category/news/health/feed/": 1,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 5,
-  "https://www.sciencedaily.com/rss/top/science.xml": 34,
-  "https://www.sciencedaily.com/rss/top/health.xml": 27,
+  "https://www.goodgoodgood.co/articles/rss.xml": 3,
+  "https://www.sciencedaily.com/rss/top/science.xml": 38,
+  "https://www.sciencedaily.com/rss/top/health.xml": 28,
   "https://www.sciencedaily.com/rss/top/technology.xml": 21,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 7,
+  "https://news.mit.edu/rss/research": 5,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 9,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 8,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 6,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 5,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 4,
   "https://phys.org/rss-feed/earth-news/": 30,
-  "https://www.carbonbrief.org/feed": 11,
+  "https://www.carbonbrief.org/feed": 8,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 22,
-  "https://phys.org/rss-feed/science-news/social-sciences/": 28,
+  "https://www.pewresearch.org/feed/": 21,
+  "https://phys.org/rss-feed/science-news/social-sciences/": 26,
   "https://www.sciencedaily.com/rss/mind_brain.xml": 8,
-  "https://www.sciencedaily.com/rss/space_time.xml": 13,
+  "https://www.sciencedaily.com/rss/space_time.xml": 12,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
