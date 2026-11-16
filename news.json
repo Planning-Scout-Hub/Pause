@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T19:24+00:00",
+ "updated": "2026-11-16T22:56+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -226,76 +226,98 @@
     "theme": "Nature",
     "by": "ai"
    }
+  },
+  "2026-11-17": {
+   "headline": "Electrons Make Impossible Jumps",
+   "story": "Scientists have observed electrons jumping across energy gaps in a material called graphene. This happens when graphene is exposed to intense pulses of light, which accelerates the electrons. The electrons seem to leap across gaps that would normally be off limits, with some transitions happening at a high probability. This was made possible by a new experimental technique that combines laser technology with electron microscopy.",
+   "why": "This discovery could help us understand quantum behavior better and potentially lead to new, ultrafast electronics that are controlled by light. It may also have implications for the development of high-speed semiconductor electronics.",
+   "topic": "Demographics",
+   "src_title": "Scientists capture electrons making seemingly impossible quantum jumps",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261112025523.htm",
+   "published": "2026-11-13",
+   "written_by": "ai",
+   "word": {
+    "word": "Leap",
+    "meaning": "Like electrons, take a leap into new possibilities today.",
+    "theme": "Change",
+    "by": "ai"
+   }
   }
  },
  "onThisDay": {
-  "date": "11-16",
+  "date": "11-17",
   "events": [
    {
-    "year": 2002,
-    "text": "The first case of SARS, a zoonotic respiratory coronavirus disease, was recorded in Guangdong, China.",
-    "link": "https://en.wikipedia.org/wiki/2002%E2%80%932004_SARS_outbreak"
+    "year": 2013,
+    "text": "An outbreak of 77 confirmed tornadoes occurred in seven U.S. states; it became the largest November tornado outbreak in Illinois and Indiana.",
+    "link": "https://en.wikipedia.org/wiki/Tornado_outbreak_of_November_17%2C_2013"
    },
    {
-    "year": 1992,
-    "text": "The largest hoard of Roman silver and gold in Britain was found in the village of Hoxne in Suffolk.",
-    "link": "https://en.wikipedia.org/wiki/Hoxne_Hoard"
+    "year": 2009,
+    "text": "Administrators at the University of East Anglia's Climatic Research Unit discovered that their servers had been hacked, and thousands of emails and files on climate change had been stolen.",
+    "link": "https://en.wikipedia.org/wiki/University_of_East_Anglia"
    },
    {
-    "year": 1973,
-    "text": "U.S. president Richard Nixon signed an act authorizing the construction of the Trans-Alaska Pipeline to transport oil from the Beaufort Sea to the Gulf of Alaska.",
-    "link": "https://en.wikipedia.org/wiki/Richard_Nixon"
+    "year": 1989,
+    "text": "Walt Disney Pictures released The Little Mermaid to theatres, beginning the Disney Renaissance.",
+    "link": "https://en.wikipedia.org/wiki/Walt_Disney_Pictures"
    },
    {
-    "year": 1959,
-    "text": "The Sound of Music, a musical by Rodgers and Hammerstein based on The Story of the Trapp Family Singers, opened on Broadway at the Lunt-Fontanne Theatre.",
-    "link": "https://en.wikipedia.org/wiki/The_Sound_of_Music"
+    "year": 1968,
+    "text": "NBC controversially cut away from an American football game between the Oakland Raiders and New York Jets to broadcast Heidi, causing viewers in the Eastern United States to miss the game's dramatic ending.",
+    "link": "https://en.wikipedia.org/wiki/NBC"
    },
    {
-    "year": 1938,
-    "text": "Swiss chemist Albert Hofmann first synthesized the psychedelic drug LSD in Basel, Switzerland.",
-    "link": "https://en.wikipedia.org/wiki/Albert_Hofmann"
+    "year": 1950,
+    "text": "The 14th Dalai Lama (pictured) assumed full temporal power as ruler of Tibet at the age of 15.",
+    "link": "https://en.wikipedia.org/wiki/14th_Dalai_Lama"
    },
    {
-    "year": 1476,
-    "text": "With the help of Stephen III and Stephen Báthory, Vlad the Impaler (pictured) ousted Basarab the Old and became the ruler of Wallachia for the third time.",
-    "link": "https://en.wikipedia.org/wiki/Stephen_the_Great"
+    "year": 1592,
+    "text": "Sigismund III Vasa, who was already King of Poland, succeeded his father John III as King of Sweden.",
+    "link": "https://en.wikipedia.org/wiki/Sigismund_III_Vasa"
    },
    {
-    "year": 534,
-    "text": "The second edition of the Code of Justinian, a codification of Roman law by Byzantine emperor Justinian I (pictured), was published.",
-    "link": "https://en.wikipedia.org/wiki/Code_of_Justinian"
+    "year": 1558,
+    "text": "Elizabeth I (pictured) became Queen of England and of Ireland, marking the beginning of the Elizabethan era.",
+    "link": "https://en.wikipedia.org/wiki/Elizabeth_I"
+   },
+   {
+    "year": 1292,
+    "text": "John Balliol was chosen to be King of Scots over Robert de Brus.",
+    "link": "https://en.wikipedia.org/wiki/John_Balliol"
    }
   ]
  },
- "prepared_for": "2026-11-16",
- "candidates_today": 182,
+ "prepared_for": "2026-11-17",
+ "candidates_today": 170,
  "feeds": {
   "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
   "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
-  "https://www.goodnewsnetwork.org/category/news/health/feed/": 1,
-  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 3,
-  "https://www.sciencedaily.com/rss/top/science.xml": 38,
-  "https://www.sciencedaily.com/rss/top/health.xml": 28,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 21,
+  "https://www.goodnewsnetwork.org/category/news/health/feed/": 2,
+  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 2,
+  "https://www.goodgoodgood.co/articles/rss.xml": 2,
+  "https://www.sciencedaily.com/rss/top/science.xml": 35,
+  "https://www.sciencedaily.com/rss/top/health.xml": 30,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 23,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
   "https://news.mit.edu/rss/research": 5,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 8,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 9,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 5,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 2,
   "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 4,
   "https://phys.org/rss-feed/earth-news/": 30,
-  "https://www.carbonbrief.org/feed": 8,
+  "https://www.carbonbrief.org/feed": 7,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 21,
-  "https://phys.org/rss-feed/science-news/social-sciences/": 26,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 8,
-  "https://www.sciencedaily.com/rss/space_time.xml": 12,
+  "https://www.pewresearch.org/feed/": 18,
+  "https://phys.org/rss-feed/science-news/social-sciences/": 21,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 10,
+  "https://www.sciencedaily.com/rss/space_time.xml": 13,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
