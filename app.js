@@ -183,7 +183,7 @@ function skyFor(iso) {
   if (!(iso in skyCache)) { try { skyCache[iso] = Astro.skyForDay(parseISO(iso)); } catch (e) { console.warn(e); skyCache[iso] = null; } }
   return skyCache[iso];
 }
-const myChart = () => (profile ? Astro.natalChart(profile) : null);
+const myChart = () => (profile?.birth_date ? Astro.natalChart(profile) : null);
 // Astrology is optional: saved on the account (or on this device for guests)
 function astroOn() {
   const m = user && !DEMO ? user.user_metadata?.astro : undefined;
@@ -466,8 +466,8 @@ function openAuth(mode, reason = "") {
   const msgs = {
     save: "Your words are safe. Create a free account and every entry is kept in your own private journal, organised by date.",
     chart: "Create a free account, then add your birth date, time and place to make your daily page personal.",
-    friends: "Create a free account to invite friends and see your compatibility.",
-    invite: "Create a free account (or log in), then add your birth details to see your compatibility.",
+    friends: "Create a free account to invite friends to PausKIT, so you can share your daily pause.",
+    invite: "Create a free account (or log in) to accept the invite. It takes a few seconds.",
   };
   $("#authTitle").textContent = titles[reason] || (mode === "signup" ? "Start your journal" : "Welcome back");
   $("#authMsg").textContent = msgs[reason] || "Your journal is private to you, organised by month and searchable.";
@@ -524,7 +524,7 @@ async function onAuthChanged() {
     const after = store.get(K.after);
     store.del(K.after);
     if (store.get(K.invite)) { if (store.get(K.invite + "_ok")) continueInvite(); else showInvite(); }
-    else if (after === "birth" && !profile && astroOn()) openBirth();
+    else if (after === "birth" && !profile?.birth_date && astroOn()) openBirth();
     else if (after === "friends") openFriends();
   } else friends = [];
   renderPage();
@@ -588,9 +588,7 @@ let picked = null;
 function openBirth() {
   picked = null;
   $("#birthTitle").textContent = "Your birth chart";
-  $("#birthMsg").textContent = store.get(K.invite)
-    ? "Last step: add your birth details so you and your friend can see your compatibility. Your friends will be able to see your chart."
-    : "Your birth date, time and place make your daily reading personal. Only you and friends you accept can see this.";
+  $("#birthMsg").textContent = "Your birth date, time and place make your daily reading personal. Only you and friends you accept can see this.";
   const p = profile;
   $("#bName").value = p?.display_name || "";
   $("#bDate").value = p?.birth_date || "";
@@ -681,7 +679,7 @@ $("#contactForm").addEventListener("submit", async (e) => {
 // ── My chart ─────────────────────────────────────────────────
 $("#chartBtn").onclick = () => {
   if (!user) { store.set(K.after, "birth"); return openAuth("signup", "chart"); }
-  if (!profile) return openBirth();
+  if (!profile?.birth_date) return openBirth();
   openChart();
 };
 function openChart() {
@@ -715,12 +713,16 @@ async function loadFriends() {
   try { friends = await api.listFriends(); } catch { friends = []; }
   const known = store.get(K.knownFriends) || [];
   const fresh = friends.filter((f) => !known.includes(f.user_id));
-  if (known.length && fresh.length) toast(`${fresh.map((f) => f.display_name || "A friend").join(", ")} accepted your invite! Open Friends to see your match.`);
+  if (known.length && fresh.length) toast(`${fresh.map((f) => f.display_name || "A friend").join(", ")} joined you on PausKIT 🎉`);
   store.set(K.knownFriends, friends.map((f) => f.user_id));
 }
 $("#friendsBtn").onclick = () => { if (!user) { store.set(K.after, "friends"); return openAuth("signup", "friends"); } openFriends(); };
 $("#addFriendBtn").onclick = async () => {
-  if (!profile) { close("#friendsModal"); return openBirth(); }
+  if (!profile?.display_name) {
+    const name = $("#myName").value.trim();
+    if (!name) { $("#myNameRow").hidden = false; $("#myName").focus(); return toast("Add your first name so your friend knows the invite is from you."); }
+    try { profile = await api.saveProfile({ ...(profile || {}), display_name: name }); $("#myNameRow").hidden = true; } catch (ex) { return toast("Couldn't save your name: " + ex.message); }
+  }
   try {
     const code = await api.createInvite();
     openShare("invite", { url: `${SITE_URL}?invite=${code}` });
@@ -729,19 +731,26 @@ $("#addFriendBtn").onclick = async () => {
 function openFriends() {
   const list = $("#friendsList");
   list.innerHTML = "";
-  const me = myChart();
-  if (!me) {
-    list.append(el("p", { className: "empty", textContent: "First add your own birth details, so PausKIT can compare charts." }),
-      el("button", { className: "share-btn", type: "button", textContent: "Add my birth details", onclick: () => { close("#friendsModal"); openBirth(); } }));
-    open("#friendsModal");
-    return;
-  }
-  if (!friends.length) list.append(el("p", { className: "empty", textContent: "No friends yet. Send an invite: once they accept and add their birth details, they'll appear here." }));
+  const astro = astroOn();
+  const me = astro ? myChart() : null;
+  $("#friendsTitle").textContent = astro ? "Friends & Compatibility" : "Friends";
+  $("#friendsIntro").textContent = astro
+    ? "Invite the people in your life to PausKIT. If you both add birth details, you'll also see your compatibility and what the sky is doing between you each day."
+    : "Invite the people in your life to join you on PausKIT: a few calm minutes a day, together.";
+  if (astro && !me) list.append(el("p", { className: "fine", textContent: "Want to see compatibility? Add your birth details." }),
+    el("button", { className: "share-btn", type: "button", textContent: "✦ Add my birth details", onclick: () => { close("#friendsModal"); openBirth(); } }));
+  if (!friends.length) list.append(el("p", { className: "empty", textContent: "No friends yet. Send an invite: once they join, they'll appear here." }));
   friends.forEach((f) => {
-    const them = f.birth_date ? Astro.natalChart(f) : null;
+    const them = me && f.birth_date ? Astro.natalChart(f) : null;
     const card = el("article", { className: "friend" });
     if (!them) {
-      card.append(el("div", { className: "friend-name", textContent: f.display_name || "Your friend" }), el("p", { className: "fine", textContent: "They've accepted, but haven't added their birth details yet." }));
+      card.append(el("div", { className: "friend-name", textContent: f.display_name || "Your friend" }), el("p", { className: "fine", textContent: "On PausKIT with you." }));
+      const delS = el("button", { className: "del", type: "button", textContent: "Remove friend" });
+      delS.onclick = async () => {
+        if (!delS.classList.contains("confirm")) { delS.classList.add("confirm"); delS.textContent = "Tap again to remove"; return; }
+        try { await api.removeFriend(f.user_id); friends = friends.filter((x) => x.user_id !== f.user_id); store.set(K.knownFriends, friends.map((x) => x.user_id)); openFriends(); } catch (ex) { toast("Couldn't remove: " + ex.message); }
+      };
+      card.append(el("div", { className: "friend-actions" }, delS));
       list.append(card);
       return;
     }
@@ -790,17 +799,19 @@ async function showInvite() {
   if (inv.is_mine) { store.del(K.invite); return toast("That's your own invite link. Send it to a friend!"); }
   const name = inv.inviter_name || "A friend";
   $("#inviteTitle").textContent = `${name} invited you`;
-  $("#inviteMsg").textContent = `${name} wants to be friends on PausKIT, a daily diary for your mind. Accept to see your cosmic compatibility and what's happening between you two each day. You'll be able to see each other's birth charts.`;
+  $("#inviteMsg").textContent = `${name} invited you to PausKIT: a few calm minutes a day with one piece of good news, a word to carry with you, a question worth thinking about, and a private journal. It's free.`;
   open("#inviteModal");
 }
-$("#inviteAccept").onclick = () => { store.set(K.invite + "_ok", true); close("#inviteModal"); continueInvite(); };
+$("#inviteAccept").onclick = () => { store.set(K.invite + "_ok", true); const n = $("#inviteName").value.trim(); if (n) store.set(K.invite + "_name", n); close("#inviteModal"); continueInvite(); };
 $("#inviteDecline").onclick = () => { store.del(K.invite); store.del(K.invite + "_ok"); close("#inviteModal"); };
 async function continueInvite() {
   const code = store.get(K.invite);
   if (!code) return;
   if (!user) return openAuth("signup", "invite");
-  if (!profile) return openBirth();
   try {
+    const myName = store.get(K.invite + "_name");
+    if (myName && !profile?.display_name) { try { profile = await api.saveProfile({ ...(profile || {}), display_name: myName }); } catch { /* name is optional */ } }
+    store.del(K.invite + "_name");
     const name = await api.acceptInvite(code);
     store.del(K.invite); store.del(K.invite + "_ok");
     await loadFriends();
@@ -866,7 +877,7 @@ function shareContent(kind, extra = {}) {
       const { f, c, me, them } = extra;
       return { label: "Our Cosmic Match", main: `${me.pos.Sun.sign.glyph} ${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.glyph} ${them.pos.Sun.sign.name}: ${c.score}%`, sub: `Me & ${f.display_name || "my friend"}`, text: `${f.display_name || "My friend"} and I are a ${c.score}% cosmic match (${me.pos.Sun.sign.name} + ${them.pos.Sun.sign.name}). Check yours:` };
     }
-    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} wants to see your cosmic compatibility`, sub: "Tap the link to accept", text: `I'd love to see our cosmic compatibility on PausKIT 🌙 Accept my invite here:`, url: extra.url, title: "Invite a friend" };
+    case "invite": return { label: "You're invited", main: `${profile?.display_name || "Your friend"} invited you to take a daily pause`, sub: "Good news, a word for the day, a question to think about, and a private journal", text: `I've started taking a few calm minutes a day with PausKIT ☕ Good news, a word for the day, a question that makes you think, and a private journal. It's free. Join me here:`, url: extra.url, title: "Invite a friend" };
     default: return { label: "PausKIT", main: "A daily diary for your mind", sub: "One good news story, a word for the day, food for thought and a journal idea that helps.", text: "I've been using PausKIT, a daily diary for your mind. A new page every day:" };
   }
 }
@@ -924,7 +935,7 @@ async function openShare(kind, extra) {
     .forEach(([name, href]) => grid.append(el("a", { href, target: "_blank", rel: "noopener", textContent: name })));
   grid.append(el("button", { type: "button", textContent: kind === "invite" ? "Copy invite link" : "Copy text", onclick: async () => { try { await navigator.clipboard.writeText(kind === "invite" ? url : full); toast("Copied"); } catch { toast("Couldn't copy"); } } }));
   if (blob && kind !== "invite") grid.append(el("a", { href: URL.createObjectURL(blob), download: "pause.png", textContent: "Save image" }));
-  if (kind === "invite") grid.append(el("p", { className: "fine wide-note", textContent: "This link works once. When your friend accepts and adds their birth details, they'll appear in your Friends list." }));
+  if (kind === "invite") grid.append(el("p", { className: "fine wide-note", textContent: "This link works once. When your friend joins, they'll appear in your Friends list." }));
 }
 document.querySelectorAll("[data-share]").forEach((b) => (b.onclick = () => openShare(b.dataset.share)));
 $("#shareAppBtn").onclick = () => openShare("app");
