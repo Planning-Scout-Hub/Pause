@@ -6,7 +6,8 @@ import * as Astro from "./astro.js";
 const $ = (s) => document.querySelector(s);
 const el = (tag, props = {}, ...kids) => { const n = Object.assign(document.createElement(tag), props); n.append(...kids); return n; };
 const SITE_URL = location.origin + location.pathname;
-const MAIN_URL = "https://planning-scout-hub.github.io/Pause/"; // the address we share (not blocked by Cloudflare outages in Spain)
+const MAIN_URL = "https://pauskit.com/"; // the address we share (GitHub Pages, DNS only: not affected by Cloudflare blocks in Spain)
+const BACKUP_URL = "https://pause-diary.pages.dev/";
 
 // ── Anonymous usage counts (no names, emails or journal text; just "a visit happened", "an entry was saved") ──
 const SRC = (() => {
@@ -725,7 +726,7 @@ $("#addFriendBtn").onclick = async () => {
   }
   try {
     const code = await api.createInvite();
-    openShare("invite", { url: `${SITE_URL}?invite=${code}` });
+    openShare("invite", { url: `${MAIN_URL}?invite=${code}` });
   } catch (ex) { toast(ex.message || "Couldn't create an invite."); }
 };
 function openFriends() {
@@ -902,7 +903,7 @@ async function makeCard(c) {
   const y = wrap(x, c.main, 150, 380, W - 260, LH);
   if (c.sub) { x.fillStyle = "#2E3A59"; x.font = "44px Kalam, cursive"; wrap(x, c.sub, 150, y + LH * 1.5, W - 260, LH); }
   x.fillStyle = "#8B3A17"; x.font = "76px 'Shadows Into Light', cursive"; x.fillText(CONFIG.APP_NAME, 150, H - 130);
-  x.fillStyle = "#857A70"; x.font = "30px Nunito, sans-serif"; x.fillText("a daily diary for your mind · " + SITE_URL.replace(/^https?:\/\//, "").replace(/\/$/, ""), 150, H - 82);
+  x.fillStyle = "#857A70"; x.font = "30px Nunito, sans-serif"; x.fillText("a daily diary for your mind · " + MAIN_URL.replace(/^https?:\/\//, "").replace(/\/$/, ""), 150, H - 82);
   return new Promise((res) => cv.toBlob((b) => res(b), "image/png"));
 }
 function roundRect(x, a, b, w, h, r) { x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r); x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath(); }
@@ -1011,7 +1012,7 @@ function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.ad
 document.getElementById("netRetry")?.addEventListener("click", () => location.reload());
 // PausKIT lives at two addresses (GitHub Pages = main, Cloudflare = backup). The notice links to the other one.
 (() => { const alt = document.getElementById("netAlt"); if (!alt) return;
-  const other = location.hostname.endsWith("github.io") ? "https://pause-diary.pages.dev/" : "https://planning-scout-hub.github.io/Pause/";
+  const other = location.hostname.endsWith("pages.dev") ? MAIN_URL : BACKUP_URL;
   alt.href = other + location.search; })();
 if (new URLSearchParams(location.search).has("get")) setTimeout(() => openGet(), 300);
 renderPage();

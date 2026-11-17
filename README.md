@@ -1,6 +1,6 @@
 # Pause — a daily diary for your mind
 
-**Live site:** https://pause-diary.pages.dev/ (hosted on Cloudflare Pages; the old GitHub Pages address forwards here)
+**Live site:** https://pauskit.com/ (GitHub Pages, custom domain; DNS at Cloudflare in DNS-only mode). Backup: https://pause-diary.pages.dev/ (Cloudflare Pages). The old planning-scout-hub.github.io/Pause/ address forwards to pauskit.com.
 
 A one-page, installable web app that looks like an open diary. Every day has a **theme chosen by what's happening in the sky** (the Moon's sign, a New or Full Moon, a planet changing sign or turning retrograde, an eclipse). The theme ties together:
 
