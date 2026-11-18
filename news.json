@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T13:28+00:00",
+ "updated": "2026-11-18T13:04+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -260,86 +260,123 @@
     "theme": "Rest",
     "by": "ai"
    }
+  },
+  "2026-11-19": {
+   "headline": "Mars Helicopter Blades Tested Beyond Sound",
+   "story": "NASA has successfully tested helicopter blades for Mars at very high speeds, increasing potential lift. This could help future helicopters carry more equipment and travel farther. The tests were done in a special chamber that mimics Mars' atmosphere. The goal is to develop more powerful aircraft for the planet.",
+   "why": "This breakthrough could enable helicopters to explore more of Mars and carry heavier scientific equipment, which could lead to new discoveries about the planet. It could also help support future robotic and human missions to Mars.",
+   "topic": "Space",
+   "src_title": "NASA pushes Mars helicopter blades beyond the speed of sound",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261117033920.htm",
+   "published": "2026-11-17",
+   "written_by": "ai",
+   "word": {
+    "word": "Lift",
+    "meaning": "Like Mars helicopters, what can you lift today?",
+    "theme": "Nature",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-19",
+    "events": [
+     {
+      "year": 1991,
+      "text": "Mexican singer Luis Miguel released the album Romance, which led to a revival of interest in bolero music.",
+      "link": "https://en.wikipedia.org/wiki/Luis_Miguel"
+     },
+     {
+      "year": 1985,
+      "text": "The first of five summits (pictured) between Soviet general secretary Mikhail Gorbachev and U.S. president Ronald Reagan began in Geneva.",
+      "link": "https://en.wikipedia.org/wiki/Geneva_Summit_(1985)"
+     },
+     {
+      "year": 1969,
+      "text": "Playing for Santos against Vasco da Gama in the Maracanã Stadium in Rio de Janeiro, Brazilian footballer Pelé scored his thousandth goal (commemorative stamp pictured).",
+      "link": "https://en.wikipedia.org/wiki/Santos_FC"
+     },
+     {
+      "year": 1933,
+      "text": "A coalition of right-wing parties won the majority of seats in the Congress of Deputies in the first general election in Spain with suffrage extended to women.",
+      "link": "https://en.wikipedia.org/wiki/Congress_of_Deputies"
+     },
+     {
+      "year": 1824,
+      "text": "Temenggong Abdul Rahman of Johor and Sultan Hussein Shah of Johor ceded the governance of Singapore to the British East India Company.",
+      "link": "https://en.wikipedia.org/wiki/Temenggong_Abdul_Rahman"
+     },
+     {
+      "year": 1794,
+      "text": "The United States and Great Britain signed the Jay Treaty, the basis for ten years of peaceful trade between the two nations.",
+      "link": "https://en.wikipedia.org/wiki/Jay_Treaty"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-18",
+  "date": "11-19",
   "events": [
    {
-    "year": 2017,
-    "text": "Cyclone Numa, a rare \"medicane\", made landfall in Greece to become the worst weather event that the country had experienced since 1977.",
-    "link": "https://en.wikipedia.org/wiki/Cyclone_Numa"
-   },
-   {
-    "year": 2011,
-    "text": "The sandbox video game Minecraft exited beta with the official release of version 1.0.",
-    "link": "https://en.wikipedia.org/wiki/Minecraft"
-   },
-   {
-    "year": 2003,
-    "text": "With its ruling in Goodridge v. Department of Public Health, the Massachusetts Supreme Judicial Court made the state the first in the U.S. to legalize same-sex marriage.",
-    "link": "https://en.wikipedia.org/wiki/Goodridge_v._Department_of_Public_Health"
-   },
-   {
     "year": 1991,
-    "text": "The current flag of Uzbekistan was adopted, making the country the first newly independent republic in Central Asia to choose a new flag.",
-    "link": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
+    "text": "Mexican singer Luis Miguel released the album Romance, which led to a revival of interest in bolero music.",
+    "link": "https://en.wikipedia.org/wiki/Luis_Miguel"
    },
    {
-    "year": 1977,
-    "text": "Solomon Islands ratified the adoption of a new flag (pictured).",
-    "link": "https://en.wikipedia.org/wiki/Flag_of_Solomon_Islands"
+    "year": 1985,
+    "text": "The first of five summits (pictured) between Soviet general secretary Mikhail Gorbachev and U.S. president Ronald Reagan began in Geneva.",
+    "link": "https://en.wikipedia.org/wiki/Geneva_Summit_(1985)"
    },
    {
-    "year": 1956,
-    "text": "At the Polish embassy in Moscow, a phrase in an address by Soviet leader Nikita Khrushchev (pictured) was translated into English as \"We will bury you\", prompting Western envoys to leave the room.",
-    "link": "https://en.wikipedia.org/wiki/Nikita_Khrushchev"
+    "year": 1969,
+    "text": "Playing for Santos against Vasco da Gama in the Maracanã Stadium in Rio de Janeiro, Brazilian footballer Pelé scored his thousandth goal (commemorative stamp pictured).",
+    "link": "https://en.wikipedia.org/wiki/Santos_FC"
    },
    {
-    "year": 1872,
-    "text": "American suffragist Susan B. Anthony (pictured) was arrested and later fined $100 for having voted in the presidential election two weeks earlier.",
-    "link": "https://en.wikipedia.org/wiki/Women's_suffrage_in_the_United_States"
+    "year": 1933,
+    "text": "A coalition of right-wing parties won the majority of seats in the Congress of Deputies in the first general election in Spain with suffrage extended to women.",
+    "link": "https://en.wikipedia.org/wiki/Congress_of_Deputies"
    },
    {
-    "year": 1865,
-    "text": "\"The Celebrated Jumping Frog of Calaveras County\" was published, becoming the first great success of American author Mark Twain.",
-    "link": "https://en.wikipedia.org/wiki/The_Celebrated_Jumping_Frog_of_Calaveras_County"
+    "year": 1824,
+    "text": "Temenggong Abdul Rahman of Johor and Sultan Hussein Shah of Johor ceded the governance of Singapore to the British East India Company.",
+    "link": "https://en.wikipedia.org/wiki/Temenggong_Abdul_Rahman"
    },
    {
-    "year": 1210,
-    "text": "Otto IV, Holy Roman Emperor, was ex­com­mu­ni­cated by Pope Innocent III after Otto commanded him to annul the Concordat of Worms.",
-    "link": "https://en.wikipedia.org/wiki/Otto_IV%2C_Holy_Roman_Emperor"
+    "year": 1794,
+    "text": "The United States and Great Britain signed the Jay Treaty, the basis for ten years of peaceful trade between the two nations.",
+    "link": "https://en.wikipedia.org/wiki/Jay_Treaty"
    }
   ]
  },
- "prepared_for": "2026-11-18",
- "candidates_today": 174,
+ "prepared_for": "2026-11-19",
+ "candidates_today": 180,
  "feeds": {
   "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
   "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
-  "https://www.goodnewsnetwork.org/category/news/health/feed/": 2,
+  "https://www.goodnewsnetwork.org/category/news/health/feed/": 3,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 2,
   "https://www.goodgoodgood.co/articles/rss.xml": 2,
-  "https://www.sciencedaily.com/rss/top/science.xml": 31,
+  "https://www.sciencedaily.com/rss/top/science.xml": 34,
   "https://www.sciencedaily.com/rss/top/health.xml": 29,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 23,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 22,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 5,
+  "https://news.mit.edu/rss/research": 3,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 8,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 9,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 1,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 4,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 0,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 6,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 18,
-  "https://phys.org/rss-feed/science-news/social-sciences/": 25,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 13,
-  "https://www.sciencedaily.com/rss/space_time.xml": 11,
+  "https://www.pewresearch.org/feed/": 16,
+  "https://phys.org/rss-feed/science-news/social-sciences/": 23,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 16,
+  "https://www.sciencedaily.com/rss/space_time.xml": 10,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
