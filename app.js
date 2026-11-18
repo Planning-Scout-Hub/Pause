@@ -1,6 +1,7 @@
 import { CONFIG } from "./config.js";
 import { THOUGHTS, PROMPTS, FACTS } from "./content.js";
 import { MYSTERIES, MYSTERIES_START } from "./mysteries.js";
+import { PROMPTS_DAILY, FACTS_DAILY, DAILY_START } from "./daily.js";
 import * as Astro from "./astro.js";
 
 const $ = (s) => document.querySelector(s);
@@ -207,7 +208,11 @@ function buildDay(iso) {
   // Earlier days keep their original thought so saved journals still match.
   const mi = dayNum(iso) - dayNum(MYSTERIES_START);
   const thought = mi >= 0 && mi < MYSTERIES.length ? MYSTERIES[mi] : pick(THOUGHTS[theme]);
-  return { iso, sky, theme, word, personal, thought, prompt: pick(PROMPTS[theme]), fact: pick(FACTS, 6) };
+  // From 19 Nov 2026, prompts and facts are one-per-day lists too (never repeated); earlier days unchanged.
+  const di = dayNum(iso) - dayNum(DAILY_START);
+  const prompt = di >= 0 && di < PROMPTS_DAILY.length ? PROMPTS_DAILY[di] : pick(PROMPTS[theme]);
+  const fact = di >= 0 && di < FACTS_DAILY.length ? FACTS_DAILY[di] : pick(FACTS, 6);
+  return { iso, sky, theme, word, personal, thought, prompt, fact };
 }
 
 let viewISO = TODAY;
@@ -220,9 +225,8 @@ function renderPage() {
   $("#title").textContent = parseISO(viewISO).toLocaleDateString("en-GB", { weekday: innerWidth < 380 ? "short" : "long", day: "numeric", month: "long", year: "numeric" });
   applyAstro();
   const w = day.word;
-  $("#word").textContent = w ? w.word : (news ? "Wonder" : "…");
-  $("#wordMeaning").textContent = w ? (w.meaning || "") : !news ? "Choosing today's word from today's good news…" : viewISO > TODAY ? "This day's word arrives that morning, with its good news." : "A word to carry with you today.";
-  $("#wordToNews").hidden = !newsFor(viewISO);
+  $("#word").textContent = w ? w.word : "…";
+
 
   $("#thoughtText").textContent = day.thought.text;
   $("#thoughtMore").textContent = day.thought.more;
@@ -278,9 +282,10 @@ function renderNews() {
 }
 function renderOnThisDay() {
   const box = $("#onThisDay");
-  const otd = news?.onThisDay;
+  // Saved per day by the daily job; older news.json files had a single onThisDay block
   const mmdd = viewISO.slice(5);
-  if (!otd || otd.date !== mmdd || !otd.events?.length) { box.hidden = true; return; }
+  const otd = news?.days?.[viewISO]?.otd || (news?.onThisDay?.date === mmdd ? news.onThisDay : null);
+  if (!otd || !otd.events?.length) { box.hidden = true; return; }
   const ev = otd.events[dayNum(viewISO) % otd.events.length];
   box.innerHTML = "";
   box.append(el("b", { textContent: `On this day in ${ev.year}: ` }), ev.text, " ", ev.link ? el("a", { href: ev.link, target: "_blank", rel: "noopener", textContent: "Wikipedia" }) : "");
@@ -582,7 +587,6 @@ $("#setShare").onclick = closeSettingsThen(() => openShare("app"));
 $("#setReminder").onclick = closeSettingsThen(() => open("#reminderModal"));
 $("#setContact").onclick = closeSettingsThen(() => $("#contactBtn").click());
 $("#setAuth").onclick = closeSettingsThen(async () => { if (user) { await api.signOut(); onAuthChanged(); toast("Signed out"); } else openAuth("signup"); });
-$("#wordToNews").onclick = () => { const d = document.querySelector('[data-sec="news"]'); d.open = true; d.scrollIntoView({ behavior: "smooth", block: "start" }); };
 
 // ── Birth details ────────────────────────────────────────────
 let picked = null;
@@ -866,7 +870,7 @@ function shareContent(kind, extra = {}) {
   switch (kind) {
     case "thought": return { label: "Food for Thought", main: day.thought.text, sub: day.thought.ask, text: `${day.thought.text}\n\n${day.thought.ask}` };
     case "news": { const n = newsFor(viewISO); return n ? { label: "Good News", main: n.headline, sub: n.why || n.source, text: `Some good news: ${n.headline}. ${n.why || ""}\nRead it at ${n.source}: ${n.link}\nFound on PausKIT:`, url: SITE_URL } : { label: "Good News", main: "Good things are happening", sub: "", text: "Daily good news on PausKIT:" }; }
-    case "word": { const w = day.word; return { label: "Word of the day", main: w ? w.word : "Wonder", sub: w?.meaning || "", text: `Today's word: ${w ? w.word : "Wonder"}. ${w?.meaning || ""}` }; }
+    case "word": { const w = day.word; return { label: "Word of the day", main: w ? w.word : "…", sub: "", text: `Today's word: ${w ? w.word : "…"}` }; }
     case "fact": return { label: "Random Fact of the Day", main: day.fact.text, sub: "Wait, really?", text: `Did you know? ${day.fact.text}` };
     case "sky": return { label: `Today in the Sky · ${date}`, main: sky ? Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000)) : "", sub: sky ? `Moon in ${sky.moon.sign} · ${sky.moon.phaseName}` : "", text: sky ? `${Astro.catchyHeadline(sky, Math.floor(Date.parse(viewISO) / 86400000))}. ${Astro.explainHeadline(sky)}` : "" };
     case "chart": {

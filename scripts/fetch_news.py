@@ -425,6 +425,10 @@ try:
 except Exception as e:
     errors.append(f"Wikipedia: {e}"[:200])
 
+# On this day is saved with its own date, so preparing tomorrow never removes today's
+if on_this_day and today in days:
+    days[today]["otd"] = on_this_day
+
 out = {
     "updated": now.isoformat(timespec="minutes"),
     "days": days,
