@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:04+00:00",
+ "updated": "2026-11-19T13:10+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -312,71 +312,83 @@
      }
     ]
    }
+  },
+  "2026-11-20": {
+   "headline": "Gut Bacterium Sugar Affects Fat Burning",
+   "story": "Scientists found a sugar made by a gut bacterium that can help burn visceral fat, which is the harmful fat around internal organs. This sugar also reduces weight gain and improves metabolic health. The researchers discovered this by studying a specific bacterium and its effects. They also looked at data from many people to understand the role of this sugar.",
+   "why": "This discovery could lead to new ways to address obesity, which is a growing concern. It might help us understand how to improve our metabolic health and reduce harmful fat.",
+   "topic": "Health",
+   "src_title": "Sugar made by gut bacterium may help the body burn visceral fat",
+   "source": "Medical Xpress",
+   "link": "https://medicalxpress.com/news/2026-11-sugar-gut-bacterium-body-visceral.html",
+   "published": "2026-11-19",
+   "written_by": "ai",
+   "word": {
+    "word": "Healing",
+    "meaning": "Like the body's fat burning, small changes can heal within. What heals you today?",
+    "theme": "The Body",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-20",
+    "events": [
+     {
+      "year": 1985,
+      "text": "Windows 1.0, the first version of Microsoft Windows available to the public, was released.",
+      "link": "https://en.wikipedia.org/wiki/Windows_1.0"
+     },
+     {
+      "year": 1947,
+      "text": "Princess Elizabeth, daughter of King George VI, married Lieutenant Philip Mountbatten, who was given the title Duke of Edinburgh.",
+      "link": "https://en.wikipedia.org/wiki/Elizabeth_II"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-19",
+  "date": "11-20",
   "events": [
    {
-    "year": 1991,
-    "text": "Mexican singer Luis Miguel released the album Romance, which led to a revival of interest in bolero music.",
-    "link": "https://en.wikipedia.org/wiki/Luis_Miguel"
-   },
-   {
     "year": 1985,
-    "text": "The first of five summits (pictured) between Soviet general secretary Mikhail Gorbachev and U.S. president Ronald Reagan began in Geneva.",
-    "link": "https://en.wikipedia.org/wiki/Geneva_Summit_(1985)"
+    "text": "Windows 1.0, the first version of Microsoft Windows available to the public, was released.",
+    "link": "https://en.wikipedia.org/wiki/Windows_1.0"
    },
    {
-    "year": 1969,
-    "text": "Playing for Santos against Vasco da Gama in the Maracanã Stadium in Rio de Janeiro, Brazilian footballer Pelé scored his thousandth goal (commemorative stamp pictured).",
-    "link": "https://en.wikipedia.org/wiki/Santos_FC"
-   },
-   {
-    "year": 1933,
-    "text": "A coalition of right-wing parties won the majority of seats in the Congress of Deputies in the first general election in Spain with suffrage extended to women.",
-    "link": "https://en.wikipedia.org/wiki/Congress_of_Deputies"
-   },
-   {
-    "year": 1824,
-    "text": "Temenggong Abdul Rahman of Johor and Sultan Hussein Shah of Johor ceded the governance of Singapore to the British East India Company.",
-    "link": "https://en.wikipedia.org/wiki/Temenggong_Abdul_Rahman"
-   },
-   {
-    "year": 1794,
-    "text": "The United States and Great Britain signed the Jay Treaty, the basis for ten years of peaceful trade between the two nations.",
-    "link": "https://en.wikipedia.org/wiki/Jay_Treaty"
+    "year": 1947,
+    "text": "Princess Elizabeth, daughter of King George VI, married Lieutenant Philip Mountbatten, who was given the title Duke of Edinburgh.",
+    "link": "https://en.wikipedia.org/wiki/Elizabeth_II"
    }
   ]
  },
- "prepared_for": "2026-11-19",
- "candidates_today": 180,
+ "prepared_for": "2026-11-20",
+ "candidates_today": 202,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 3,
+  "https://reasonstobecheerful.world/feed/": 4,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
-  "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
-  "https://www.goodnewsnetwork.org/category/news/health/feed/": 3,
-  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 2,
-  "https://www.goodgoodgood.co/articles/rss.xml": 2,
-  "https://www.sciencedaily.com/rss/top/science.xml": 34,
+  "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
+  "https://www.goodnewsnetwork.org/category/news/health/feed/": 2,
+  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 3,
+  "https://www.goodgoodgood.co/articles/rss.xml": 1,
+  "https://www.sciencedaily.com/rss/top/science.xml": 38,
   "https://www.sciencedaily.com/rss/top/health.xml": 29,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 22,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 19,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 3,
+  "https://news.mit.edu/rss/research": 5,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 9,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 5,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 0,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 3,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 6,
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 6,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 16,
-  "https://phys.org/rss-feed/science-news/social-sciences/": 23,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 16,
-  "https://www.sciencedaily.com/rss/space_time.xml": 10,
+  "https://www.pewresearch.org/feed/": 39,
+  "https://phys.org/rss-feed/science-news/social-sciences/": 30,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 15,
+  "https://www.sciencedaily.com/rss/space_time.xml": 9,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
