@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T13:10+00:00",
+ "updated": "2026-11-20T21:19+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -344,53 +344,137 @@
      }
     ]
    }
+  },
+  "2026-11-21": {
+   "headline": "Protein Found to Fight Alzheimer's",
+   "story": "Scientists have found a protein that could help protect against Alzheimer's disease. In experiments with mice, boosting this protein reduced toxic tau tangles and brain shrinkage. Removing the protein made the damage worse. This protein seems to play a critical role in protecting the brain.",
+   "why": "This discovery could lead to new treatments for Alzheimer's and other forms of dementia by strengthening the brain's own protective mechanisms. It may help preserve connections between nerve cells and reduce brain damage.",
+   "topic": "Longevity",
+   "src_title": "A little-known protein could be a powerful weapon against Alzheimer’s",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261114202233.htm",
+   "published": "2026-11-18",
+   "written_by": "ai",
+   "word": {
+    "word": "Protect",
+    "meaning": "Like the brain's new protein, what can you protect today?",
+    "theme": "The Body",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-21",
+    "events": [
+     {
+      "year": 1977,
+      "text": "\"God Defend New Zealand\" became New Zealand's second national anthem, on equal standing with \"God Save the King\", which had been the traditional anthem since 1840.",
+      "link": "https://en.wikipedia.org/wiki/God_Defend_New_Zealand"
+     },
+     {
+      "year": 1964,
+      "text": "The Verrazzano–Narrows Bridge (pictured), connecting Staten Island and Brooklyn in New York City, opened to traffic as the longest suspension bridge in the world at the time.",
+      "link": "https://en.wikipedia.org/wiki/Verrazzano%E2%80%93Narrows_Bridge"
+     },
+     {
+      "year": 1961,
+      "text": "La Ronde, the first revolving restaurant in the United States, was inaugurated.",
+      "link": "https://en.wikipedia.org/wiki/La_Ronde_(restaurant)"
+     },
+     {
+      "year": 1959,
+      "text": "American disc jockey Alan Freed (pictured), who popularized the term rock and roll, was fired from WABC-AM for his role in the payola scandal.",
+      "link": "https://en.wikipedia.org/wiki/Disc_jockey"
+     },
+     {
+      "year": 1922,
+      "text": "Rebecca Latimer Felton (pictured) became the first woman to serve in the United States Senate, albeit for only one day.",
+      "link": "https://en.wikipedia.org/wiki/Rebecca_Latimer_Felton"
+     },
+     {
+      "year": 1877,
+      "text": "Thomas Edison announced his invention of the phonograph, a device able to record and play sound.",
+      "link": "https://en.wikipedia.org/wiki/Thomas_Edison"
+     },
+     {
+      "year": 1620,
+      "text": "The Mayflower Compact, the first governing document of the Plymouth Colony, was signed by 41 of the Mayflower's passengers while the ship was anchored in what is now Provincetown Harbor.",
+      "link": "https://en.wikipedia.org/wiki/Mayflower_Compact"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-20",
+  "date": "11-21",
   "events": [
    {
-    "year": 1985,
-    "text": "Windows 1.0, the first version of Microsoft Windows available to the public, was released.",
-    "link": "https://en.wikipedia.org/wiki/Windows_1.0"
+    "year": 1977,
+    "text": "\"God Defend New Zealand\" became New Zealand's second national anthem, on equal standing with \"God Save the King\", which had been the traditional anthem since 1840.",
+    "link": "https://en.wikipedia.org/wiki/God_Defend_New_Zealand"
    },
    {
-    "year": 1947,
-    "text": "Princess Elizabeth, daughter of King George VI, married Lieutenant Philip Mountbatten, who was given the title Duke of Edinburgh.",
-    "link": "https://en.wikipedia.org/wiki/Elizabeth_II"
+    "year": 1964,
+    "text": "The Verrazzano–Narrows Bridge (pictured), connecting Staten Island and Brooklyn in New York City, opened to traffic as the longest suspension bridge in the world at the time.",
+    "link": "https://en.wikipedia.org/wiki/Verrazzano%E2%80%93Narrows_Bridge"
+   },
+   {
+    "year": 1961,
+    "text": "La Ronde, the first revolving restaurant in the United States, was inaugurated.",
+    "link": "https://en.wikipedia.org/wiki/La_Ronde_(restaurant)"
+   },
+   {
+    "year": 1959,
+    "text": "American disc jockey Alan Freed (pictured), who popularized the term rock and roll, was fired from WABC-AM for his role in the payola scandal.",
+    "link": "https://en.wikipedia.org/wiki/Disc_jockey"
+   },
+   {
+    "year": 1922,
+    "text": "Rebecca Latimer Felton (pictured) became the first woman to serve in the United States Senate, albeit for only one day.",
+    "link": "https://en.wikipedia.org/wiki/Rebecca_Latimer_Felton"
+   },
+   {
+    "year": 1877,
+    "text": "Thomas Edison announced his invention of the phonograph, a device able to record and play sound.",
+    "link": "https://en.wikipedia.org/wiki/Thomas_Edison"
+   },
+   {
+    "year": 1620,
+    "text": "The Mayflower Compact, the first governing document of the Plymouth Colony, was signed by 41 of the Mayflower's passengers while the ship was anchored in what is now Provincetown Harbor.",
+    "link": "https://en.wikipedia.org/wiki/Mayflower_Compact"
    }
   ]
  },
- "prepared_for": "2026-11-20",
- "candidates_today": 202,
+ "prepared_for": "2026-11-21",
+ "candidates_today": 216,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 4,
+  "https://reasonstobecheerful.world/feed/": 5,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
   "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
-  "https://www.goodnewsnetwork.org/category/news/health/feed/": 2,
-  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 3,
-  "https://www.goodgoodgood.co/articles/rss.xml": 1,
-  "https://www.sciencedaily.com/rss/top/science.xml": 38,
-  "https://www.sciencedaily.com/rss/top/health.xml": 29,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 19,
+  "https://www.goodnewsnetwork.org/category/news/health/feed/": 1,
+  "https://www.goodnewsnetwork.org/category/news/earth/feed/": 2,
+  "https://www.goodgoodgood.co/articles/rss.xml": 4,
+  "https://www.sciencedaily.com/rss/top/science.xml": 33,
+  "https://www.sciencedaily.com/rss/top/health.xml": "failed: ParseError",
+  "https://www.sciencedaily.com/rss/top/technology.xml": 17,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 5,
+  "https://news.mit.edu/rss/research": 12,
   "https://www.nasa.gov/news-release/feed/": 10,
   "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 5,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 3,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 6,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 8,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
   "https://phys.org/rss-feed/earth-news/": 30,
-  "https://www.carbonbrief.org/feed": 6,
+  "https://www.carbonbrief.org/feed": 5,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 39,
+  "https://www.pewresearch.org/feed/": 50,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 15,
-  "https://www.sciencedaily.com/rss/space_time.xml": 9,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 16,
+  "https://www.sciencedaily.com/rss/space_time.xml": 8,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
- "errors": []
+ "errors": [
+  "ScienceDaily: ParseError: junk after document element: line 440, column 46"
+ ]
 }
