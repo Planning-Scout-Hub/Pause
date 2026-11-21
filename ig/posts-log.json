@@ -1,0 +1,9 @@
+{
+  "note": "One entry per Instagram post on @pauzkit. The every-2-days task reads this to avoid repeating topics/formats and appends to it after posting.",
+  "posts": [
+    {"date": "2026-11-07", "format": "carousel", "topic": "Get PausKIT on your phone (steps)", "files": "ig/PausKIT-post-*.jpg"},
+    {"date": "2026-11-07", "format": "single", "topic": "Word of the day: Care", "files": "ig/PausKIT-word-2026-11-07.jpg"},
+    {"date": "2026-11-07", "format": "carousel", "topic": "PausKIT on your laptop (Chrome add-on steps)", "files": "ig/PausKIT-computer-*.jpg"},
+    {"date": "2026-11-20", "format": "carousel", "topic": "5 things science still can't explain (consciousness, Libet, dark matter, Babraham cell rejuvenation, sleep)", "files": "ig/PausKIT-mysteries-*.jpg", "hook": "5 things science still can't explain", "cta": "comment the number + save"}
+  ]
+}
