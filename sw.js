@@ -1,6 +1,6 @@
 // PausKIT service worker: makes the app installable and lets the page open even on a bad connection.
 // Journal data is NOT stored here; it lives in your account (Supabase) and in drafts on the device.
-const CACHE = "pauskit-v19";
+const CACHE = "pauskit-v20";
 const SHELL = ["./", "index.html", "styles.css", "fonts.css", "app.js", "astro.js", "content.js", "mysteries.js", "daily.js", "config.js", "manifest.webmanifest", "news.json",
   "vendor/supabase.js", "vendor/astronomy.min.js", "fonts/shadows.woff2", "fonts/kalam-400.woff2", "fonts/kalam-700.woff2",
   "fonts/nunito-400.woff2", "fonts/nunito-600.woff2", "fonts/nunito-800.woff2", "icons/icon-192.png", "icons/icon-512.png"];
@@ -15,7 +15,9 @@ self.addEventListener("activate", (e) => {
 function networkFirst(req) {
   return new Promise((resolve) => {
     let done = false;
-    const fromCache = () => caches.match(req).then((r) => r || caches.match("index.html"));
+    // Only the app page itself may fall back to the saved index.html; every other file uses its own saved copy or fails normally
+    const isApp = req.mode === "navigate" && /\/(index\.html)?$/.test(new URL(req.url).pathname);
+    const fromCache = () => caches.match(req, { ignoreSearch: isApp }).then((r) => r || (isApp ? caches.match("index.html") : undefined));
     const timer = setTimeout(() => { fromCache().then((r) => { if (!done && r) { done = true; resolve(r); } }); }, 4000);
     fetch(req).then((res) => {
       if (res && res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); }
