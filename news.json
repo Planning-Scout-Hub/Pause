@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T20:10+00:00",
+ "updated": "2026-11-22T20:24+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -473,91 +473,133 @@
      }
     ]
    }
+  },
+  "2026-11-23": {
+   "headline": "AI Companions May Help Reduce Loneliness",
+   "story": "Researchers found that AI companions can help people feel less lonely by creating a sense of belonging and improving self-esteem. This happens when users see the AI as attentive, nonjudgmental, and responsive to their needs. The researchers studied how people interact with AI companions and found benefits in reducing loneliness. However, they also warn that AI companions should not replace human relationships.",
+   "why": "This research could mean that AI companions can provide support during times of temporary loneliness, such as moving to a new place or having difficulties at work. However, it's important that they complement, rather than replace, meaningful human relationships.",
+   "topic": "AI & Tech",
+   "src_title": "AI companions could help reduce loneliness, study finds",
+   "source": "Phys.org",
+   "link": "https://phys.org/news/2026-11-ai-companions-loneliness.html",
+   "published": "2026-11-19",
+   "written_by": "ai",
+   "word": {
+    "word": "Belong",
+    "meaning": "Like AI friends, small connections make us belong. Who can you reach out to today?",
+    "theme": "Kindness",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-23",
+    "events": [
+     {
+      "year": 2011,
+      "text": "Arab Spring: After months of protests in Yemen, President Ali Abdullah Saleh (pictured) agreed to step down; he subsequently ceded power to Vice President Abdrabbuh Mansour Hadi in February 2012.",
+      "link": "https://en.wikipedia.org/wiki/Arab_Spring"
+     },
+     {
+      "year": 2007,
+      "text": "MS Explorer became the first cruise ship to sink in the Southern Ocean.",
+      "link": "https://en.wikipedia.org/wiki/MV_Explorer_(1969)"
+     },
+     {
+      "year": 2003,
+      "text": "Rose Revolution: Eduard Shevardnadze resigned as President of Georgia following weeks of mass protests over disputed election results.",
+      "link": "https://en.wikipedia.org/wiki/Rose_Revolution"
+     },
+     {
+      "year": 1976,
+      "text": "Jacques Mayol became the first person to freedive to a depth of 100 metres (330 ft).",
+      "link": "https://en.wikipedia.org/wiki/Jacques_Mayol"
+     },
+     {
+      "year": 1963,
+      "text": "The first episode of Doctor Who, the world's longest-running science fiction television show, was broadcast on BBC television, starring William Hartnell as the first incarnation of the title role.",
+      "link": "https://en.wikipedia.org/wiki/An_Unearthly_Child"
+     },
+     {
+      "year": 1924,
+      "text": "The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
+      "link": "https://en.wikipedia.org/wiki/The_New_York_Times"
+     },
+     {
+      "year": 1635,
+      "text": "Dutch pacification campaign on Formosa: Soldiers from the Dutch East India Company (flag depicted) razed the village of Mattau, now part of modern-day Tainan, Taiwan.",
+      "link": "https://en.wikipedia.org/wiki/Dutch_pacification_campaign_on_Formosa"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-22",
+  "date": "11-23",
   "events": [
    {
-    "year": 2013,
-    "text": "Norwegian chess grandmaster Magnus Carlsen (pictured) defeated India's Viswanathan Anand to become world chess champion.",
-    "link": "https://en.wikipedia.org/wiki/Magnus_Carlsen"
+    "year": 2011,
+    "text": "Arab Spring: After months of protests in Yemen, President Ali Abdullah Saleh (pictured) agreed to step down; he subsequently ceded power to Vice President Abdrabbuh Mansour Hadi in February 2012.",
+    "link": "https://en.wikipedia.org/wiki/Arab_Spring"
    },
    {
-    "year": 2005,
-    "text": "Elected by delegates in the newly assembled Bundestag four days after a federal election, Angela Merkel became the first female chancellor of Germany.",
-    "link": "https://en.wikipedia.org/wiki/Bundestag"
+    "year": 2007,
+    "text": "MS Explorer became the first cruise ship to sink in the Southern Ocean.",
+    "link": "https://en.wikipedia.org/wiki/MV_Explorer_(1969)"
    },
    {
-    "year": 1995,
-    "text": "Toy Story, the first feature film created using only computer-generated imagery, was released in theaters in the United States.",
-    "link": "https://en.wikipedia.org/wiki/Toy_Story"
+    "year": 2003,
+    "text": "Rose Revolution: Eduard Shevardnadze resigned as President of Georgia following weeks of mass protests over disputed election results.",
+    "link": "https://en.wikipedia.org/wiki/Rose_Revolution"
    },
    {
-    "year": 1987,
-    "text": "Two television stations in Chicago had their broadcast signals hijacked with footage of an unknown person wearing a Max Headroom mask and costume.",
-    "link": "https://en.wikipedia.org/wiki/Max_Headroom_signal_hijackings"
+    "year": 1976,
+    "text": "Jacques Mayol became the first person to freedive to a depth of 100 metres (330 ft).",
+    "link": "https://en.wikipedia.org/wiki/Jacques_Mayol"
    },
    {
-    "year": 1978,
-    "text": "The serpent labret with articulated tongue (pictured articulating between positions), \"perhaps the finest Aztec gold ornament to survive the crucibles of the sixteenth century\", was sold at Sotheby's.",
-    "link": "https://en.wikipedia.org/wiki/Serpent_labret_with_articulated_tongue"
+    "year": 1963,
+    "text": "The first episode of Doctor Who, the world's longest-running science fiction television show, was broadcast on BBC television, starring William Hartnell as the first incarnation of the title role.",
+    "link": "https://en.wikipedia.org/wiki/An_Unearthly_Child"
    },
    {
-    "year": 1968,
-    "text": "The Beatles released their eponymous double album, popularly known as the White Album.",
-    "link": "https://en.wikipedia.org/wiki/The_Beatles"
-   },
-   {
-    "year": 1797,
-    "text": "The Geisel School of Medicine, the fourth oldest medical school in the United States, was founded by the physician Nathan Smith.",
-    "link": "https://en.wikipedia.org/wiki/Geisel_School_of_Medicine"
+    "year": 1924,
+    "text": "The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
+    "link": "https://en.wikipedia.org/wiki/The_New_York_Times"
    },
    {
     "year": 1635,
-    "text": "Dutch colonial forces on Formosa launched a three-month pacification campaign against Taiwanese indigenous peoples.",
-    "link": "https://en.wikipedia.org/wiki/Dutch_Formosa"
-   },
-   {
-    "year": 1574,
-    "text": "Juan Fernández, a Spanish explorer, discovered an archipelago that now bears his name off the coast of Chile.",
-    "link": "https://en.wikipedia.org/wiki/Juan_Fern%C3%A1ndez_(explorer)"
-   },
-   {
-    "year": 1386,
-    "text": "Turco-Mongol conqueror Timur captured and sacked the Georgian capital Tbilisi and forced King Bagrat V to convert to Islam.",
-    "link": "https://en.wikipedia.org/wiki/Turco-Mongol_tradition"
+    "text": "Dutch pacification campaign on Formosa: Soldiers from the Dutch East India Company (flag depicted) razed the village of Mattau, now part of modern-day Tainan, Taiwan.",
+    "link": "https://en.wikipedia.org/wiki/Dutch_pacification_campaign_on_Formosa"
    }
   ]
  },
- "prepared_for": "2026-11-22",
- "candidates_today": 215,
+ "prepared_for": "2026-11-23",
+ "candidates_today": 207,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 4,
+  "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
   "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
-  "https://www.goodnewsnetwork.org/category/news/health/feed/": 2,
+  "https://www.goodnewsnetwork.org/category/news/health/feed/": 4,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 5,
-  "https://www.sciencedaily.com/rss/top/science.xml": 34,
+  "https://www.goodgoodgood.co/articles/rss.xml": 6,
+  "https://www.sciencedaily.com/rss/top/science.xml": 29,
   "https://www.sciencedaily.com/rss/top/health.xml": "failed: ParseError",
-  "https://www.sciencedaily.com/rss/top/technology.xml": 20,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 14,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 11,
+  "https://news.mit.edu/rss/research": 10,
   "https://www.nasa.gov/news-release/feed/": 10,
   "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 3,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
   "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 8,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 4,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 3,
   "https://phys.org/rss-feed/earth-news/": 30,
-  "https://www.carbonbrief.org/feed": 3,
+  "https://www.carbonbrief.org/feed": 2,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 51,
+  "https://www.pewresearch.org/feed/": 49,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 13,
-  "https://www.sciencedaily.com/rss/space_time.xml": 10,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 9,
+  "https://www.sciencedaily.com/rss/space_time.xml": 8,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
