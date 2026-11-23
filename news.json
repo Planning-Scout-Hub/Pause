@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T20:24+00:00",
+ "updated": "2026-11-23T14:41+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -530,50 +530,107 @@
      }
     ]
    }
+  },
+  "2026-11-24": {
+   "headline": "Religion projections by 2070",
+   "story": "Researchers have made projections about how the size of major religious groups will change. They based their projections on data like age, fertility, and migration. The projections cover 201 countries and territories. The data is available to explore in a report.",
+   "why": "Understanding these changes can help us see how the world's religious makeup might shift over time. This information could be useful for people interested in demographics and cultural trends.",
+   "topic": "Demographics",
+   "src_title": "Data Explorer: The Future of World Religions",
+   "source": "Pew Research Center",
+   "link": "https://www.pewresearch.org/religion/feature/the-future-of-world-religions-data-explorer/",
+   "published": "2026-11-18",
+   "written_by": "ai",
+   "word": {
+    "word": "Explore",
+    "meaning": "Like researchers, discover new things today.",
+    "theme": "Curiosity",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-24",
+    "events": [
+     {
+      "year": 2023,
+      "text": "Hibiscus Rising (pictured), a sculpture commemorating the life of David Oluwale, was unveiled in Leeds.",
+      "link": "https://en.wikipedia.org/wiki/Hibiscus_Rising"
+     },
+     {
+      "year": 2009,
+      "text": "The Avdhela Project, an Aromanian digital library and cultural initiative, was launched in Bucharest, Romania.",
+      "link": "https://en.wikipedia.org/wiki/Avdhela_Project"
+     },
+     {
+      "year": 1971,
+      "text": "After collecting a ransom payout of $200,000, D. B. Cooper parachuted out of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+      "link": "https://en.wikipedia.org/wiki/D._B._Cooper"
+     },
+     {
+      "year": 1925,
+      "text": "The Eugene O'Neill Theatre (pictured) opened on Broadway, New York, with a production of the musical Mayflowers.",
+      "link": "https://en.wikipedia.org/wiki/Eugene_O'Neill_Theatre"
+     },
+     {
+      "year": 1918,
+      "text": "The Podgorica Assembly convened in Montenegro, with the intention of uniting with the Kingdom of Serbia.",
+      "link": "https://en.wikipedia.org/wiki/Podgorica_Assembly"
+     },
+     {
+      "year": 1906,
+      "text": "The second of two games between two Ohio football teams took place, after which accusations were made that players conspired to deliberately lose games.",
+      "link": "https://en.wikipedia.org/wiki/American_football"
+     },
+     {
+      "year": 1859,
+      "text": "British naturalist Charles Darwin's On the Origin of Species was first published, and sold out its initial print run on the first day.",
+      "link": "https://en.wikipedia.org/wiki/Charles_Darwin"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-23",
+  "date": "11-24",
   "events": [
    {
-    "year": 2011,
-    "text": "Arab Spring: After months of protests in Yemen, President Ali Abdullah Saleh (pictured) agreed to step down; he subsequently ceded power to Vice President Abdrabbuh Mansour Hadi in February 2012.",
-    "link": "https://en.wikipedia.org/wiki/Arab_Spring"
+    "year": 2023,
+    "text": "Hibiscus Rising (pictured), a sculpture commemorating the life of David Oluwale, was unveiled in Leeds.",
+    "link": "https://en.wikipedia.org/wiki/Hibiscus_Rising"
    },
    {
-    "year": 2007,
-    "text": "MS Explorer became the first cruise ship to sink in the Southern Ocean.",
-    "link": "https://en.wikipedia.org/wiki/MV_Explorer_(1969)"
+    "year": 2009,
+    "text": "The Avdhela Project, an Aromanian digital library and cultural initiative, was launched in Bucharest, Romania.",
+    "link": "https://en.wikipedia.org/wiki/Avdhela_Project"
    },
    {
-    "year": 2003,
-    "text": "Rose Revolution: Eduard Shevardnadze resigned as President of Georgia following weeks of mass protests over disputed election results.",
-    "link": "https://en.wikipedia.org/wiki/Rose_Revolution"
+    "year": 1971,
+    "text": "After collecting a ransom payout of $200,000, D. B. Cooper parachuted out of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+    "link": "https://en.wikipedia.org/wiki/D._B._Cooper"
    },
    {
-    "year": 1976,
-    "text": "Jacques Mayol became the first person to freedive to a depth of 100 metres (330 ft).",
-    "link": "https://en.wikipedia.org/wiki/Jacques_Mayol"
+    "year": 1925,
+    "text": "The Eugene O'Neill Theatre (pictured) opened on Broadway, New York, with a production of the musical Mayflowers.",
+    "link": "https://en.wikipedia.org/wiki/Eugene_O'Neill_Theatre"
    },
    {
-    "year": 1963,
-    "text": "The first episode of Doctor Who, the world's longest-running science fiction television show, was broadcast on BBC television, starring William Hartnell as the first incarnation of the title role.",
-    "link": "https://en.wikipedia.org/wiki/An_Unearthly_Child"
+    "year": 1918,
+    "text": "The Podgorica Assembly convened in Montenegro, with the intention of uniting with the Kingdom of Serbia.",
+    "link": "https://en.wikipedia.org/wiki/Podgorica_Assembly"
    },
    {
-    "year": 1924,
-    "text": "The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
-    "link": "https://en.wikipedia.org/wiki/The_New_York_Times"
+    "year": 1906,
+    "text": "The second of two games between two Ohio football teams took place, after which accusations were made that players conspired to deliberately lose games.",
+    "link": "https://en.wikipedia.org/wiki/American_football"
    },
    {
-    "year": 1635,
-    "text": "Dutch pacification campaign on Formosa: Soldiers from the Dutch East India Company (flag depicted) razed the village of Mattau, now part of modern-day Tainan, Taiwan.",
-    "link": "https://en.wikipedia.org/wiki/Dutch_pacification_campaign_on_Formosa"
+    "year": 1859,
+    "text": "British naturalist Charles Darwin's On the Origin of Species was first published, and sold out its initial print run on the first day.",
+    "link": "https://en.wikipedia.org/wiki/Charles_Darwin"
    }
   ]
  },
- "prepared_for": "2026-11-23",
- "candidates_today": 207,
+ "prepared_for": "2026-11-24",
+ "candidates_today": 214,
  "feeds": {
   "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
@@ -581,29 +638,29 @@
   "https://www.goodnewsnetwork.org/category/news/health/feed/": 4,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
   "https://www.goodgoodgood.co/articles/rss.xml": 6,
-  "https://www.sciencedaily.com/rss/top/science.xml": 29,
-  "https://www.sciencedaily.com/rss/top/health.xml": "failed: ParseError",
-  "https://www.sciencedaily.com/rss/top/technology.xml": 14,
+  "https://www.sciencedaily.com/rss/top/science.xml": 32,
+  "https://www.sciencedaily.com/rss/top/health.xml": 26,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 18,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
   "https://news.mit.edu/rss/research": 10,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 3,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 4,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 8,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 3,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 7,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 1,
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 2,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 49,
+  "https://www.pewresearch.org/feed/": 48,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
   "https://www.sciencedaily.com/rss/mind_brain.xml": 9,
-  "https://www.sciencedaily.com/rss/space_time.xml": 8,
+  "https://www.sciencedaily.com/rss/space_time.xml": 11,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
  "errors": [
-  "ScienceDaily: ParseError: junk after document element: line 440, column 46"
+  "model write: Invalid control character at: line 2 column 470 (char 529)"
  ]
 }
