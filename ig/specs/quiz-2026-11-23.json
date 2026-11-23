@@ -1,0 +1,12 @@
+{"name": "quiz-2026-11-23", "slides": [
+ {"type":"cover","tag":"TRUE OR FALSE?","title":"4 facts that sound made up","size":112,"body":"Guess each one before you swipe.<br>Keep score. No peeking!","emoji":"🤔"},
+ {"type":"item","num":"Q1","title":"A day on Venus is longer than its year.","body":"True or false? Make your guess, then swipe.","emoji":"🪐"},
+ {"type":"item","num":"True!","title":"Venus spins very slowly","body":"One spin on its axis takes about 243 Earth days, but one trip around the Sun takes only about 225. It also spins the opposite way to most planets.","source":"NASA Space Place"},
+ {"type":"item","num":"Q2","title":"You can see the Great Wall of China from the Moon.","body":"True or false? (With your own eyes, no telescope.)","emoji":"🌕"},
+ {"type":"item","num":"False!","title":"A popular myth","body":"The wall is very long but very narrow. From the Moon, about 384,000 km away, no single human-made structure can be seen with the naked eye. Astronauts have confirmed it.","source":"NASA"},
+ {"type":"item","num":"Q3","title":"The world's largest desert is the Sahara.","body":"True or false? Think carefully about what makes a desert.","emoji":"🏜️"},
+ {"type":"item","num":"False!","title":"It's Antarctica","body":"A desert is defined by how little rain or snow falls, not by heat. Antarctica gets so little that it counts as the largest desert on Earth, bigger than the Sahara.","source":"Encyclopaedia Britannica"},
+ {"type":"item","num":"Q4","title":"Saturn would float in water.","body":"True or false? (If you could find a big enough bath.)","emoji":"🛁"},
+ {"type":"item","num":"True!","title":"Lighter than it looks","body":"Saturn is made mostly of hydrogen and helium, and its average density is lower than water's. It's the only planet in our solar system like that.","source":"NASA Science"},
+ {"type":"cta","tag":"YOUR TURN","title":"How many did you get right?","body":"Comment your score out of 4. And save this to test a friend later.","box":"One mystery, one piece of good news and a quiet page to write. Every day, free. pauskit.com · link in bio"}
+]}
