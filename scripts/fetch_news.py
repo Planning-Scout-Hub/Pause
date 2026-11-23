@@ -114,8 +114,21 @@ def parse_date(s):
             return None
 
 
+def parse_feed(xml_bytes):
+    """Parse a feed, tolerating junk the server appends after the closing </rss> or </feed>."""
+    try:
+        return ET.fromstring(xml_bytes)
+    except ET.ParseError as e:
+        if "junk after document element" not in str(e):
+            raise
+        line, col = e.position
+        lines = xml_bytes.split(b"\n")
+        cut = sum(len(l) + 1 for l in lines[: line - 1]) + col
+        return ET.fromstring(xml_bytes[:cut])
+
+
 def items_from(xml_bytes):
-    root = ET.fromstring(xml_bytes)
+    root = parse_feed(xml_bytes)
     ns = {"a": "http://www.w3.org/2005/Atom"}
     for it in root.iter("item"):
         yield it.findtext("title"), it.findtext("link"), it.findtext("pubDate"), it.findtext("description"), " ".join(c.text or "" for c in it.findall("category"))
