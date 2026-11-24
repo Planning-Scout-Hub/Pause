@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:41+00:00",
+ "updated": "2026-11-24T14:53+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -587,80 +587,145 @@
      }
     ]
    }
+  },
+  "2026-11-25": {
+   "headline": "Brain Cells Found to Drive Sleep Need",
+   "story": "Scientists have found brain cells that create the urge to sleep. In tests on mice, switching off these cells allowed them to sleep 70% less than usual. Many mice didn't show severe behavioral problems from lack of sleep, which is an interesting finding. This research is in early stages and was done on mice.",
+   "why": "Understanding how our brains regulate sleep could help us learn more about why we need sleep and how it affects our daily lives. This knowledge might also help us better manage sleep deprivation in the future.",
+   "topic": "Mind & Brain",
+   "src_title": "Mice slept 70% less after scientists switched off these brain cells",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261122060336.htm",
+   "published": "2026-11-22",
+   "written_by": "ai",
+   "word": {
+    "word": "Sleep",
+    "meaning": "Like mice, our brains need sleep to function, what can you do to rest today?",
+    "theme": "The Body",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-25",
+    "events": [
+     {
+      "year": 2013,
+      "text": "English-Irish boy band One Direction released their third studio album Midnight Memories which debuted at number one on the Billboard 200 and became the best-selling album of 2013.",
+      "link": "https://en.wikipedia.org/wiki/One_Direction"
+     },
+     {
+      "year": 1981,
+      "text": "A group of Conservative members of Parliament wrote a letter outlining their opposition to the economic policy of Margaret Thatcher, leading to speculation over a split from the party.",
+      "link": "https://en.wikipedia.org/wiki/Gang_of_25"
+     },
+     {
+      "year": 1975,
+      "text": "Upon Suriname's independence from the Netherlands, Johan Ferrier (pictured) became its first president.",
+      "link": "https://en.wikipedia.org/wiki/Johan_Ferrier"
+     },
+     {
+      "year": 1951,
+      "text": "The left-wing Japanese novelist Wataru Kaji disappeared, leading to a government inquiry in which CIA involvement was investigated.",
+      "link": "https://en.wikipedia.org/wiki/Wataru_Kaji"
+     },
+     {
+      "year": 1901,
+      "text": "Gustav Mahler's Symphony No. 4 premiered in Munich.",
+      "link": "https://en.wikipedia.org/wiki/Gustav_Mahler"
+     },
+     {
+      "year": 1885,
+      "text": "Banff National Park (pictured), the oldest national park in Canada, was established as the Banff Hot Springs Reserve.",
+      "link": "https://en.wikipedia.org/wiki/Banff_National_Park"
+     },
+     {
+      "year": 1795,
+      "text": "Stanisław II Augustus (pictured), the last king of Poland, was forced to abdicate after the Third Partition of the Polish–Lithuanian Commonwealth.",
+      "link": "https://en.wikipedia.org/wiki/Stanis%C5%82aw_August_Poniatowski"
+     },
+     {
+      "year": 1678,
+      "text": "Trunajaya rebellion: Mataram and Dutch troops successfully assaulted the rebel stronghold of Kediri in eastern Java.",
+      "link": "https://en.wikipedia.org/wiki/Trunajaya_rebellion"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-24",
+  "date": "11-25",
   "events": [
    {
-    "year": 2023,
-    "text": "Hibiscus Rising (pictured), a sculpture commemorating the life of David Oluwale, was unveiled in Leeds.",
-    "link": "https://en.wikipedia.org/wiki/Hibiscus_Rising"
+    "year": 2013,
+    "text": "English-Irish boy band One Direction released their third studio album Midnight Memories which debuted at number one on the Billboard 200 and became the best-selling album of 2013.",
+    "link": "https://en.wikipedia.org/wiki/One_Direction"
    },
    {
-    "year": 2009,
-    "text": "The Avdhela Project, an Aromanian digital library and cultural initiative, was launched in Bucharest, Romania.",
-    "link": "https://en.wikipedia.org/wiki/Avdhela_Project"
+    "year": 1981,
+    "text": "A group of Conservative members of Parliament wrote a letter outlining their opposition to the economic policy of Margaret Thatcher, leading to speculation over a split from the party.",
+    "link": "https://en.wikipedia.org/wiki/Gang_of_25"
    },
    {
-    "year": 1971,
-    "text": "After collecting a ransom payout of $200,000, D. B. Cooper parachuted out of the airplane he had hijacked over the Pacific Northwest and disappeared.",
-    "link": "https://en.wikipedia.org/wiki/D._B._Cooper"
+    "year": 1975,
+    "text": "Upon Suriname's independence from the Netherlands, Johan Ferrier (pictured) became its first president.",
+    "link": "https://en.wikipedia.org/wiki/Johan_Ferrier"
    },
    {
-    "year": 1925,
-    "text": "The Eugene O'Neill Theatre (pictured) opened on Broadway, New York, with a production of the musical Mayflowers.",
-    "link": "https://en.wikipedia.org/wiki/Eugene_O'Neill_Theatre"
+    "year": 1951,
+    "text": "The left-wing Japanese novelist Wataru Kaji disappeared, leading to a government inquiry in which CIA involvement was investigated.",
+    "link": "https://en.wikipedia.org/wiki/Wataru_Kaji"
    },
    {
-    "year": 1918,
-    "text": "The Podgorica Assembly convened in Montenegro, with the intention of uniting with the Kingdom of Serbia.",
-    "link": "https://en.wikipedia.org/wiki/Podgorica_Assembly"
+    "year": 1901,
+    "text": "Gustav Mahler's Symphony No. 4 premiered in Munich.",
+    "link": "https://en.wikipedia.org/wiki/Gustav_Mahler"
    },
    {
-    "year": 1906,
-    "text": "The second of two games between two Ohio football teams took place, after which accusations were made that players conspired to deliberately lose games.",
-    "link": "https://en.wikipedia.org/wiki/American_football"
+    "year": 1885,
+    "text": "Banff National Park (pictured), the oldest national park in Canada, was established as the Banff Hot Springs Reserve.",
+    "link": "https://en.wikipedia.org/wiki/Banff_National_Park"
    },
    {
-    "year": 1859,
-    "text": "British naturalist Charles Darwin's On the Origin of Species was first published, and sold out its initial print run on the first day.",
-    "link": "https://en.wikipedia.org/wiki/Charles_Darwin"
+    "year": 1795,
+    "text": "Stanisław II Augustus (pictured), the last king of Poland, was forced to abdicate after the Third Partition of the Polish–Lithuanian Commonwealth.",
+    "link": "https://en.wikipedia.org/wiki/Stanis%C5%82aw_August_Poniatowski"
+   },
+   {
+    "year": 1678,
+    "text": "Trunajaya rebellion: Mataram and Dutch troops successfully assaulted the rebel stronghold of Kediri in eastern Java.",
+    "link": "https://en.wikipedia.org/wiki/Trunajaya_rebellion"
    }
   ]
  },
- "prepared_for": "2026-11-24",
- "candidates_today": 214,
+ "prepared_for": "2026-11-25",
+ "candidates_today": 190,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 3,
+  "https://reasonstobecheerful.world/feed/": 2,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
-  "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
+  "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
   "https://www.goodnewsnetwork.org/category/news/health/feed/": 4,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 6,
-  "https://www.sciencedaily.com/rss/top/science.xml": 32,
-  "https://www.sciencedaily.com/rss/top/health.xml": 26,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 18,
+  "https://www.goodgoodgood.co/articles/rss.xml": 7,
+  "https://www.sciencedaily.com/rss/top/science.xml": 29,
+  "https://www.sciencedaily.com/rss/top/health.xml": 24,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 22,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 10,
+  "https://news.mit.edu/rss/research": 9,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 4,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 5,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 0,
   "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 7,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 1,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 3,
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 2,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 48,
+  "https://www.pewresearch.org/feed/": 49,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 9,
-  "https://www.sciencedaily.com/rss/space_time.xml": 11,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 10,
+  "https://www.sciencedaily.com/rss/space_time.xml": 12,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
- "errors": [
-  "model write: Invalid control character at: line 2 column 470 (char 529)"
- ]
+ "errors": []
 }
