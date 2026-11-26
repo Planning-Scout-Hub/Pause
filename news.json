@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T14:24+00:00",
+ "updated": "2026-11-26T13:55+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -701,71 +701,103 @@
      }
     ]
    }
+  },
+  "2026-11-27": {
+   "headline": "Gut Antibody May Help Prevent Cancer",
+   "story": "Researchers found that a common antibody in the gut might help prevent colon cancer. In tests, mice without this antibody developed more tumors, but restoring it eliminated the increased risk. The antibody helps regulate cell growth in the intestine, which could prevent tumors from forming. This discovery may lead to new ways to prevent cancer before it starts.",
+   "why": "This could mean that we have a natural defense against colon cancer that we didn't know about before. Understanding how it works might help us find new ways to prevent cancer, which could be a significant step forward in our fight against the disease.",
+   "topic": "Health",
+   "src_title": "Scientists discover a hidden gut defense that could prevent colon cancer",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261123005348.htm",
+   "published": "2026-11-24",
+   "written_by": "ai",
+   "word": {
+    "word": "Defend",
+    "meaning": "Like the gut antibody, what can you defend in your body today?",
+    "theme": "The Body",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-27",
+    "events": [
+     {
+      "year": 2009,
+      "text": "Lady Gaga performed the first concert of The Monster Ball Tour, which became the highest-grossing tour in history for a debut headlining artist.",
+      "link": "https://en.wikipedia.org/wiki/Lady_Gaga"
+     },
+     {
+      "year": 2001,
+      "text": "Astronomers announced the detection of sodium in the atmosphere of the extrasolar planet HD 209458 b, the first exoplanet atmosphere to be measured.",
+      "link": "https://en.wikipedia.org/wiki/Sodium"
+     },
+     {
+      "year": 1999,
+      "text": "The Labour Party defeated the governing National Party in the New Zealand general election, with Labour's Helen Clark becoming the country's first female prime minister to have won office at an election.",
+      "link": "https://en.wikipedia.org/wiki/New_Zealand_Labour_Party"
+     },
+     {
+      "year": 1856,
+      "text": "William III (pictured) unilaterally revised the constitution of Luxembourg, greatly expanding his powers as grand duke.",
+      "link": "https://en.wikipedia.org/wiki/William_III_of_the_Netherlands"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-26",
+  "date": "11-27",
   "events": [
    {
-    "year": 2011,
-    "text": "Mars Science Laboratory, a NASA mission carrying the rover Curiosity (pictured) on board, was launched from Cape Canaveral.",
-    "link": "https://en.wikipedia.org/wiki/Mars_Science_Laboratory"
+    "year": 2009,
+    "text": "Lady Gaga performed the first concert of The Monster Ball Tour, which became the highest-grossing tour in history for a debut headlining artist.",
+    "link": "https://en.wikipedia.org/wiki/Lady_Gaga"
    },
    {
-    "year": 1983,
-    "text": "Six robbers broke into a Brink's-Mat warehouse at Heathrow Airport in London and stole £26 million in gold, diamonds and cash.",
-    "link": "https://en.wikipedia.org/wiki/Brink's"
+    "year": 2001,
+    "text": "Astronomers announced the detection of sodium in the atmosphere of the extrasolar planet HD 209458 b, the first exoplanet atmosphere to be measured.",
+    "link": "https://en.wikipedia.org/wiki/Sodium"
    },
    {
-    "year": 1977,
-    "text": "A speaker claiming to represent the \"Intergalactic Association\" interrupted a broadcast of Southern Television in South East England.",
-    "link": "https://en.wikipedia.org/wiki/Southern_Television_broadcast_interruption"
+    "year": 1999,
+    "text": "The Labour Party defeated the governing National Party in the New Zealand general election, with Labour's Helen Clark becoming the country's first female prime minister to have won office at an election.",
+    "link": "https://en.wikipedia.org/wiki/New_Zealand_Labour_Party"
    },
    {
-    "year": 1965,
-    "text": "Astérix (prototype pictured), the first French satellite, was launched into orbit by a Diamant rocket from Hammaguir, Algeria.",
-    "link": "https://en.wikipedia.org/wiki/Ast%C3%A9rix_(satellite)"
-   },
-   {
-    "year": 1917,
-    "text": "Being unable to resolve disputes with Eddie Livingstone, owner of the Toronto Blueshirts, the other ice hockey clubs of Canada's National Hockey Association officially agreed to break away and form the National Hockey…",
-    "link": "https://en.wikipedia.org/wiki/Eddie_Livingstone"
-   },
-   {
-    "year": 1842,
-    "text": "The University of Notre Dame (building pictured) was founded by Edward Sorin of the Congregation of Holy Cross as an all-male institution in the U.S. state of Indiana.",
-    "link": "https://en.wikipedia.org/wiki/University_of_Notre_Dame"
+    "year": 1856,
+    "text": "William III (pictured) unilaterally revised the constitution of Luxembourg, greatly expanding his powers as grand duke.",
+    "link": "https://en.wikipedia.org/wiki/William_III_of_the_Netherlands"
    }
   ]
  },
- "prepared_for": "2026-11-26",
- "candidates_today": 194,
+ "prepared_for": "2026-11-27",
+ "candidates_today": 205,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 2,
+  "https://reasonstobecheerful.world/feed/": 3,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
-  "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
+  "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
   "https://www.goodnewsnetwork.org/category/news/health/feed/": 5,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 8,
-  "https://www.sciencedaily.com/rss/top/science.xml": 29,
-  "https://www.sciencedaily.com/rss/top/health.xml": 24,
+  "https://www.goodgoodgood.co/articles/rss.xml": 10,
+  "https://www.sciencedaily.com/rss/top/science.xml": 32,
+  "https://www.sciencedaily.com/rss/top/health.xml": 29,
   "https://www.sciencedaily.com/rss/top/technology.xml": 22,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 8,
+  "https://news.mit.edu/rss/research": 7,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 5,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 6,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 1,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 7,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 3,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 5,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
   "https://phys.org/rss-feed/earth-news/": 30,
-  "https://www.carbonbrief.org/feed": 4,
+  "https://www.carbonbrief.org/feed": 5,
   "https://ourworldindata.org/atom.xml": 0,
-  "https://www.pewresearch.org/feed/": 50,
+  "https://www.pewresearch.org/feed/": 51,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 11,
-  "https://www.sciencedaily.com/rss/space_time.xml": 13,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 12,
+  "https://www.sciencedaily.com/rss/space_time.xml": 14,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
