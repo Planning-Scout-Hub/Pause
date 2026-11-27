@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T13:55+00:00",
+ "updated": "2026-11-27T13:53+00:00",
  "days": {
   "2026-11-03": {
    "headline": "New Drug May Help Fight Alzheimer's",
@@ -743,61 +743,153 @@
      }
     ]
    }
+  },
+  "2026-11-28": {
+   "headline": "Nose drops show promise for memory",
+   "story": "Researchers have developed nose drops that improved learning and memory in older mice, bringing their performance back to younger levels. The treatment also helped mice with Alzheimer's-like disease. It works by stimulating production of a brain-protecting protein. This is early research using technology similar to COVID-19 mRNA vaccines.",
+   "why": "This could mean a new way to combat cognitive decline, potentially helping people with Alzheimer's and other brain conditions. It's still early days, but the approach might one day offer a non-invasive treatment option.",
+   "topic": "Longevity",
+   "src_title": "New nose drops restore youthful memory and fight Alzheimer’s in aging mice",
+   "source": "ScienceDaily",
+   "link": "https://www.sciencedaily.com/releases/2026/11/261123005337.htm",
+   "published": "2026-11-24",
+   "written_by": "ai",
+   "word": {
+    "word": "Healing",
+    "meaning": "Like brain cells, we can recover and grow stronger, what can you heal today?",
+    "theme": "The Body",
+    "by": "ai"
+   },
+   "otd": {
+    "date": "11-28",
+    "events": [
+     {
+      "year": 1991,
+      "text": "Tropical Storm Zelda struck the Marshall Islands, leaving 6,000 residents homeless.",
+      "link": "https://en.wikipedia.org/wiki/Tropical_Storm_Zelda_(1991)"
+     },
+     {
+      "year": 1967,
+      "text": "Jocelyn Bell Burnell noticed a \"bit of scruff\" in data from a radio telescope, which turned out to be from PSR B1919+21, the first discovered pulsar.",
+      "link": "https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell"
+     },
+     {
+      "year": 1925,
+      "text": "Grand Ole Opry, the longest-running radio broadcast in the United States, first aired on WSM in Nashville, Tennessee.",
+      "link": "https://en.wikipedia.org/wiki/Grand_Ole_Opry"
+     },
+     {
+      "year": 1912,
+      "text": "At the All-Albanian Congress, the Assembly of Vlorë was constituted, which declared the independence of the Albanian Vilayet from the Ottoman Empire.",
+      "link": "https://en.wikipedia.org/wiki/All-Albanian_Congress"
+     },
+     {
+      "year": 1903,
+      "text": "SS Petriana struck a reef near Point Nepean, leading to Australia's first major oil spill and a debate over the White Australia policy.",
+      "link": "https://en.wikipedia.org/wiki/SS_Petriana"
+     },
+     {
+      "year": 1895,
+      "text": "The Chicago Times-Herald race, the first automobile race in the U.S., was held in Chicago.",
+      "link": "https://en.wikipedia.org/wiki/Chicago_Times-Herald_race"
+     },
+     {
+      "year": 1811,
+      "text": "Beethoven's Piano Concerto No. 5 premiered at the Gewandhaus in Leipzig.",
+      "link": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven"
+     },
+     {
+      "year": 1660,
+      "text": "Robert Boyle, John Wilkins, Christopher Wren and other leading scientists met at Gresham College in London to found a learned society, now known as the Royal Society (coat of arms pictured).",
+      "link": "https://en.wikipedia.org/wiki/Robert_Boyle"
+     },
+     {
+      "year": 1443,
+      "text": "Having deserted the Ottoman army, Skanderbeg (pictured) arrived in the Albanian city of Krujë and, using a forged letter from Sultan Murad II to the governor of Krujë, became lord of the city.",
+      "link": "https://en.wikipedia.org/wiki/Ottoman_Empire"
+     }
+    ]
+   }
   }
  },
  "onThisDay": {
-  "date": "11-27",
+  "date": "11-28",
   "events": [
    {
-    "year": 2009,
-    "text": "Lady Gaga performed the first concert of The Monster Ball Tour, which became the highest-grossing tour in history for a debut headlining artist.",
-    "link": "https://en.wikipedia.org/wiki/Lady_Gaga"
+    "year": 1991,
+    "text": "Tropical Storm Zelda struck the Marshall Islands, leaving 6,000 residents homeless.",
+    "link": "https://en.wikipedia.org/wiki/Tropical_Storm_Zelda_(1991)"
    },
    {
-    "year": 2001,
-    "text": "Astronomers announced the detection of sodium in the atmosphere of the extrasolar planet HD 209458 b, the first exoplanet atmosphere to be measured.",
-    "link": "https://en.wikipedia.org/wiki/Sodium"
+    "year": 1967,
+    "text": "Jocelyn Bell Burnell noticed a \"bit of scruff\" in data from a radio telescope, which turned out to be from PSR B1919+21, the first discovered pulsar.",
+    "link": "https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell"
    },
    {
-    "year": 1999,
-    "text": "The Labour Party defeated the governing National Party in the New Zealand general election, with Labour's Helen Clark becoming the country's first female prime minister to have won office at an election.",
-    "link": "https://en.wikipedia.org/wiki/New_Zealand_Labour_Party"
+    "year": 1925,
+    "text": "Grand Ole Opry, the longest-running radio broadcast in the United States, first aired on WSM in Nashville, Tennessee.",
+    "link": "https://en.wikipedia.org/wiki/Grand_Ole_Opry"
    },
    {
-    "year": 1856,
-    "text": "William III (pictured) unilaterally revised the constitution of Luxembourg, greatly expanding his powers as grand duke.",
-    "link": "https://en.wikipedia.org/wiki/William_III_of_the_Netherlands"
+    "year": 1912,
+    "text": "At the All-Albanian Congress, the Assembly of Vlorë was constituted, which declared the independence of the Albanian Vilayet from the Ottoman Empire.",
+    "link": "https://en.wikipedia.org/wiki/All-Albanian_Congress"
+   },
+   {
+    "year": 1903,
+    "text": "SS Petriana struck a reef near Point Nepean, leading to Australia's first major oil spill and a debate over the White Australia policy.",
+    "link": "https://en.wikipedia.org/wiki/SS_Petriana"
+   },
+   {
+    "year": 1895,
+    "text": "The Chicago Times-Herald race, the first automobile race in the U.S., was held in Chicago.",
+    "link": "https://en.wikipedia.org/wiki/Chicago_Times-Herald_race"
+   },
+   {
+    "year": 1811,
+    "text": "Beethoven's Piano Concerto No. 5 premiered at the Gewandhaus in Leipzig.",
+    "link": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven"
+   },
+   {
+    "year": 1660,
+    "text": "Robert Boyle, John Wilkins, Christopher Wren and other leading scientists met at Gresham College in London to found a learned society, now known as the Royal Society (coat of arms pictured).",
+    "link": "https://en.wikipedia.org/wiki/Robert_Boyle"
+   },
+   {
+    "year": 1443,
+    "text": "Having deserted the Ottoman army, Skanderbeg (pictured) arrived in the Albanian city of Krujë and, using a forged letter from Sultan Murad II to the governor of Krujë, became lord of the city.",
+    "link": "https://en.wikipedia.org/wiki/Ottoman_Empire"
    }
   ]
  },
- "prepared_for": "2026-11-27",
- "candidates_today": 205,
+ "prepared_for": "2026-11-28",
+ "candidates_today": 208,
  "feeds": {
-  "https://reasonstobecheerful.world/feed/": 3,
+  "https://reasonstobecheerful.world/feed/": 4,
   "https://www.theguardian.com/world/series/the-upside/rss": 0,
-  "https://www.goodnewsnetwork.org/category/news/science/feed/": 1,
+  "https://www.goodnewsnetwork.org/category/news/science/feed/": 0,
   "https://www.goodnewsnetwork.org/category/news/health/feed/": 5,
   "https://www.goodnewsnetwork.org/category/news/earth/feed/": 1,
-  "https://www.goodgoodgood.co/articles/rss.xml": 10,
-  "https://www.sciencedaily.com/rss/top/science.xml": 32,
-  "https://www.sciencedaily.com/rss/top/health.xml": 29,
-  "https://www.sciencedaily.com/rss/top/technology.xml": 22,
+  "https://www.goodgoodgood.co/articles/rss.xml": 8,
+  "https://www.sciencedaily.com/rss/top/science.xml": 29,
+  "https://www.sciencedaily.com/rss/top/health.xml": 30,
+  "https://www.sciencedaily.com/rss/top/technology.xml": 19,
   "https://phys.org/rss-feed/breaking/": 30,
   "https://medicalxpress.com/rss-feed/breaking/": 30,
   "https://techxplore.com/rss-feed/breaking/": 30,
-  "https://news.mit.edu/rss/research": 7,
+  "https://news.mit.edu/rss/research": 8,
   "https://www.nasa.gov/news-release/feed/": 10,
-  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 6,
+  "https://www.sciencedaily.com/rss/health_medicine/healthy_aging.xml": 4,
   "https://www.sciencedaily.com/rss/mind_brain/memory.xml": 1,
-  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 5,
-  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 5,
+  "https://medicalxpress.com/rss-feed/gerontology-geriatrics-news/": 7,
+  "https://www.sciencedaily.com/rss/earth_climate/climate.xml": 6,
   "https://phys.org/rss-feed/earth-news/": 30,
   "https://www.carbonbrief.org/feed": 5,
   "https://ourworldindata.org/atom.xml": 0,
   "https://www.pewresearch.org/feed/": 51,
   "https://phys.org/rss-feed/science-news/social-sciences/": 30,
-  "https://www.sciencedaily.com/rss/mind_brain.xml": 12,
-  "https://www.sciencedaily.com/rss/space_time.xml": 14,
+  "https://www.sciencedaily.com/rss/mind_brain.xml": 14,
+  "https://www.sciencedaily.com/rss/space_time.xml": 10,
   "https://phys.org/rss-feed/space-news/": 30,
   "https://www.technologyreview.com/feed/": 10
  },
