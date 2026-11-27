@@ -48,7 +48,7 @@ def render(spec):
         if s["type"] == "cover":
             inner = f'<div class="tag">{s.get("tag","")}</div><h1 style="font-size:{s.get("size",118)}px;margin-top:70px">{s["title"]}</h1><p class="big">{s.get("body","")}</p>' + (f'<div class="deco0">{e}</div>' if e else '') + '<div class="swipe">swipe →</div>'
         elif s["type"] == "item":
-            inner = (f'<div class="num">{s["num"]}</div>' if s.get("num") else '') + f'<h2>{s["title"]}</h2><p>{s.get("body","")}</p>' + (f'<div class="deco">{e}</div>' if e else '') + (f'<div class="src">Source: {s["source"]}</div>' if s.get("source") else '')
+            inner = (f'<div class="num">{s["num"]}</div>' if s.get("num") else '') + (f'<h2>' if s.get("num") else '<h2 style="margin-top:110px">') + f'{s["title"]}</h2><p>{s.get("body","")}</p>' + (f'<div class="deco">{e}</div>' if e else '') + (f'<div class="src">Source: {s["source"]}</div>' if s.get("source") else '')
         else:
             inner = f'<div class="tag">{s.get("tag","YOUR TURN")}</div><h1 style="margin-top:60px">{s["title"]}</h1><p class="big">{s.get("body","")}</p><div class="ask">{s.get("box","")}</div>'
         html.append(page(inner, i, T))

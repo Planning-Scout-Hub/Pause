@@ -50,6 +50,16 @@
       "hook": "4 questions that are harder than they look",
       "cta": "comment the number + your answer, save",
       "status": "prepared, NOT posted (no browser tools in this run)"
+    },
+    {
+      "date": "2026-11-27",
+      "format": "carousel (journal prompt)",
+      "topic": "Journal prompt: one sentence from your future self, ten years from now (PROMPTS_DAILY)",
+      "files": "ig/journal-2026-11-27-*.jpg",
+      "caption": "ig/specs/journal-2026-11-27.caption.txt",
+      "hook": "A message from you, ten years from now",
+      "cta": "answer in 3 words in the comments + save",
+      "status": "prepared, NOT posted (no browser tools in this run)"
     }
   ]
 }
